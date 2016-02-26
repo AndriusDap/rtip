@@ -10,8 +10,7 @@ var GulpConfig = (function () {
         this.allTypeScript = this.source + '/**/*.ts';
         this.jsLibPath = this.source + '/lib';
 
-        this.allSassFiles = ['./scss/**/*.scss', 
-                                this.source + '/**/*.scss'];
+        this.allSassFiles = [this.source + '/sass/**/*.scss'];
 
         this.libraryTypeScriptDefinitions = './typings/main.d.ts';
     }

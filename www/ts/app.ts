@@ -41,6 +41,43 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
         controller: 'AppCtrl'
     })
 
+    .state('app.modules', {
+        url: '/modules',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/modules.html',
+                controller: 'ModulesCtrl'
+            },
+            'fabContent': {
+                template: '<button id="fab-activity" class="button button-fab button-fab-top-right expanded button-energized-900 flap"><i class="icon ion-paper-airplane"></i></button>',
+                controller: function ($timeout) {
+                    $timeout(function () {
+                        document.getElementById('fab-activity').classList.toggle('on');
+                    }, 200);
+                }
+            }
+        }
+    })
+
+
+    .state('app.ticketing', {
+        url: '/ticketing',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/ticketing.html',
+                controller: 'TicketingCtrl'
+            },
+            'fabContent': {
+                template: '<button id="fab-activity" class="button button-fab button-fab-top-right expanded button-energized-900 flap"><i class="icon ion-paper-airplane"></i></button>',
+                controller: function ($timeout) {
+                    $timeout(function () {
+                        document.getElementById('fab-activity').classList.toggle('on');
+                    }, 200);
+                }
+            }
+        }
+    })
+
     .state('app.activity', {
         url: '/activity',
         views: {
@@ -128,5 +165,5 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
     ;
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/activity');
+    $urlRouterProvider.otherwise('/app/login');
 });

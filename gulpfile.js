@@ -53,7 +53,7 @@ gulp.task('clean', function (cb) {
 gulp.task('sass', function(done) {
   gulp.src(config.allSassFiles)
     .pipe(sass())
-    // .pipe(gulp.dest(config.buildDir))
+    .pipe(gulp.dest(config.buildDir))
     .pipe(minifyCss({
       keepSpecialComments: 0
     }))
