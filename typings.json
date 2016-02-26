@@ -1,0 +1,12 @@
+{
+  "ambientDependencies": {
+    "angular": "github:DefinitelyTyped/DefinitelyTyped/angularjs/angular.d.ts#1c4a34873c9e70cce86edd0e61c559e43dfa5f75",
+    "cordova": "github:DefinitelyTyped/DefinitelyTyped/cordova/cordova.d.ts#ac7f83bdcf1dfd70e70acf7a87cf8e83719dacd6",
+    "cordova-ionic": "github:DefinitelyTyped/DefinitelyTyped/cordova-ionic/cordova-ionic.d.ts#00dc7c1c629c3fd5e92a56afc87efda571d84e22",
+    "ionic": "github:DefinitelyTyped/DefinitelyTyped/ionic/ionic.d.ts#a4b718b3d818418d505562ef659b30e162769125",
+    "jquery": "github:DefinitelyTyped/DefinitelyTyped/jquery/jquery.d.ts#470954c4f427e0805a2d633636a7c6aa7170def8"
+  },
+  "ambientDevDependencies": {
+    "keyboard": "github:DefinitelyTyped/DefinitelyTyped/cordova-ionic/plugins/keyboard.d.ts"
+  }
+}
