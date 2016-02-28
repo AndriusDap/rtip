@@ -9,9 +9,9 @@ $color_log_cabin_approx: #222;
 $url_0: url(../img/crown.jpg);
 
 h1 {
-    color: $white;
+    color: $black;
     //Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-    text-shadow: 0 1px 0 $black;
+    text-shadow: 0 1px 0 $white;
     font-size: 42px;
 }
 .title-bordered {
@@ -72,3 +72,18 @@ p {
     position: fixed;
     bottom: 0;
 }
+.ticketing-input {
+    & .layout-row {
+        height:60px;
+    }
+}
+
+
+
+
+
+
+
+
+
+

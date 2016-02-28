@@ -51,20 +51,14 @@ gulp.task('clean', function (cb) {
 });
 
 gulp.task('sass', function(done) {
-  gulp.src(config.allSassFiles)
+  return gulp.src(config.allSassFiles)
     .pipe(sass())
-    .pipe(gulp.dest(config.buildDir))
-    .pipe(minifyCss({
-      keepSpecialComments: 0
-    }))
-    .pipe(rename({ extname: '.min.css' }))
-    .pipe(gulp.dest(config.buildDir))
-    .on('end', done);
+    .pipe(concat('app.css'))
+    .pipe(gulp.dest(config.buildDir));
 });
 
 gulp.task('watch', function() {
-  gulp.watch([config.allTypeScript], ['ts-lint', 'compile']);
-  // gulp.watch(config.allSassFiles, ['sass']);
+  gulp.watch([ config.allSassFiles], ['default']);
 });
 
 gulp.task('install', ['git-check'], function() {
@@ -87,4 +81,4 @@ gulp.task('git-check', function(done) {
   done();
 });
 
-gulp.task('default', ['sass', 'ts-lint', 'compile']);
+gulp.task('default', ['clean', 'ts-lint', 'compile', 'sass']);

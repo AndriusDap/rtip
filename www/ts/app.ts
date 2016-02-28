@@ -8,7 +8,12 @@ interface Window {
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'ionMdInput'])
+angular.module('starter', [
+        'ionic', 
+        'starter.controllers', 
+        'ionic-material', 
+        'ionMdInput',
+        'ngMaterial'])
 
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
@@ -24,7 +29,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
     });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $mdThemingProvider) {
 
     // Turn off caching for demo simplicity's sake
     $ionicConfigProvider.views.maxCache(0);
