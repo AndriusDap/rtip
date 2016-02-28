@@ -6,7 +6,7 @@ var GulpConfig = (function () {
         this.source = './www/';
 
         this.buildDir = this.source + '/build';
-        this.allJavaScript = [this.source + '/js/**/*.js'];
+        this.allJavaScript = [this.source, '/app/**/*.js'];
         this.allTypeScript = this.source + '/**/*.ts';
         this.jsLibPath = this.source + '/lib';
 

@@ -12,6 +12,7 @@ var gulp = require('gulp'),
     del = require('del'),
     Config = require('./gulpfile.config'),
     merge = require('merge2'),
+    angularFilesort = require('gulp-angular-filesort'),
     tsProject = typescript.createProject('tsconfig.json');
 
 var config = new Config();
@@ -25,28 +26,27 @@ gulp.task('ts-lint', function () {
 gulp.task('compile', function () {
   var sourceTsFiles = [config.allTypeScript,                //path to typescript files
                        config.libraryTypeScriptDefinitions]; //reference to library .d.ts files
-                      
 
   var tsResult = gulp.src(sourceTsFiles)
                      .pipe(sourcemaps.init())
                      .pipe(typescript(tsProject));
 
-
-    return merge([
-        tsResult.dts
-          .pipe(gulp.dest(config.buildDir)),
-        tsResult.js
-          .pipe(concat('app.js'))
-          .pipe(sourcemaps.write())
-          .pipe(gulp.dest(config.buildDir))]);
+  return tsResult
+    .pipe(gulp.dest(config.buildDir + '/built'));
 });
+
+gulp.task('filesort-js', ['compile'], function() {
+  return gulp.src([config.buildDir + '/built/**/*.js'])
+    .pipe(angularFilesort())
+    .pipe(concat('app.js'))
+    .pipe(gulp.dest(config.buildDir));
+})
 
 gulp.task('clean', function (cb) {
   var getFiles = [
         config.buildDir
      ];
 
-  // delete the files
   del(getFiles, cb);
 });
 
@@ -58,7 +58,8 @@ gulp.task('sass', function(done) {
 });
 
 gulp.task('watch', function() {
-  gulp.watch([ config.allSassFiles], ['default']);
+  gulp.watch([config.allTypeScript], ['default']);
+  gulp.watch([config.allSassFiles], ['sass']);
 });
 
 gulp.task('install', ['git-check'], function() {
@@ -81,4 +82,15 @@ gulp.task('git-check', function(done) {
   done();
 });
 
-gulp.task('default', ['clean', 'ts-lint', 'compile', 'sass']);
+gulp.task('default', [
+  'clean', 
+  'ts-lint', 
+  'compile', 
+  'filesort-js', 
+  'sass']);
+
+
+
+
+
+
