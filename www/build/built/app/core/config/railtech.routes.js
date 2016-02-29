@@ -1,4 +1,4 @@
-angular.module('starter')
+angular.module('railtech')
     .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $mdThemingProvider) {
     // Turn off caching for demo simplicity's sake
     $ionicConfigProvider.views.maxCache(0);

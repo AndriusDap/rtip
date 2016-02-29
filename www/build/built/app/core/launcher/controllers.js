@@ -1,6 +1,6 @@
 /* global angular, document, window */
 'use strict';
-angular.module('starter.controllers', [])
+angular.module('railtech.controllers', [])
     .controller('ModulesCtrl', function ($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
