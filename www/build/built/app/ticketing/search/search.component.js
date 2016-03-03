@@ -1,14 +1,14 @@
 "use strict";
 var RailTech;
 (function (RailTech) {
-    var TicketingComponent = (function () {
-        function TicketingComponent() {
-            this.controller = TicketingController;
+    var SearchComponent = (function () {
+        function SearchComponent() {
+            this.controller = RailTech.SearchController;
             this.templateUrl = "";
             this.bindings = {};
         }
-        return TicketingComponent;
+        return SearchComponent;
     }());
     angular.module('ticketing')
-        .component('TicketingComponent', new TicketingComponent());
+        .component('searchComponent', new SearchComponent());
 })(RailTech || (RailTech = {}));

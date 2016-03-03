@@ -1,9 +1,10 @@
 var RailTech;
 (function (RailTech) {
-    angular.module('search', [
+    angular.module('ticketing', [
         // External
         'ionic',
         'ionic-material',
         'ionMdInput',
-        'ngMaterial']);
+        'ngMaterial'
+    ]);
 })(RailTech || (RailTech = {}));

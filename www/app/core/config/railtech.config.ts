@@ -1,4 +1,6 @@
 
+module RailTech {
+
 angular.module('railtech')
     .run(function($ionicPlatform) {
         $ionicPlatform.ready(function() {
@@ -12,4 +14,14 @@ angular.module('railtech')
                 window.StatusBar.styleDefault();
             }
         });
+    })
+    .config(function($sceDelegateProvider) {
+        $sceDelegateProvider.resourceUrlWhitelist([
+            // Allow same origin rSearchControlleresource loads.
+            'self',
+            // Allow loading from our assets domain.  Notice the difference between * and **.
+            'http://virgintrains.co.uk/**']);
+
     });
+
+}

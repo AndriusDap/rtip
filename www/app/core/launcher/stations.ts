@@ -1,4 +1,7 @@
-var stations = [
+
+module RailTech {
+
+export var stations = [
     { display: "Abbey Wood", value: "ABW"},
     { display: "Aber", value: "ABE"},
     { display: "Abercynon", value: "ACY"},
@@ -2568,3 +2571,5 @@ var stations = [
     { display: "Ystrad Mynach", value: "YSM"},
     { display: "Ystrad Rhondda", value: "YSR"}
 ];
+
+}

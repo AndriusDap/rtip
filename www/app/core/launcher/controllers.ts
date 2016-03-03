@@ -1,6 +1,8 @@
 /* global angular, document, window */
 'use strict';
 
+module RailTech {
+
 angular.module('railtech.controllers', [])
 
 .controller('ModulesCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
@@ -31,7 +33,7 @@ angular.module('railtech.controllers', [])
         var lowercaseQuery = angular.lowercase(query);
             return function filterFn(state) {
                 var lowercaseDisplay = angular.lowercase(state.display);
-                return (lowercaseDisplay.indexOf(lowercaseQuery) === 0);
+                return (lowercaseDisplay.search(lowercaseQuery) >= 0);
         };
     }
 
@@ -224,3 +226,4 @@ angular.module('railtech.controllers', [])
 
 });
 
+}
