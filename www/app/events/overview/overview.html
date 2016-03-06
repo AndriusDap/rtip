@@ -2,13 +2,12 @@
     <div class="overview-search-header">
         <md-input-container class="md-block" flex-gt-sm>
             <label>City</label>
-            <input ng-model="$ctrl.stationSearch"
-                    ng-change="$ctrl.stationQuerySearch( $ctrl.stationSearch )">
+            <input ng-model="$ctrl.stationSearch">
         </md-input-container>
     </div>
     <ion-content>
         <div class="overview-list list">
-            <a ng-repeat="item in $ctrl.stations"
+            <a ng-repeat="item in $ctrl.stationQuerySearch( $ctrl.stationSearch )"
                         class="overview-item item"
                         ui-sref="app.events.detail( { 'cityName': item.city } )"
                         style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ item.cover }});">

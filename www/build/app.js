@@ -55,59 +55,6 @@ var RailTech;
     })(Ticketing = RailTech.Ticketing || (RailTech.Ticketing = {})); // Ticketing
 })(RailTech || (RailTech = {})); // RailTech
 
-"use strict";
-var RailTech;
-(function (RailTech) {
-    var Ticketing;
-    (function (Ticketing) {
-        angular.module('ticketing')
-            .config(function ($stateProvider) {
-            $stateProvider
-                .state('app.ticketing', {
-                url: '/ticketing',
-                abstract: true,
-                template: "<ion-nav-view>"
-            })
-                .state('app.ticketing.search', {
-                url: '/search',
-                templateUrl: 'app/ticketing/search/search.html',
-                controller: 'SearchController as $ctrl'
-            })
-                .state('app.ticketing.results', {
-                url: '/results',
-                templateUrl: 'app/ticketing/results/results.html',
-                controller: 'ResultsController as $ctrl'
-            });
-        });
-    })(Ticketing = RailTech.Ticketing || (RailTech.Ticketing = {}));
-})(RailTech || (RailTech = {}));
-
-
-
-var RailTech;
-(function (RailTech) {
-    var Ticketing;
-    (function (Ticketing) {
-        var SearchStation = (function () {
-            function SearchStation() {
-            }
-            return SearchStation;
-        }());
-        Ticketing.SearchStation = SearchStation;
-        var Journey = (function () {
-            function Journey(departureDate, arrivalDate, lengthStr, type, price) {
-                this.departureDate = departureDate;
-                this.arrivalDate = arrivalDate;
-                this.lengthStr = lengthStr;
-                this.type = type;
-                this.price = price;
-            }
-            return Journey;
-        }());
-        Ticketing.Journey = Journey;
-    })(Ticketing = RailTech.Ticketing || (RailTech.Ticketing = {}));
-})(RailTech || (RailTech = {}));
-
 var RailTech;
 (function (RailTech) {
     RailTech.stations = [
@@ -2795,6 +2742,59 @@ var RailTech;
     })(Ticketing = RailTech.Ticketing || (RailTech.Ticketing = {})); // Ticketing
 })(RailTech || (RailTech = {})); // RailTech
 
+"use strict";
+var RailTech;
+(function (RailTech) {
+    var Ticketing;
+    (function (Ticketing) {
+        angular.module('ticketing')
+            .config(function ($stateProvider) {
+            $stateProvider
+                .state('app.ticketing', {
+                url: '/ticketing',
+                abstract: true,
+                template: "<ion-nav-view>"
+            })
+                .state('app.ticketing.search', {
+                url: '/search',
+                templateUrl: 'app/ticketing/search/search.html',
+                controller: 'SearchController as $ctrl'
+            })
+                .state('app.ticketing.results', {
+                url: '/results',
+                templateUrl: 'app/ticketing/results/results.html',
+                controller: 'ResultsController as $ctrl'
+            });
+        });
+    })(Ticketing = RailTech.Ticketing || (RailTech.Ticketing = {}));
+})(RailTech || (RailTech = {}));
+
+
+
+var RailTech;
+(function (RailTech) {
+    var Ticketing;
+    (function (Ticketing) {
+        var SearchStation = (function () {
+            function SearchStation() {
+            }
+            return SearchStation;
+        }());
+        Ticketing.SearchStation = SearchStation;
+        var Journey = (function () {
+            function Journey(departureDate, arrivalDate, lengthStr, type, price) {
+                this.departureDate = departureDate;
+                this.arrivalDate = arrivalDate;
+                this.lengthStr = lengthStr;
+                this.type = type;
+                this.price = price;
+            }
+            return Journey;
+        }());
+        Ticketing.Journey = Journey;
+    })(Ticketing = RailTech.Ticketing || (RailTech.Ticketing = {}));
+})(RailTech || (RailTech = {}));
+
 var RailTech;
 (function (RailTech) {
     var Events;
@@ -3360,7 +3360,10 @@ var RailTech;
             }
         });
     })
-        .config(function ($sceDelegateProvider) {
+        .config(function ($sceDelegateProvider, $mdGestureProvider) {
+        // Quickfix for android ng-click firing twice.
+        // TODO: remove. check https://github.com/driftyco/ionic/issues/1022
+        $mdGestureProvider.skipClickHijack();
         $sceDelegateProvider.resourceUrlWhitelist([
             // Allow same origin rSearchControlleresource loads.
             'self',

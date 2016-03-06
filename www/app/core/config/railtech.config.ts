@@ -15,7 +15,12 @@ angular.module('railtech')
             }
         });
     })
-    .config(function($sceDelegateProvider) {
+    .config(function($sceDelegateProvider, $mdGestureProvider) {
+        
+        // Quickfix for android ng-click firing twice.
+        // TODO: remove. check https://github.com/driftyco/ionic/issues/1022
+        $mdGestureProvider.skipClickHijack();
+
         $sceDelegateProvider.resourceUrlWhitelist([
             // Allow same origin rSearchControlleresource loads.
             'self',
