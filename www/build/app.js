@@ -55,46 +55,58 @@ var RailTech;
     })(Ticketing = RailTech.Ticketing || (RailTech.Ticketing = {})); // Ticketing
 })(RailTech || (RailTech = {})); // RailTech
 
-'use strict';
+"use strict";
 var RailTech;
 (function (RailTech) {
     var Ticketing;
     (function (Ticketing) {
-        var ResultsController = (function () {
-            function ResultsController($scope, ticketingService, ionicMaterialMotion, ionicMaterialInk) {
-                var _this = this;
-                this.ticketingService = ticketingService;
-                this.ionicMaterialMotion = ionicMaterialMotion;
-                ionicMaterialMotion.fadeSlideInRight();
-                ionicMaterialInk.displayEffect();
-                this.fromStation = ticketingService.fromStation;
-                this.toStation = ticketingService.toStation;
-                console.log(this.fromStation, ticketingService.fromStation, this.toStation, ticketingService.toStation);
-                ticketingService.getJourneysTowards().then(function (journeys) {
-                    _this.journeysTowards = journeys;
-                    _this.ionicMaterialMotion.fadeSlideInRight();
-                    console.log(journeys);
-                });
-                this.isReturnTrip = ticketingService.returnDate !== undefined && ticketingService.returnDate !== null;
-                if (this.isReturnTrip) {
-                    ticketingService.getJourneysReturn().then(function (journeys) {
-                        _this.journeysReturn = journeys;
-                        _this.ionicMaterialMotion.fadeSlideInRight();
-                    });
-                }
-            }
-            ResultsController.$inject = [
-                '$scope',
-                'TicketingService',
-                'ionicMaterialMotion',
-                'ionicMaterialInk'];
-            return ResultsController;
-        }());
-        Ticketing.ResultsController = ResultsController;
         angular.module('ticketing')
-            .controller('ResultsController', ResultsController);
-    })(Ticketing = RailTech.Ticketing || (RailTech.Ticketing = {})); // Ticketing
-})(RailTech || (RailTech = {})); // RailTech
+            .config(function ($stateProvider) {
+            $stateProvider
+                .state('app.ticketing', {
+                url: '/ticketing',
+                abstract: true,
+                template: "<ion-nav-view>"
+            })
+                .state('app.ticketing.search', {
+                url: '/search',
+                templateUrl: 'app/ticketing/search/search.html',
+                controller: 'SearchController as $ctrl'
+            })
+                .state('app.ticketing.results', {
+                url: '/results',
+                templateUrl: 'app/ticketing/results/results.html',
+                controller: 'ResultsController as $ctrl'
+            });
+        });
+    })(Ticketing = RailTech.Ticketing || (RailTech.Ticketing = {}));
+})(RailTech || (RailTech = {}));
+
+
+
+var RailTech;
+(function (RailTech) {
+    var Ticketing;
+    (function (Ticketing) {
+        var SearchStation = (function () {
+            function SearchStation() {
+            }
+            return SearchStation;
+        }());
+        Ticketing.SearchStation = SearchStation;
+        var Journey = (function () {
+            function Journey(departureDate, arrivalDate, lengthStr, type, price) {
+                this.departureDate = departureDate;
+                this.arrivalDate = arrivalDate;
+                this.lengthStr = lengthStr;
+                this.type = type;
+                this.price = price;
+            }
+            return Journey;
+        }());
+        Ticketing.Journey = Journey;
+    })(Ticketing = RailTech.Ticketing || (RailTech.Ticketing = {}));
+})(RailTech || (RailTech = {}));
 
 var RailTech;
 (function (RailTech) {
@@ -2742,58 +2754,46 @@ var RailTech;
     })(Ticketing = RailTech.Ticketing || (RailTech.Ticketing = {})); // Ticketing
 })(RailTech || (RailTech = {})); // RailTech
 
-"use strict";
+'use strict';
 var RailTech;
 (function (RailTech) {
     var Ticketing;
     (function (Ticketing) {
+        var ResultsController = (function () {
+            function ResultsController($scope, ticketingService, ionicMaterialMotion, ionicMaterialInk) {
+                var _this = this;
+                this.ticketingService = ticketingService;
+                this.ionicMaterialMotion = ionicMaterialMotion;
+                ionicMaterialMotion.fadeSlideInRight();
+                ionicMaterialInk.displayEffect();
+                this.fromStation = ticketingService.fromStation;
+                this.toStation = ticketingService.toStation;
+                console.log(this.fromStation, ticketingService.fromStation, this.toStation, ticketingService.toStation);
+                ticketingService.getJourneysTowards().then(function (journeys) {
+                    _this.journeysTowards = journeys;
+                    _this.ionicMaterialMotion.fadeSlideInRight();
+                    console.log(journeys);
+                });
+                this.isReturnTrip = ticketingService.returnDate !== undefined && ticketingService.returnDate !== null;
+                if (this.isReturnTrip) {
+                    ticketingService.getJourneysReturn().then(function (journeys) {
+                        _this.journeysReturn = journeys;
+                        _this.ionicMaterialMotion.fadeSlideInRight();
+                    });
+                }
+            }
+            ResultsController.$inject = [
+                '$scope',
+                'TicketingService',
+                'ionicMaterialMotion',
+                'ionicMaterialInk'];
+            return ResultsController;
+        }());
+        Ticketing.ResultsController = ResultsController;
         angular.module('ticketing')
-            .config(function ($stateProvider) {
-            $stateProvider
-                .state('app.ticketing', {
-                url: '/ticketing',
-                abstract: true,
-                template: "<ion-nav-view>"
-            })
-                .state('app.ticketing.search', {
-                url: '/search',
-                templateUrl: 'app/ticketing/search/search.html',
-                controller: 'SearchController as $ctrl'
-            })
-                .state('app.ticketing.results', {
-                url: '/results',
-                templateUrl: 'app/ticketing/results/results.html',
-                controller: 'ResultsController as $ctrl'
-            });
-        });
-    })(Ticketing = RailTech.Ticketing || (RailTech.Ticketing = {}));
-})(RailTech || (RailTech = {}));
-
-
-
-var RailTech;
-(function (RailTech) {
-    var Ticketing;
-    (function (Ticketing) {
-        var SearchStation = (function () {
-            function SearchStation() {
-            }
-            return SearchStation;
-        }());
-        Ticketing.SearchStation = SearchStation;
-        var Journey = (function () {
-            function Journey(departureDate, arrivalDate, lengthStr, type, price) {
-                this.departureDate = departureDate;
-                this.arrivalDate = arrivalDate;
-                this.lengthStr = lengthStr;
-                this.type = type;
-                this.price = price;
-            }
-            return Journey;
-        }());
-        Ticketing.Journey = Journey;
-    })(Ticketing = RailTech.Ticketing || (RailTech.Ticketing = {}));
-})(RailTech || (RailTech = {}));
+            .controller('ResultsController', ResultsController);
+    })(Ticketing = RailTech.Ticketing || (RailTech.Ticketing = {})); // Ticketing
+})(RailTech || (RailTech = {})); // RailTech
 
 var RailTech;
 (function (RailTech) {
@@ -2806,7 +2806,7 @@ var RailTech;
             'ionMdInput',
             'ngMaterial'
         ]);
-    })(Events = RailTech.Events || (RailTech.Events = {})); // Ticketing
+    })(Events = RailTech.Events || (RailTech.Events = {})); // Events
 })(RailTech || (RailTech = {})); // RailTech
 
 var RailTech;
@@ -2814,10 +2814,112 @@ var RailTech;
     var Events;
     (function (Events) {
         var EventsService = (function () {
-            function EventsService($q) {
+            function EventsService($q, $timeout) {
                 this.$q = $q;
+                this.$timeout = $timeout;
+                this.stations = [{
+                        city: "London",
+                        cover: "http://i.dailymail.co.uk/i/pix/2013/02/06/article-2274355-02DADEA00000044D-633_634x405.jpg",
+                        eventNumber: 4,
+                        events: []
+                    },
+                    {
+                        city: "Manchester",
+                        cover: "http://static1.squarespace.com/static/534f9765e4b02e8e0e0e54aa/53583b20e4b07ec2da390417/53583b29e4b01c3d34566403/1398291255971/manchesterimage6.jpg",
+                        eventNumber: 5
+                    },
+                    {
+                        city: "Birmingham",
+                        cover: "http://www.lancaster.ac.uk/colleges/graduate/wp-content/uploads/2016/01/Birmingham-AP68276_3152879b.jpg",
+                        eventNumber: 2
+                    },
+                    {
+                        city: "Southampton",
+                        cover: "https://www.propertycashbuyers.com/wp-content/uploads/2015/09/Southampton-city-skyline-of-commercial-property.jpg",
+                        eventNumber: 4
+                    },
+                    {
+                        city: "Bristol",
+                        cover: "https://www.crosscountrytrains.co.uk/media/22701/trains_to_bristol.jpg",
+                        eventNumber: 4
+                    },
+                    {
+                        city: "Edinburgh",
+                        cover: "http://www.flybe.com/cheap-flights/edinburgh/edinburgh-events-16x9.jpg",
+                        eventNumber: 4
+                    },
+                    {
+                        city: "Glasgow",
+                        cover: "http://www.lastminute.com/c/content/dam/site_gb/CityBreaks/destinationPages/glasgow-1155x510.jpg",
+                        eventNumber: 4
+                    },
+                    {
+                        city: "Sheffield",
+                        cover: "http://i.dailymail.co.uk/i/pix/2013/07/29/article-2333778-1B0D9D33000005DC-944_634x424.jpg",
+                        eventNumber: 4
+                    },
+                    {
+                        city: "Cardiff",
+                        cover: "https://upload.wikimedia.org/wikipedia/commons/0/03/Cardiff_Bay_at_night.jpg",
+                        eventNumber: 4
+                    },
+                    {
+                        city: "Nottingham",
+                        cover: "http://www.theexchange.uk.net/media/5616/Market-Square-Nottingham.jpg",
+                        eventNumber: 4
+                    },
+                    {
+                        city: "Newcastle",
+                        cover: "http://www.pitcherandpiano.com/media/images/PP-Newcastle-087_big.jpg",
+                        eventNumber: 4
+                    },
+                    {
+                        city: "York",
+                        cover: "https://upload.wikimedia.org/wikipedia/commons/3/3d/York_City_Walls_-_geograph.org.uk_-_589000.jpg",
+                        eventNumber: 4
+                    },
+                    {
+                        city: "Cambridge",
+                        cover: "https://www.whiteandcompany.co.uk/wp-content/uploads/2015/03/moving-home-to-cambridge.jpg.jpg",
+                        eventNumber: 4
+                    },
+                    {
+                        city: "Oxford",
+                        cover: "http://www.connectedoxford.com/Customer/CO/images/OxfordImage.jpg",
+                        eventNumber: 4
+                    },
+                    {
+                        city: "Brighton",
+                        cover: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Brighton_Pier_at_dusk.jpg",
+                        eventNumber: 4
+                    }];
             }
-            EventsService.$inject = ["$q"];
+            EventsService.prototype.getStationsList = function () {
+                var _this = this;
+                var deferred = this.$q.defer();
+                // simulating hitting server
+                this.$timeout(function () {
+                    deferred.resolve(_this.stations);
+                }, 2000);
+                return deferred.promise;
+            };
+            EventsService.prototype.getStationDetail = function (query) {
+                var _this = this;
+                var deferred = this.$q.defer();
+                this.$timeout(function () {
+                    for (var i = 0; i < _this.stations.length; i++) {
+                        if (angular.lowercase(_this.stations[i].city) == angular.lowercase(query)) {
+                            deferred.resolve(_this.stations[i]);
+                            return;
+                        }
+                    }
+                    deferred.reject();
+                }, 2000);
+                return deferred.promise;
+            };
+            EventsService.$inject = [
+                "$q",
+                "$timeout"];
             return EventsService;
         }());
         Events.EventsService = EventsService;
@@ -2832,45 +2934,21 @@ var RailTech;
     var Events;
     (function (Events) {
         var OverviewController = (function () {
-            function OverviewController($scope) {
+            function OverviewController($scope, $ionicLoading, eventsService) {
+                var _this = this;
                 this.$scope = $scope;
-                this.stations = [{
-                        name: "London Euston",
-                        cover: "http://i.dailymail.co.uk/i/pix/2013/02/06/article-2274355-02DADEA00000044D-633_634x405.jpg",
-                        events: 4
-                    },
-                    {
-                        name: "London Waterloo",
-                        cover: "http://www.moodiereport.com/images/waterloo_balcony_600.jpg",
-                        events: 7
-                    },
-                    {
-                        name: "London Kings Cross",
-                        cover: "http://i.telegraph.co.uk/multimedia/archive/02300/BE3MCE_2300278b.jpg",
-                        events: 18
-                    },
-                    {
-                        name: "London Paddington",
-                        cover: "http://cdn.ltstatic.com/2009/January/DE286581_942long.jpg",
-                        events: 2
-                    },
-                    {
-                        name: "Manchester",
-                        cover: "http://static1.squarespace.com/static/534f9765e4b02e8e0e0e54aa/53583b20e4b07ec2da390417/53583b29e4b01c3d34566403/1398291255971/manchesterimage6.jpg",
-                        events: 5
-                    },
-                    {
-                        name: "Birmingham",
-                        cover: "http://www.lancaster.ac.uk/colleges/graduate/wp-content/uploads/2016/01/Birmingham-AP68276_3152879b.jpg",
-                        events: 2
-                    },
-                    {
-                        name: "Southampton",
-                        cover: "https://www.propertycashbuyers.com/wp-content/uploads/2015/09/Southampton-city-skyline-of-commercial-property.jpg",
-                        events: 4
-                    }];
+                this.$ionicLoading = $ionicLoading;
                 $scope.$parent.showHeader();
                 $scope.$parent.setExpanded(false);
+                this.$ionicLoading.show({
+                    template: 'Loading cities...'
+                });
+                eventsService.getStationsList()
+                    .then(function (found) {
+                    _this.stations = found;
+                    _this.$ionicLoading.hide();
+                    console.log(_this.stations);
+                });
             }
             OverviewController.prototype.stationQuerySearch = function (query) {
                 var results = query ?
@@ -2881,12 +2959,14 @@ var RailTech;
             OverviewController.prototype.createFilterFor = function (query) {
                 var lowercaseQuery = angular.lowercase(query);
                 return function filterFn(state) {
-                    var lowercaseDisplay = angular.lowercase(state.name);
+                    var lowercaseDisplay = angular.lowercase(state.city);
                     return (lowercaseDisplay.search(lowercaseQuery) >= 0);
                 };
             };
             OverviewController.$inject = [
-                '$scope'];
+                '$scope',
+                '$ionicLoading',
+                'EventsService'];
             return OverviewController;
         }());
         Events.OverviewController = OverviewController;
@@ -2894,6 +2974,109 @@ var RailTech;
             .controller('OverviewController', OverviewController);
     })(Events = RailTech.Events || (RailTech.Events = {})); // Events
 })(RailTech || (RailTech = {})); // RailTech
+
+'use strict';
+var RailTech;
+(function (RailTech) {
+    var Events;
+    (function (Events) {
+        var DetailController = (function () {
+            function DetailController($scope, $ionicLoading, $timeout, $stateParams, ionicMaterialMotion, ionicMaterialInk, eventsService) {
+                var _this = this;
+                this.$scope = $scope;
+                this.$ionicLoading = $ionicLoading;
+                this.$timeout = $timeout;
+                $scope.$parent.showHeader();
+                $scope.$parent.setExpanded(false);
+                var city = $stateParams.cityName;
+                this.$ionicLoading.show({
+                    template: 'Loading ' + city + '...'
+                });
+                eventsService.getStationDetail(city)
+                    .then(function (found) {
+                    _this.eventCity = found;
+                    _this.$ionicLoading.hide();
+                    ionicMaterialMotion.slideUp({
+                        selector: '.slide-up'
+                    });
+                    $timeout(function () {
+                        ionicMaterialMotion.fadeSlideInRight({
+                            startVelocity: 3000
+                        });
+                    }, 700);
+                });
+                // Set Ink
+                ionicMaterialInk.displayEffect();
+            }
+            DetailController.$inject = [
+                '$scope',
+                '$ionicLoading',
+                '$timeout',
+                '$stateParams',
+                'ionicMaterialMotion',
+                'ionicMaterialInk',
+                'EventsService'];
+            return DetailController;
+        }());
+        Events.DetailController = DetailController;
+        angular.module('events')
+            .controller('DetailController', DetailController);
+    })(Events = RailTech.Events || (RailTech.Events = {})); // Events
+})(RailTech || (RailTech = {})); // RailTech
+
+"use strict";
+var RailTech;
+(function (RailTech) {
+    var Events;
+    (function (Events) {
+        angular.module('ticketing')
+            .config(function ($stateProvider) {
+            $stateProvider
+                .state('app.events', {
+                url: '/events',
+                abstract: true,
+                template: "<ion-nav-view>"
+            })
+                .state('app.events.overview', {
+                url: '/overview',
+                templateUrl: 'app/events/overview/overview.html',
+                controller: 'OverviewController as $ctrl'
+            })
+                .state('app.events.detail', {
+                url: '/detail/:cityName',
+                templateUrl: 'app/events/detail/detail.html',
+                controller: 'DetailController as $ctrl'
+            });
+        });
+    })(Events = RailTech.Events || (RailTech.Events = {}));
+})(RailTech || (RailTech = {}));
+
+
+
+var RailTech;
+(function (RailTech) {
+    var Ticketing;
+    (function (Ticketing) {
+        var EventCityList = (function () {
+            function EventCityList() {
+            }
+            return EventCityList;
+        }());
+        Ticketing.EventCityList = EventCityList;
+        var EventCity = (function () {
+            function EventCity() {
+            }
+            return EventCity;
+        }());
+        Ticketing.EventCity = EventCity;
+        var Event = (function () {
+            function Event() {
+            }
+            return Event;
+        }());
+        Ticketing.Event = Event;
+    })(Ticketing = RailTech.Ticketing || (RailTech.Ticketing = {}));
+})(RailTech || (RailTech = {}));
 
 /* global angular, document, window */
 'use strict';
@@ -3082,32 +3265,6 @@ var RailTech;
         });
     });
 })(RailTech || (RailTech = {}));
-
-"use strict";
-var RailTech;
-(function (RailTech) {
-    var Events;
-    (function (Events) {
-        angular.module('ticketing')
-            .config(function ($stateProvider) {
-            $stateProvider
-                .state('app.events', {
-                url: '/events',
-                abstract: true,
-                template: "<ion-nav-view>"
-            })
-                .state('app.events.overview', {
-                url: '/overview',
-                templateUrl: 'app/events/overview/overview.html',
-                controller: 'OverviewController as $ctrl'
-            });
-        });
-    })(Events = RailTech.Events || (RailTech.Events = {}));
-})(RailTech || (RailTech = {}));
-
-
-
-
 
 var RailTech;
 (function (RailTech) {

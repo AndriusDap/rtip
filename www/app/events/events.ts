@@ -11,6 +11,6 @@ angular.module('events', [
     ]);
 
 
-} // Ticketing
+} // Events
 } // RailTech
 

@@ -1,0 +1,42 @@
+<ion-view view-title="Profile">
+    <ion-content ng-class="{expanded:$scope.isExpanded}">
+        <div class="hero slide-up" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ $ctrl.eventCity.cover || '' }});">
+            <div class="content">
+                <h3><a class="light">{{ $ctrl.eventCity.city }}</a></h3>
+                <h4>Let's do this!</h4>
+            </div>
+        </div>
+        <div class="list">
+            <div class="item card-item">
+                <div ui-sref="app.gallery" class="card stable-bg ink ink-dark">
+                    <div class="item item-avatar item-text-wrap">
+                        <span class="avatar" style="background-image: url('img/jon-snow.jpg');"></span>
+                        Join <strong>Anderson Silva</strong> this Saturday in UFC 196.
+                        <div class="card-footer text-right">
+                            <i class="icon ion-chatbubbles positive"></i> 6
+                            <i class="icon ion-heart assertive"></i> 23
+                            <div class="pull-left">
+                                <i class="icon ion-clock"></i> 10:00
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item card-item">
+                <div ui-sref="app.gallery" class="card stable-bg ink ink-dark">
+                    <div class="item item-avatar item-text-wrap">
+                        <span class="avatar" style="background-image: url('img/sansa-snowcastle.png');"></span>
+                        Go to the <strong>O2 Cinema</strong> to view a movie.
+                        <div class="card-footer text-right">
+                            <i class="icon ion-chatbubbles positive"></i> 30
+                            <i class="icon ion-heart assertive"></i> 12
+                            <div class="pull-left">
+                                <i class="icon ion-clock"></i> 16:00
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -9,5 +9,5 @@ var RailTech;
             'ionMdInput',
             'ngMaterial'
         ]);
-    })(Events = RailTech.Events || (RailTech.Events = {})); // Ticketing
+    })(Events = RailTech.Events || (RailTech.Events = {})); // Events
 })(RailTech || (RailTech = {})); // RailTech
