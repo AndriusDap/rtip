@@ -8,6 +8,7 @@ var RailTech;
         'ngMaterial',
         // Internal
         'ticketing',
+        'events',
         'railtech.controllers'])
         .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {

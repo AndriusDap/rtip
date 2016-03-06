@@ -1,53 +1,77 @@
 'use strict';
 
 module RailTech {
+export module Ticketing {
 
 export class SearchController {
 
     public departDate: Date;
-    public arriveDate: Date;
+    public returnDate: Date;
     public toStationSearch: string;
     public toStation: string;
     public fromStationSearch: string;
     public fromStation: string;
+    public passengerNumber: number;
 
-    public static $scope = [
+    public static $inject = [
         '$state',
-        '$scope', 
-        'ionicMaterialInk', 
-        'ionicMaterialMotion'];
+        'TicketingService',
+        '$scope',
+        '$ionicPopup',
+        '$timeout'];
 
     constructor(
             private $state,
-            $scope, 
-            ionicMaterialInk, 
-            ionicMaterialMotion) {
+            private ticketingService: TicketingService,
+            private $scope,
+            private $ionicPopup, 
+            private $timeout) {
 
         $scope.$parent.showHeader();
-        $scope.$parent.clearFabs();
-        $scope.isExpanded = true;
         $scope.$parent.setExpanded(true);
-        $scope.$parent.setHeaderFab(false);
-
-        ionicMaterialMotion.pushDown({
-            selector: '.push-down'
-        });
-        ionicMaterialMotion.fadeSlideInRight({
-            selector: '.animate-fade-slide-in .item'
-        });
-
     }
 
     public fromQuerySearch(query) {
         var results = query ? 
-            stations.filter( createFilterFor(query) ) : 
+            stations.filter( this.createFilterFor(query) ) : 
             stations;
 
         return results;
     }
 
     public findResults() {
+        this.ticketingService.fromStation = this.fromStation ? this.fromStation.display : null;
+        this.ticketingService.toStation = this.toStation? this.toStation.display : null;
+        this.ticketingService.fromDate = this.fromDate;
+        this.ticketingService.returnDate = this.returnDate;
+        this.ticketingService.passengers = this.passengerNumber;
+
+        if(!this.ticketingService.validParameters()) {
+            this.showErrorPopup();
+            return;
+        }
+
         this.$state.go('app.ticketing.results');
+    }
+
+    private showErrorPopup() {
+        var myPopup = this.$ionicPopup.show({
+            template: 'The data you entered is not fully valid, please check your input and try again.',
+            title: 'Wrong fields',
+            scope: this.$scope,
+            buttons: [
+              {
+                text: '<b>Ok</b>',
+                type: 'button-positive',
+                onTap: function(e) {
+                  myPopup.close();
+                }
+              }
+          });
+
+          this.$timeout(function() {
+             myPopup.close(); //close the popup after 3 seconds for some reason
+          }, 3000);
     }
 
     private createFilterFor(query): (state: SearchStation) => boolean {
@@ -62,4 +86,6 @@ export class SearchController {
 angular.module('ticketing')
     .controller('SearchController', SearchController)
 
-}
+
+} // Ticketing
+} // RailTech

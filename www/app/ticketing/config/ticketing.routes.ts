@@ -1,6 +1,7 @@
 "use strict";
 
 module RailTech {
+export module Ticketing {
 
 angular.module('ticketing')
     .config(function($stateProvider) {
@@ -24,4 +25,5 @@ angular.module('ticketing')
                 controller: 'ResultsController as $ctrl'
             });
     });
+}
 }

@@ -1,0 +1,17 @@
+<ion-view view-title="Things to do" align-title="left" class="railtech-events">
+    <ion-content>
+        <div class="list">
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Station</label>
+                <input ng-model="$ctrl.stationSearch">
+            </md-input-container>
+        </div>
+        <ion-list>
+            <ion-item ng-repeat="item in $ctrl.stationQuerySearch($ctrl.stationSearch)"
+                        class="overview-item"
+                        style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ item.cover }}); background-size: cover; background-position: center; width: 100%; height: 30vh;">
+                <div class="card-title">{{ item.name }}</div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

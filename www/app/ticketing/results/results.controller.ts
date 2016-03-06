@@ -1,37 +1,57 @@
 'use strict';
 
 module RailTech {
+export module Ticketing {
 
 export class ResultsController {
 
-    public static $scope = [
-        '$state',
+    private fromStation: string;
+    private toStation: string;
+    private isReturnTrip: boolean;
+    private journeysTowards: Journey[];
+    private journeysReturn: Journey[];
+
+    public static $inject = [
         '$scope', 
-        'ionicMaterialInk', 
-        'ionicMaterialMotion'];
+        'TicketingService',
+        'ionicMaterialMotion',
+        'ionicMaterialInk'];
 
     constructor(
-            private $state,
-            $scope, 
-            ionicMaterialInk, 
-            ionicMaterialMotion) {
+            $scope,
+            private ticketingService: TicketingService,
+            private ionicMaterialMotion,
+            ionicMaterialInk) {
 
-        $scope.$parent.showHeader();
-        $scope.$parent.clearFabs();
-        $scope.isExpanded = true;
-        $scope.$parent.setExpanded(true);
-        $scope.$parent.setHeaderFab(false);
+        ionicMaterialMotion.fadeSlideInRight();
+        ionicMaterialInk.displayEffect();
 
-        ionicMaterialMotion.pushDown({
-            selector: '.push-down'
+        this.fromStation = ticketingService.fromStation;
+        this.toStation = ticketingService.toStation;
+
+        console.log(this.fromStation, ticketingService.fromStation,
+        this.toStation, ticketingService.toStation);
+
+        ticketingService.getJourneysTowards().then((journeys) => {
+            this.journeysTowards = journeys;
+            this.ionicMaterialMotion.fadeSlideInRight();
+            console.log(journeys);
         });
-        ionicMaterialMotion.fadeSlideInRight({
-            selector: '.animate-fade-slide-in .item'
-        });
+
+        this.isReturnTrip = ticketingService.returnDate !== undefined && ticketingService.returnDate !== null;
+
+        if(this.isReturnTrip) {
+            ticketingService.getJourneysReturn().then((journeys) => {
+                this.journeysReturn = journeys;
+                this.ionicMaterialMotion.fadeSlideInRight();
+            });
+        }
     }
 }
 
 angular.module('ticketing')
     .controller('ResultsController', ResultsController)
 
-}
+
+} // Ticketing
+} // RailTech

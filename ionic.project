@@ -7,6 +7,6 @@
   ],
   "watchPatterns": [
     "www/build/**/*",
-    "www/templates/**/*"
+    "www/app/**/*.html"
   ]
 }

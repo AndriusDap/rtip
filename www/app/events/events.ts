@@ -1,8 +1,8 @@
 
 module RailTech {
-export module Ticketing {
+export module Events {
 
-angular.module('ticketing', [
+angular.module('events', [
         // External
         'ionic',  
         'ionic-material', 

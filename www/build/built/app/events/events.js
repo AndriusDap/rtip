@@ -1,13 +1,13 @@
 var RailTech;
 (function (RailTech) {
-    var Ticketing;
-    (function (Ticketing) {
-        angular.module('ticketing', [
+    var Events;
+    (function (Events) {
+        angular.module('events', [
             // External
             'ionic',
             'ionic-material',
             'ionMdInput',
             'ngMaterial'
         ]);
-    })(Ticketing = RailTech.Ticketing || (RailTech.Ticketing = {})); // Ticketing
+    })(Events = RailTech.Events || (RailTech.Events = {})); // Ticketing
 })(RailTech || (RailTech = {})); // RailTech

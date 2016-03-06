@@ -14,6 +14,7 @@ angular.module('railtech', [
 
         // Internal
         'ticketing',
+        'events',
         'railtech.controllers'])
 
 .run(function($ionicPlatform) {

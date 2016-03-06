@@ -18,7 +18,9 @@
                     md-items="item in fromQuerySearch(fromStationSearch)"
                     md-item-text="item.display">
                 <md-item-template>
-                  <span md-highlight-text="fromStationSearch" md-highlight-flags="^i">{{item.display}}</span>
+                  <span md-highlight-text="fromStationSearch" md-highlight-flags="^i">
+                    {{item.display}}
+                  </span>
                 </md-item-template>
             </md-autocomplete>
             <!-- /From station -->
@@ -33,7 +35,9 @@
                     md-items="item in fromQuerySearch(toStationSearch)"
                     md-item-text="item.display">
                 <md-item-template>
-                  <span md-highlight-text="toStationSearch" md-highlight-flags="^i">{{item.display}}</span>
+                  <span md-highlight-text="toStationSearch" md-highlight-flags="^i">
+                    {{item.display}}
+                  </span>
                 </md-item-template>
             </md-autocomplete>
             <!-- /To station -->
