@@ -5,12 +5,12 @@ export module Ticketing {
 
 export class SearchController {
 
-    public departDate: Date;
+    public fromDate: Date;
     public returnDate: Date;
     public toStationSearch: string;
-    public toStation: string;
+    public toStation: SearchStation;
     public fromStationSearch: string;
-    public fromStation: string;
+    public fromStation: SearchStation;
     public passengerNumber: number;
 
     public static $inject = [
