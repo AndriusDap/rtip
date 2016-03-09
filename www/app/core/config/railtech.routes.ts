@@ -22,7 +22,7 @@ angular.module('railtech')
         .state('app.modules', {
             url: '/modules',
             templateUrl: 'app/core/launcher/launcher.html',
-            controller: 'ModulesCtrl'
+            controller: 'LauncherController as $ctrl'
         })
 
         .state('app.activity', {

@@ -6,8 +6,7 @@ angular.module('events', [
         // External
         'ionic',  
         'ionic-material', 
-        'ionMdInput',
-        'ngMaterial'
+        'ionMdInput'
     ]);
 
 

@@ -10,11 +10,11 @@ angular.module('railtech', [
         'ionic',  
         'ionic-material', 
         'ionMdInput',
-        'ngMaterial',
 
         // Internal
         'ticketing',
         'events',
+        'repay',
         'railtech.controllers'])
 
 .run(function($ionicPlatform) {

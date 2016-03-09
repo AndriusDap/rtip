@@ -28,7 +28,7 @@ export class SearchController {
             private $timeout) {
 
         $scope.$parent.showHeader();
-        $scope.$parent.setExpanded(true);
+        $scope.$parent.setExpanded(false);
     }
 
     public fromQuerySearch(query) {

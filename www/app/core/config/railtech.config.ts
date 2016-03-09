@@ -25,7 +25,7 @@ angular.module('railtech')
             // Allow same origin rSearchControlleresource loads.
             'self',
             // Allow loading from our assets domain.  Notice the difference between * and **.
-            'http://virgintrains.co.uk/**']);
+            'http://virgintrainseastcoast.co.uk/**']);
 
     });
 
