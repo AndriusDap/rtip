@@ -1,0 +1,94 @@
+<ion-view class="staffrepay-claim-form" view-title="Outstanding Claims List" align-title="left">
+    <ion-content>
+   		<h1>Claim Information</h1>
+       <div class="col-xs-12">
+
+	        <div class="list">
+
+				<md-input-container class="md-block flex-gt-sm col-xs-6" flex-gt-sm="">
+					<label for="station_departing_input">Departing station</label>
+					<input ng-model="$ctrl.journey.fromStation" 
+							ng-required="true" 
+							ng-disabled="$ctrl.verifications.fromStation"
+							type="text"
+							id="station_departing_input">
+					<div class="md-errors-spacer"></div>
+				</md-input-container>
+
+
+				<md-input-container class="md-block flex-gt-sm col-xs-6" flex-gt-sm="">
+					<label for="station_arriving_input">Arriving station</label>
+					<input ng-model="$ctrl.journey.toStation" 
+							ng-required="true" 
+							ng-disabled="$ctrl.verifications.toStation"
+							type="text"
+							id="station_arriving_input" >
+					<div class="md-errors-spacer"></div>
+				</md-input-container>
+
+				<md-input-container class="md-block col-xs-6 flex-gt-sm" flex-gt-sm="">
+					<label for="journey_date_input">Journey date</label>
+					<input mdc-datetime-picker="" 
+							date="true" 
+							time="true" 
+							type="text" 
+							id="journey_date_input"  
+							min-date="date" 
+							ng-model="$ctrl.journey.journeyDate"
+							ng-disabled="$ctrl.verifications.journeyDate"
+							ng-disabled="true"
+							class="md-input">
+				</md-input-container>
+
+
+		        <button ng-click="$ctrl.search()"
+		                class="button  button-energized ink col-xs-6">
+		            Search
+		        </button>
+
+
+	        	<div class="staffrepay-text-input-group">
+					<md-input-container class="col-xs-6 md-block flex-gt-sm" flex-gt-sm="">
+						<md-radio-group ng-model="$ctrl.journeySelected">
+							<h4 ng-show="!$ctrl.journeysFound.length">
+								No journeys found! Please click on search
+							</h4>
+							<md-radio-button ng-repeat="journey in $ctrl.journeysFound"
+											ng-value="journey" 
+											class="md-primary journey-found-container" 
+											aria-label="Journey">
+								<div class="col-xs-12">
+									<div class="col-xs-6">
+										<div class="col-xs-12">Departure</div>
+										<div class="col-xs-12">{{ journey.fromDatetime | limitTo: 5: 11 }}</div>
+									</div>
+									<div class="col-xs-6">
+										<div class="col-xs-12">Delay</div>
+										<div class="col-xs-12" ng-class="{ 'journey-delayed': journey.delay > 0 }">{{ journey.delay }} mins</div>
+									</div>
+								</div>
+								<br>
+								<br>
+								<hr>
+							</md-radio-button>
+					    </md-radio-group>
+					</md-input-container>
+					<div class="col-xs-6" ng-show="$ctrl.journeySelected">
+						<h2><span class="journey-field">Service ID:</span> {{ $ctrl.journeySelected.serviceId }}</h2>
+						<h2><span class="journey-field">Departure time:</span> {{ $ctrl.journeySelected.fromDatetime | limitTo: 5: 11 }}</h2>
+						<h2><span class="journey-field">Delay:</span> {{ $ctrl.journeySelected.delay }}</h2>
+						<br><br>
+						<h1>Total Repay: £ {{ $ctrl.calculateRepay() }}</h1>
+					</div>
+				</div>
+
+			</div>
+
+	        <button ui-sref="app.staffrepay.verifyClaim.contact(1)" 
+	                class="button button-full button-balanced ink sticky-footer">
+	            Confirm
+	        </button>
+
+	    </div>
+    </ion-content>
+</ion-view>

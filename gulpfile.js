@@ -17,6 +17,11 @@ var gulp = require('gulp'),
 
 var config = new Config();
 
+function swallowError (error) {
+  console.log(error.toString());
+  this.emit('end');
+}
+
 gulp.task('ts-lint', function () {
     return gulp.src(config.allTypeScript)
       .pipe(tslint())
@@ -53,6 +58,7 @@ gulp.task('clean', function (cb) {
 gulp.task('sass', function(done) {
   return gulp.src(config.allSassFiles)
     .pipe(sass())
+    .on('error', swallowError)
     .pipe(concat('app.css'))
     .pipe(gulp.dest(config.buildDir));
 });
@@ -83,7 +89,6 @@ gulp.task('git-check', function(done) {
 });
 
 gulp.task('default', [
-  'clean', 
   'ts-lint', 
   'compile', 
   'filesort-js', 
