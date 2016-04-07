@@ -26,22 +26,39 @@ export class ThingsToDoService {
         this.$timeout(() => {
             var events = [
                 {
-                    name: "Crafty burger",
-                    city: "Leicester",
-                    travelTime: "1h 30m",
-                    image: "http://static1.squarespace.com/static/53a44202e4b01c88f6aaea8c/t/53bfac04e4b01113f804f586/1405070347201/RITD-LocHeads_Manchester.jpg"
+                    id: 23,
+                    name: "[2 for 1] Manchester United Museum & Tour",
+                    city: "Manchester",
+                    travelTime: "2h 45m",
+                    image: "https://www.daysoutguide.co.uk/media/2503/7865-attractionimage.jpg"
                 },
                 {
-                    name: "Bem Brasil",
-                    city: "Manchester",
+                    id: 44,
+                    name: "Sightseeing Liverpool Hop-Off Opentop Tour",
+                    city: "Liverpool",
                     travelTime: "2h 30m",
-                    image: "http://static1.squarespace.com/static/53a44202e4b01c88f6aaea8c/t/53bfac04e4b01113f804f586/1405070347201/RITD-LocHeads_Manchester.jpg"
+                    image: "https://www.daysoutguide.co.uk/media/2702/1225418-attractionimage.jpg"
                 },
                 {
-                    name: "Bem Brasil",
+                    id: 12,
+                    name: "Chester Zoo",
+                    city: "Chester",
+                    travelTime: "2h 3m",
+                    image: "https://www.daysoutguide.co.uk/media/426478/chesterzoo.jpg"
+                },
+                {
+                    id: 11,
+                    name: "Liverpool Cathedral",
+                    city: "Liverpool",
+                    travelTime: "2h 35m",
+                    image: "https://www.daysoutguide.co.uk/media/2776/1300967-attractionimage.jpg"
+                },
+                {
+                    id: 5,
+                    name: "LEGOLAND Discovery Centre Manchester",
                     city: "Manchester",
-                    travelTime: "2h 30m",
-                    image: "http://static1.squarespace.com/static/53a44202e4b01c88f6aaea8c/t/53bfac04e4b01113f804f586/1405070347201/RITD-LocHeads_Manchester.jpg"
+                    travelTime: "2h 55m",
+                    image: "https://www.daysoutguide.co.uk/media/3007/1609607-attractionimage.jpg"
                 }
             ];
 

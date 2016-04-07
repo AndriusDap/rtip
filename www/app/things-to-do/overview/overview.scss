@@ -2,7 +2,7 @@
 @import "colors.scss";
 
 $padding-event-top: 20px;
-$padding-event-sides: 40px;
+$padding-event-sides: 30px;
 
 .railtech-things-to-do {
 	.settings-header {
@@ -53,7 +53,7 @@ $padding-event-sides: 40px;
 			float:right;
 			height:150px;
 			background-size:cover;
-			background-position:bottom;
+			background-position:center;
 			font-size: 1.5em;
 			margin-bottom: 10px;
 			position: relative;
@@ -64,10 +64,14 @@ $padding-event-sides: 40px;
 			}
 
 			.event-name {
-				position: absolute;
+				position:absolute;
 				top: $padding-event-top;
 				left: $padding-event-sides;
 				font-weight: bold;
+				width: 85vw;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
 			}
 
 			.event-location {
@@ -78,7 +82,7 @@ $padding-event-sides: 40px;
 
 			.event-travel-time {
 				position: absolute;
-				top: $padding-event-top;
+				bottom: $padding-event-top;
 				right: $padding-event-sides;
 			}
 		}

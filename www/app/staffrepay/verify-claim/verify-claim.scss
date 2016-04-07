@@ -1,0 +1,31 @@
+
+@media screen and (max-width: 1080px) {
+.outstanding-claims-list {
+	.ticket-container {
+		max-height: 60vh !important;
+	}
+	.form-container {
+		height: 30vh !important;
+	}
+}
+}
+@media screen and (max-width: 680px) {
+.outstanding-claims-list {
+	.ticket-container {
+		max-height: 50vh !important;
+	}
+	.form-container {
+		height: 45vh !important;
+	}
+}
+}
+@media screen and (max-width: 480px) {
+.outstanding-claims-list {
+	.ticket-container {
+		max-height: 30vh !important;
+	}
+	.form-container {
+		height: 60vh !important;
+	}
+}
+}
