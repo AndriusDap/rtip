@@ -1,5 +1,12 @@
 .outstanding-claims-list {
 	margin-top: 20px;
+
+	.ticket-container {
+		max-height: 50vh !important;
+	}
+	.form-container {
+		height: 90vh !important;
+	}
 	
 	.ticket-image {
 		width: 100%;
@@ -12,4 +19,36 @@
 		clear: both;
 		height: 50px;
 	}
+}
+
+@media screen and (max-width: 980px) {
+.outstanding-claims-list {
+	.ticket-container {
+		max-height: 60vh !important;
+	}
+	.form-container {
+		clear:both;
+		height: 30vh !important;
+	}
+}
+}
+@media screen and (max-width: 680px) {
+.outstanding-claims-list {
+	.ticket-container {
+		max-height: 50vh !important;
+	}
+	.form-container {
+		height: 45vh !important;
+	}
+}
+}
+@media screen and (max-width: 480px) {
+.outstanding-claims-list {
+	.ticket-container {
+		max-height: 30vh !important;
+	}
+	.form-container {
+		height: 60vh !important;
+	}
+}
 }

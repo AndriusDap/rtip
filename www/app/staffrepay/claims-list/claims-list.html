@@ -1,7 +1,7 @@
 <ion-view class="outstanding-claims-list" view-title="Outstanding Claims List" align-title="left">
     <ion-content>
 		<ion-list class="col-lg-4 col-md-6">
-			<div class="claim-item" ng-repeat="claim in $ctrl.claims" ui-sref="app.staffrepay.verifyClaim.ticket(claim.id)">
+			<div class="claim-item" ng-repeat="claim in $ctrl.claims" ui-sref="app.staffrepay.ticket(claim.id)">
 				<div class="claim-item-container">
 					<div class="claim-id">Claim #{{ claim.id }}</div>
 					<div class="claim-journey">{{ claim.from }} -> {{ claim.to }}</div>

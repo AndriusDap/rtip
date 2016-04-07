@@ -4,7 +4,7 @@ module RailTech {
 
 export class LauncherController {
 
-    private ticketingSite = 'https://m.gwr.com/webtis-gwr/travel/search';
+    private ticketingSite = 'https://m-tickets.virgintrainseastcoast.com/webtis-ec/travel/search';
 
     public static $inject = [
         '$scope',

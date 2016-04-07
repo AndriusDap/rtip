@@ -1,16 +1,18 @@
 <ion-view class="outstanding-claims-list" view-title="Outstanding Claims List" align-title="left">
     <ion-content>
-       <div class="col-xs-12">
-
+		
+        <ion-scroll scroll="false" class="col-md-6 ticket-container">
+   		 	<img class="ticket-image" src="{{ $ctrl.claimService.ticket.ticketImage }}" />
+        </ion-scroll>
+		<ion-scroll class="form-container" class="col-md-6">
 	        <div class="list">
-
 	        	<div class="staffrepay-text-input-group">
 	        		<md-checkbox ng-model="$ctrl.verifications.identification"
 	        						ng-disabled="!$ctrl.ticket.identification" 
-		        					class="col-xs-3 md-primary staffrepay-checkbox">
-							Ticket number / identification correct?
+        					class="col-xs-3 md-primary staffrepay-checkbox">
+						Ticket number / identification correct?
 					</md-checkbox>
-					<md-input-container class="md-block col-xs-9 flex-gt-sm" flex-gt-sm="">
+					<md-input-container class="md-block col-xs-8 col-xs-offset-1 flex-gt-sm" flex-gt-sm="">
 						<label for="journey_cost_input">Ticket number / identification</label>
 						<input ng-model="$ctrl.ticket.identification" 
 								ng-disabled="$ctrl.verifications.identification"
@@ -22,15 +24,15 @@
 						<div class="md-errors-spacer"></div>
 					</md-input-container>
 				</div>
-
-
-	        	<div class="staffrepay-text-input-group">
-	        		<md-checkbox ng-model="$ctrl.verifications.cost" 
-	        						ng-disabled="!$ctrl.ticket.cost"
+		
+		
+			        	<div class="staffrepay-text-input-group">
+			        		<md-checkbox ng-model="$ctrl.verifications.cost" 
+			        						ng-disabled="!$ctrl.ticket.cost"
 		        					class="col-xs-3 md-primary staffrepay-checkbox">
 							Ticket cost correct?
 					</md-checkbox>
-					<md-input-container class="md-block col-xs-9 flex-gt-sm" flex-gt-sm="">
+					<md-input-container class="md-block col-xs-8 col-xs-offset-1 flex-gt-sm" flex-gt-sm="">
 						<label for="journey_cost_input">Cost of ticket (£)</label>
 						<input ng-model="$ctrl.ticket.cost" 
 								ng-disabled="$ctrl.verifications.cost"
@@ -42,15 +44,15 @@
 						<div class="md-errors-spacer"></div>
 					</md-input-container>
 				</div>
-
-
-	        	<div class="staffrepay-text-input-group">
-	        		<md-checkbox ng-model="$ctrl.verifications.ticketClass" 
-	        						ng-disabled="!$ctrl.ticket.class"
+		
+		
+			        	<div class="staffrepay-text-input-group">
+			        		<md-checkbox ng-model="$ctrl.verifications.ticketClass" 
+			        						ng-disabled="!$ctrl.ticket.class"
 		        					class="col-xs-3 md-primary staffrepay-checkbox">
 							Ticket class correct?
 					</md-checkbox>
-					<md-input-container class="col-xs-9 md-block flex-gt-sm" flex-gt-sm="">
+					<md-input-container class="col-xs-8 col-xs-offset-1 md-block flex-gt-sm" flex-gt-sm="">
 						<md-radio-group ng-model="$ctrl.ticket.class"
 										ng-disabled="$ctrl.verifications.ticketClass">
 							<md-radio-button value="Standard" class="md-primary">Standard</md-radio-button>
@@ -58,16 +60,16 @@
 					    </md-radio-group>
 					</md-input-container>
 				</div>
-
-
-	        	<div class="staffrepay-text-input-group">
-	        		<md-checkbox ng-model="$ctrl.verifications.ticketType" 
-	        						ng-disabled="!$ctrl.ticket.type"
+		
+		
+			        	<div class="staffrepay-text-input-group">
+			        		<md-checkbox ng-model="$ctrl.verifications.ticketType" 
+			        						ng-disabled="!$ctrl.ticket.type"
 		        					class="col-xs-3 md-primary staffrepay-checkbox">
 							Ticket type correct?
 					</md-checkbox>
 					<md-select ng-model="$ctrl.ticket.type" 
-							class="col-xs-9 ng-pristine ng-valid ng-touched" 
+							class="col-xs-8 col-xs-offset-1 ng-pristine ng-valid ng-touched" 
 							tabindex="0" 
 							ng-disabled="$ctrl.verifications.ticketType"
 							role="listbox" 
@@ -76,15 +78,15 @@
 						<md-option ng-value="opt" ng-repeat="opt in $ctrl.ticketTypeOptions">{{ opt }}</md-option>
 					</md-select>
 				</div>
-
-
-	        	<div class="staffrepay-text-input-group">
-	        		<md-checkbox ng-model="$ctrl.verifications.fromDate" 
-	        						ng-disabled="!$ctrl.ticket.fromDate"
+		
+		
+			        	<div class="staffrepay-text-input-group">
+			        		<md-checkbox ng-model="$ctrl.verifications.fromDate" 
+			        						ng-disabled="!$ctrl.ticket.fromDate"
 		        					class="col-xs-3 md-primary staffrepay-checkbox">
 							Ticket initial valid date correct?
 					</md-checkbox>
-					<md-input-container class="md-block flex-gt-sm col-xs-9" flex-gt-sm="">
+					<md-input-container class="md-block flex-gt-sm col-xs-8 col-xs-offset-1" flex-gt-sm="">
 						<label for="journey_valid_from_date_input">Valid from date</label>
 						<input mdc-datetime-picker="" 
 								date="true" 
@@ -97,15 +99,15 @@
 								class="md-input">
 					</md-input-container>
 				</div>
-
-
-	        	<div class="staffrepay-text-input-group">
-	        		<md-checkbox ng-model="$ctrl.verifications.toDate" 
-	        						ng-disabled="!$ctrl.ticket.toDate"
+		
+		
+			        	<div class="staffrepay-text-input-group">
+			        		<md-checkbox ng-model="$ctrl.verifications.toDate" 
+			        						ng-disabled="!$ctrl.ticket.toDate"
 		        					class="col-xs-3 md-primary staffrepay-checkbox">
 							Ticket expiry date correct?
 					</md-checkbox>
-					<md-input-container class="md-block flex-gt-sm col-xs-9" flex-gt-sm="">
+					<md-input-container class="md-block flex-gt-sm col-xs-8 col-xs-offset-1" flex-gt-sm="">
 						<label for="journey_valid_to_date_input">Valid to date</label>
 						<input mdc-datetime-picker="" 
 								date="true" 
@@ -119,13 +121,15 @@
 					</md-input-container>
 				</div>
 			</div>
-
-	        <button ui-sref="app.staffrepay.verifyClaim.claim(1)" 
-	        		ng-disabled="!$ctrl.verifyInputs()"
-	        		native-options="{type: 'flip', direction:'up'}"
-	                class="button button-full button-balanced ink sticky-footer">
-	            Continue
-	        </button>
-	    </div>
+		</ion-scroll>
     </ion-content>
+
+    <ion-footer-bar class="railtech-footer button-footer">
+        <button ui-sref="app.staffrepay.claim(1)" 
+        		ng-disabled="!$ctrl.verifyInputs()"
+        		native-options="{type: 'flip', direction:'up'}"
+                class="button button-full button-balanced ink sticky-footer">
+            Continue
+        </button>
+    </ion-footer-bar>
 </ion-view>

@@ -25,28 +25,25 @@ angular.module('staffrepay')
                 controller: 'staffrepay.ClaimsListController as $ctrl'
             })
 
-            .state('app.staffrepay.verifyClaim', {
-                url: '/verifyClaim',
-                abstract: true,
-                templateUrl: 'app/staffrepay/verify-claim/verify-claim.html',
-                controller: 'staffrepay.VerifyClaimController as $ctrl'
-            })
-            .state('app.staffrepay.verifyClaim.ticket', {
+            .state('app.staffrepay.ticket', {
                 url: '/ticket',
                 templateUrl: 'app/staffrepay/verify-claim/ticket-form/ticket-form.html',
                 controller: 'staffrepay.TicketFormController as $ctrl'
             })
-            .state('app.staffrepay.verifyClaim.claim', {
+
+            .state('app.staffrepay.claim', {
                 url: '/claim',
                 templateUrl: 'app/staffrepay/verify-claim/claim-form/claim-form.html',
                 controller: 'staffrepay.ClaimFormController as $ctrl'
             })
-            .state('app.staffrepay.verifyClaim.contact', {
+
+            .state('app.staffrepay.contact', {
                 url: '/contact',
                 templateUrl: 'app/staffrepay/verify-claim/contact-form/contact-form.html',
                 controller: 'staffrepay.ContactFormController as $ctrl'
             })
-            .state('app.staffrepay.verifyClaim.success', {
+
+            .state('app.staffrepay.success', {
                 url: '/success',
                 templateUrl: 'app/staffrepay/verify-claim/successful-claim/successful-claim.html'
             });

@@ -1,9 +1,10 @@
 <ion-view class="staffrepay-claim-form" view-title="Outstanding Claims List" align-title="left">
-    <ion-content>
-       <div class="col-xs-12">
-
+	<ion-header-bar align-title="left" class="claim-header-bar">
+		<h2>Total Repay: £ {{ $ctrl.calculateRepay() || "0.0" }}</h2>
+	</ion-header-bar>
+    <ion-content class="form-content">
+       	<div class="col-xs-12">
 	        <div>
-
 				<md-input-container class="md-block flex-gt-sm col-xs-6" flex-gt-sm="">
 					<label for="station_departing_input">Departing station</label>
 					<input ng-model="$ctrl.journey.fromStation" 
@@ -72,24 +73,18 @@
 							</md-radio-button>
 					    </md-radio-group>
 					</md-input-container>
-
-					<div class="col-sm-6 pull-left" ng-show="$ctrl.journeySelected">
-						<h2><span class="journey-field">Service ID:</span> {{ $ctrl.journeySelected.serviceId }}</h2>
-						<h2><span class="journey-field">Departure time:</span> {{ $ctrl.journeySelected.fromDatetime | limitTo: 5: 11 }}</h2>
-						<h2><span class="journey-field">Delay:</span> {{ $ctrl.journeySelected.delay }}</h2>
-						<br><br>
-						<h1>Total Repay: £ {{ $ctrl.calculateRepay() }}</h1>
-					</div>
 				</div>
 
 			</div>
 
-	        <button ui-sref="app.staffrepay.verifyClaim.contact(1)" 
-	        		ng-disabled="!$ctrl.verifyInputs()"
-	                class="button button-full button-balanced ink sticky-footer">
-	            Confirm
-	        </button>
-
 	    </div>
     </ion-content>
+
+    <ion-footer-bar class="railtech-footer button-footer">
+        <button ui-sref="app.staffrepay.contact(1)" 
+        		ng-disabled="!$ctrl.verifyInputs()"
+                class="button button-full button-balanced ink sticky-footer">
+            Confirm
+        </button>
+    </ion-footer-bar>
 </ion-view>

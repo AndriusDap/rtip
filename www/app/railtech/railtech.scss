@@ -102,6 +102,23 @@ p {
     }
 }
 
+.railtech-footer {
+  background-color: $main-theme;
+  height: 50px;
+  position: fixed;
+  bottom: 50px;
+}
+.button-footer {
+  margin: 0 0 0 0;
+  background-color: transparent;
+  .button {
+    border: none;
+    margin: 0 0 0 0;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
 .has-header {
   top:0px;
 }
