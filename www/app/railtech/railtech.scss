@@ -12,7 +12,7 @@ $color_log_cabin_approx: #222;
 $url_0: url(../img/crown.jpg);
 
 * {
-  font-family: "Avenir Next" !important;
+  font-family: "AvenirN" !important;
 }
 
 h1 {
@@ -91,13 +91,20 @@ p {
     height:50px;
 
     .title {
-      left: 75px !important;
+      top: 4px;
+      left: 70px !important;
       text-align:center !important;
       font-size:1.2em;
     }
+
+    .button {
+      top: 4px;
+    }
 }
 
-
+.has-header {
+  top:0px;
+}
 
 
 

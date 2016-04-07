@@ -3,6 +3,17 @@ $vtec: #D30000;
 $hacktrain: #383838; 
 $gwr: #0A3A2F;
 
-$main-theme: $gwr;
+$main-theme: $vtec;
 $main-theme-darker: darken($main-theme, 4);
 $main-theme-lighter: lighten($main-theme, 20);
+
+
+// Fonts
+@font-face {
+	font-family: "AvenirN";
+	src: url("../assets/styles/fonts/avenirnext/avenirnext.eot");
+	src: url("../assets/styles/fonts/avenirnext/avenirnext.otf") format("opentype"),
+		 url("../assets/styles/fonts/avenirnext/avenirnext.woff2") format("woff2"),
+		 url("../assets/styles/fonts/avenirnext/avenirnext.woff") format("woff"),
+		 url("../assets/styles/fonts/avenirnext/avenirnext.ttf") format("truetype");
+}

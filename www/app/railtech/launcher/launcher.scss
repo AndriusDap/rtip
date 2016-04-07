@@ -9,10 +9,16 @@
 	}
 }
 
-@media (max-width: 600px) {
+@media (max-width: 580px) {
 .launcher {
 	.module-card {
-		max-height: 26vw;
+		width: 45vw;
+		height: 35vw;
+		margin: 2.5%;
+		float: left;
+		overflow: hidden;
 	}
 }
 }
+
+
