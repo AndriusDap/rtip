@@ -30,22 +30,22 @@ export class JourneyService {
     			{
     				serviceId: "S273622",
     				fromDatetime: "2016-03-15T14:03:00",
-    				delay: 0
+    				delay: 12
     			},
     			{
     				serviceId: "R237362",
     				fromDatetime: "2016-03-15T14:10:00",
-    				delay: 45
+    				delay: 177
     			},
     			{
     				serviceId: "S376283",
     				fromDatetime: "2016-03-15T14:15:00",
-    				delay: 22
+    				delay: 78
     			},
     			{
     				serviceId: "R21232",
     				fromDatetime: "2016-03-15T14:18:00",
-    				delay: 3
+    				delay: 33
     			},
     		];
 
@@ -61,5 +61,5 @@ angular.module('staffrepay')
     .service('JourneyService', JourneyService)
 
 
-} // Ticketing
+} // StaffRepay
 } // RailTech

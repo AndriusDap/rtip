@@ -36,21 +36,20 @@ class TicketFormController {
             });
     }
 
-    public verifyInputs() {
-        console.log($ctrl.verifications);
-        return $ctrl.verifications.identification &&
-                $ctrl.verifications.cost &&
-                $ctrl.verifications.class &&
-                $ctrl.verifications.ticketType &&
-                $ctrl.verifications.fromDate &&
-                $ctrl.verifications.toDate;
+    public verifyInputs(): boolean {
+        return this.verifications.identification === true &&
+                this.verifications.cost === true &&
+                this.verifications.ticketClass === true &&
+                this.verifications.ticketType === true &&
+                this.verifications.fromDate === true &&
+                this.verifications.toDate === true;
 
     }
 
 }
 
 angular.module('staffrepay')
-    .controller('TicketFormController', TicketFormController)
+    .controller('staffrepay.TicketFormController', TicketFormController)
 
 
 } // Repay

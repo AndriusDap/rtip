@@ -1,6 +1,5 @@
 <ion-view class="outstanding-claims-list" view-title="Outstanding Claims List" align-title="left">
     <ion-content>
-       		<h1>Ticket Information</h1>
        <div class="col-xs-12">
 
 	        <div class="list">
@@ -121,12 +120,12 @@
 				</div>
 			</div>
 
-	        <button native-ui-sref="app.staffrepay.verifyClaim.claim(1)" 
-	        		 native-options="{type: 'flip', direction:'up'}"
+	        <button ui-sref="app.staffrepay.verifyClaim.claim(1)" 
+	        		ng-disabled="!$ctrl.verifyInputs()"
+	        		native-options="{type: 'flip', direction:'up'}"
 	                class="button button-full button-balanced ink sticky-footer">
 	            Continue
 	        </button>
-
 	    </div>
     </ion-content>
 </ion-view>

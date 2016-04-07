@@ -7,6 +7,7 @@
   ],
   "watchPatterns": [
     "www/build/**/*",
-    "www/app/**/*.html"
+    "www/app/**/*.html",
+    "www/assets/**/*"
   ]
 }

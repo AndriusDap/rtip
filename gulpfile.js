@@ -56,8 +56,13 @@ gulp.task('clean', function (cb) {
 });
 
 gulp.task('sass', function(done) {
+
+  var sassSettings = {
+    includePaths: [ 'www/assets/styles' ]
+  }
+
   return gulp.src(config.allSassFiles)
-    .pipe(sass())
+    .pipe(sass(sassSettings))
     .on('error', swallowError)
     .pipe(concat('app.css'))
     .pipe(gulp.dest(config.buildDir));

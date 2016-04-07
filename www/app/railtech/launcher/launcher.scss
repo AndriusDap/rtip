@@ -2,8 +2,17 @@
 .launcher {
 	.module-card {
 		max-width:250px;
-		width: 45%;
+		max-height: 170px;
+		width: 40vw;
 		margin: 2.5%;
 		float: left;
 	}
+}
+
+@media (max-width: 600px) {
+.launcher {
+	.module-card {
+		max-height: 26vw;
+	}
+}
 }

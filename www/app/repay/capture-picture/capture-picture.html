@@ -1,0 +1,10 @@
+<ion-modal-view ng-controller="CapturePictureController as $ctrl"> 
+	<ion-header-bar> 
+	<h1 class='title'>My Modal title</h1> 
+	</ion-header-bar> 
+	<ion-content> 
+		<video id="video" width="100%" height="95%" autoplay></video>
+		<button ng-click="$ctrl.capturePicture()">Snap Photo</button>
+		<canvas id="canvas" width="640" height="480" style="display: none"></canvas>
+	</ion-content> 
+</ion-modal-view>

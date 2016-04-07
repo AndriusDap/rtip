@@ -1,0 +1,200 @@
+<ion-view class="claim" view-title="Buy tickets" align-title="left">
+    <ion-content>
+       
+        <div style="margin-top:50px" class="no-header flat">
+            <div class="content">
+                <h2>Ticket details</h2>
+            </div>
+        </div>
+
+        <div class="list">
+			<md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
+				<label for="station_departing_input">Departing station</label>
+				<input ng-model="$ctrl.ticket.fromStation" 
+						class="ng-pristine ng-untouched ng-valid md-input" 
+						ng-required="true" 
+						type="text"
+						id="station_departing_input" 
+						aria-invalid="false">
+				<div class="md-errors-spacer"></div>
+			</md-input-container>
+			<md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
+				<label for="station_arriving_input">Arriving station</label>
+				<input ng-model="$ctrl.ticket.toStation" 
+						class="ng-pristine ng-untouched ng-valid md-input" 
+						ng-required="true" 
+						type="text"
+						id="station_arriving_input" 
+						aria-invalid="false">
+				<div class="md-errors-spacer"></div>
+			</md-input-container>
+			<md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
+				<md-radio-group ng-model="$ctrl.ticket.class">
+					<md-radio-button value="Standard" class="md-primary">Standard</md-radio-button>
+					<md-radio-button value="First class">First class</md-radio-button>
+			    </md-radio-group>
+			</md-input-container>
+			<md-select ng-model="$ctrl.ticket.type" 
+					class="ng-pristine ng-valid ng-touched" 
+					tabindex="0" 
+					placeholder="Ticket type"
+					role="listbox" 
+					id="journey_ticket_type_input"
+					aria-invalid="false" >
+				<md-option ng-value="opt" ng-repeat="opt in $ctrl.ticketTypeOptions">{{ opt }}</md-option>
+			</md-select>
+			<md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
+				<label for="journey_valid_from_date_input">Valid from date</label>
+				<input mdc-datetime-picker="" 
+						date="true" 
+						time="true" 
+						type="text" 
+						id="journey_valid_from_date_input"  
+						min-date="date" 
+						ng-model="$ctrl.ticket.fromDate" 
+						class="md-input">
+			</md-input-container>
+			<md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
+				<label for="journey_valid_to_date_input">Valid to date</label>
+				<input mdc-datetime-picker="" 
+						date="true" 
+						time="true" 
+						type="text" 
+						id="journey_valid_to_date_input"  
+						min-date="date" 
+						ng-model="$ctrl.ticket.toDate" 
+						class="md-input">
+			</md-input-container>
+		</div>
+
+
+        <div style="margin-top:50px" class="no-header flat">
+            <div class="content">
+                <h2>Claim details</h2>
+            </div>
+        </div>
+        <div class="list">
+			<md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
+				<label for="journey_date_input">Journey date</label>
+				<input mdc-datetime-picker="" 
+						date="true" 
+						time="true" 
+						type="text" 
+						id="journey_date_input"  
+						min-date="date" 
+						ng-model="$ctrl.journey.journeyDate" 
+						class="md-input">
+			</md-input-container>
+			<md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
+				<label for="journey_delay_input">Length of delay (mins)</label>
+				<input ng-model="$ctrl.journey.delayLength" 
+						class="ng-pristine ng-untouched ng-valid md-input" 
+						ng-required="true" 
+						type="number"
+						id="journey_delay_input" 
+						aria-invalid="false">
+				<div class="md-errors-spacer"></div>
+			</md-input-container>
+			<md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
+				<label for="journey_cost_input">Cost of ticket (£)</label>
+				<input ng-model="$ctrl.journey.cost" 
+						class="ng-pristine ng-untouched ng-valid md-input" 
+						ng-required="true" 
+						type="number"
+						id="journey_cost_input" 
+						aria-invalid="false">
+				<div class="md-errors-spacer"></div>
+			</md-input-container>
+		</div>
+
+		<div style="margin-top:50px" class="no-header flat">
+            <div class="content">
+                <h2>Your details</h2>
+            </div>
+        </div>
+        <div class="list">
+			<md-select ng-model="$ctrl.user.title" 
+					class="ng-pristine ng-valid ng-touched" 
+					tabindex="0" 
+					role="listbox" 
+					aria-owns="title_input" 
+					placeholder="Title"
+					aria-invalid="false" >
+				<md-option ng-value="opt" ng-repeat="opt in $ctrl.titleOptions">{{ opt }}</md-option>
+			</md-select>
+			<md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
+				<label for="first_name_input">First name</label>
+				<input ng-model="$ctrl.user.firstName" 
+						class="ng-pristine ng-untouched ng-valid md-input" 
+						ng-required="true" 
+						type="text"
+						id="first_name_input" 
+						aria-invalid="false">
+				<div class="md-errors-spacer"></div>
+			</md-input-container>
+			<md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
+				<label for="last_name_input">Last name</label>
+				<input ng-model="$ctrl.user.lastName" 
+						class="ng-pristine ng-untouched ng-valid md-input" 
+						ng-required="true" 
+						type="text"
+						id="last_name_input" 
+						aria-invalid="false">
+				<div class="md-errors-spacer"></div>
+			</md-input-container>
+		</div>
+        <div style="margin-top:50px" class="no-header flat">
+            <div class="content">
+                <h2>Contact details</h2>
+            </div>
+        </div>
+		<div class="list">
+			<md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
+				<label for="invalid">Email</label>
+				<input ng-model="$ctrl.user.email" 
+						class="ng-pristine ng-untouched ng-valid md-input" 
+						ng-required="true" 
+						type="text"
+						id="email_input" 
+						aria-invalid="false">
+				<div class="md-errors-spacer"></div>
+			</md-input-container>
+			<md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
+				<label for="phone_input">Contact number</label>
+				<input ng-model="$ctrl.user.phone" 
+						class="ng-pristine ng-untouched ng-valid md-input" 
+						ng-required="true" 
+						type="text"
+						id="phone_input" 
+						aria-invalid="false">
+				<div class="md-errors-spacer"></div>
+			</md-input-container>
+			<md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
+				<label for="postcode_input">Postcode</label>
+				<input ng-model="$ctrl.user.postCode" 
+						class="ng-pristine ng-untouched ng-valid md-input" 
+						ng-required="true" 
+						type="text"
+						id="postcode_input" 
+						aria-invalid="false">
+				<div class="md-errors-spacer"></div>
+			</md-input-container>
+
+			<md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
+				<md-radio-group ng-model="$ctrl.journey.compensation">
+					<md-radio-button value="Voucher" class="md-primary">Rail Travel Voucher</md-radio-button>
+					<md-radio-button value="Cheque">Cheque</md-radio-button>
+			    </md-radio-group>
+			</md-input-container>
+        </div>
+
+        <div>
+            <button ng-click="$ctrl.findResults()" class="button button-full button-assertive ink">Search</button>
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+    </ion-content>
+</ion-view>

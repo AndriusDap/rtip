@@ -13,7 +13,6 @@ export class OverviewController {
 
     constructor(
         private $scope) {
-
         $scope.$parent.setExpanded(false);
 
         this.historicalChart = {};
@@ -102,7 +101,7 @@ export class OverviewController {
 }
 
 angular.module('staffrepay')
-.controller('OverviewController', OverviewController)
+    .controller('staffrepay.OverviewController', OverviewController)
 
 
 } // Repay

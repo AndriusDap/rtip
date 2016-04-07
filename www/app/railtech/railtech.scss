@@ -1,4 +1,7 @@
 //colors
+
+@import "colors.scss";
+
 $white: #fff;
 $black: #000;
 $color_pink_swan_approx: #bbb;
@@ -55,7 +58,7 @@ p {
         }
     }
     .bar.bar-header.expanded {
-        background-color: $color_log_cabin_approx;
+        background-color: $main-theme-darker;
     }
 }
 .app-icon {
@@ -78,7 +81,10 @@ p {
     }
 }
 
-
+.railtech-navbar {
+    background-color: $main-theme;
+    color: white;
+}
 
 
 

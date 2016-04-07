@@ -4,18 +4,20 @@ module RailTech {
 export module StaffRepay {
 
 class VerifyClaimController {
+    
+    public static $inject = [
+    	"ClaimService"
+    ];
 
-
-    public static $inject = [];
-
-    constructor() {
+    constructor(
+    		private claimService: ClaimService) {
 
     }
 
 }
 
 angular.module('staffrepay')
-    .controller('VerifyClaimController', VerifyClaimController)
+    .controller('staffrepay.VerifyClaimController', VerifyClaimController)
 
 
 } // Repay

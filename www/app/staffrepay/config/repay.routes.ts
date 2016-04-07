@@ -16,35 +16,35 @@ angular.module('staffrepay')
             .state('app.staffrepay.overview', {
                 url: '/overview',
                 templateUrl: 'app/staffrepay/overview/overview.html',
-                controller: "OverviewController as $ctrl"
+                controller: "staffrepay.OverviewController as $ctrl"
             })
 
             .state('app.staffrepay.claimsList', {
                 url: '/claimsList',
                 templateUrl: 'app/staffrepay/claims-list/claims-list.html',
-                controller: 'ClaimsListController as $ctrl'
+                controller: 'staffrepay.ClaimsListController as $ctrl'
             })
 
             .state('app.staffrepay.verifyClaim', {
                 url: '/verifyClaim',
                 abstract: true,
                 templateUrl: 'app/staffrepay/verify-claim/verify-claim.html',
-                controller: 'VerifyClaimController as $ctrl'
+                controller: 'staffrepay.VerifyClaimController as $ctrl'
             })
             .state('app.staffrepay.verifyClaim.ticket', {
                 url: '/ticket',
                 templateUrl: 'app/staffrepay/verify-claim/ticket-form/ticket-form.html',
-                controller: 'TicketFormController as $ctrl'
+                controller: 'staffrepay.TicketFormController as $ctrl'
             })
             .state('app.staffrepay.verifyClaim.claim', {
                 url: '/claim',
                 templateUrl: 'app/staffrepay/verify-claim/claim-form/claim-form.html',
-                controller: 'ClaimFormController as $ctrl'
+                controller: 'staffrepay.ClaimFormController as $ctrl'
             })
             .state('app.staffrepay.verifyClaim.contact', {
                 url: '/contact',
                 templateUrl: 'app/staffrepay/verify-claim/contact-form/contact-form.html',
-                controller: 'ContactFormController as $ctrl'
+                controller: 'staffrepay.ContactFormController as $ctrl'
             })
             .state('app.staffrepay.verifyClaim.success', {
                 url: '/success',

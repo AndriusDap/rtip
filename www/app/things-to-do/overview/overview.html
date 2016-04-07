@@ -1,0 +1,40 @@
+<ion-view view-title="Things to do" align-title="left" class="railtech-things-to-do">
+    <ion-content scroll="false">
+        <div class="settings-header col-xs-12">
+            <div class="col-xs-1 icon-edit-container"><i class="icon ion-edit"></i></div>
+            <div class="col-xs-10">
+                <div class="col-xs-12 col-md-5 col-lg-3 selected-date">{{ $ctrl.settings.date }}</div>
+                <div class="col-xs-12 location-settings">
+                    <div class="col-xs-12">Travel Time</div>
+                    <div class="col-xs-12">
+                        <span class="selected-time">{{ $ctrl.settings.time }}</span>
+                        <span> from </span>
+                        <span class="selected-location">{{ $ctrl.settings.location }}</span>
+                    </div>
+                 </div>
+            </div>
+        </div>
+
+        <div class="event-types-divider">
+            <h3 class="events">Events</h3>
+        </div>
+    
+        <ion-scroll class="list events-found">
+        <ion-refresher pulling-text="Pull to refresh" on-refresh="$ctrl.findEvents()"></ion-refresher>
+            <div class="item" 
+                    ng-repeat="event in $ctrl.events" 
+                    ng-click="$ctrl.selectEvent(event.id)"  
+                    style="background-image: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url({{ event.image }})">
+                <div class="event-name">{{ event.name }}</div>
+                <div class="event-location">
+                    <span>£</span>
+                    <i class="icon ion-ios-location"></i>
+                    <span>{{ event.city }}</span>
+                </div>
+                <div class="event-travel-time">{{ event.travelTime }}</div>
+            </div>
+        </ion-scroll>
+
+    </ion-content>
+</ion-view>
+

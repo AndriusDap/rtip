@@ -5,17 +5,29 @@ export module StaffRepay {
 
 class ClaimsListController {
 
+	public claims;
+	
+	private pageNumber;
+	private limit;
 
-    public static $inject = [];
+    public static $inject = [
+    	"ClaimService"];
 
-    constructor() {
+    constructor(private claimService: ClaimService) {
+    	this.refreshClaims("OUTSTANDING");
+    }
 
+    refreshClaims(claimStatus) {
+    	this.claimService.getClaims()
+    		.then((results) => {
+    			this.claims = results;
+    		});
     }
 
 }
 
 angular.module('staffrepay')
-    .controller('ClaimsListController', ClaimsListController)
+    .controller('staffrepay.ClaimsListController', ClaimsListController)
 
 
 } // Repay

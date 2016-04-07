@@ -26,7 +26,7 @@ class ContactFormController {
 }
 
 angular.module('staffrepay')
-    .controller('ContactFormController', ContactFormController)
+    .controller('staffrepay.ContactFormController', ContactFormController)
 
 
 } // Repay

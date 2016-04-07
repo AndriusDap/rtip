@@ -52,9 +52,10 @@ class ClaimFormController {
 
         var delay = this.journeySelected.delay;
         var cost = this.claimService.ticket.cost;
-        var ticketType = this.claimService.ticket.type;
+        var ticketType = this.claimService.ticket.type.toLowerCase();
         var refund = 0;
 
+        console.log(ticketType);
         if(delay > 120) {
             refund = this.claimService.ticket.cost;
         }
@@ -84,10 +85,14 @@ class ClaimFormController {
         return refund;
     }
 
+    public verifyInputs(): boolean {
+        return this.journeySelected;
+    }
+
 }
 
 angular.module('staffrepay')
-    .controller('ClaimFormController', ClaimFormController)
+    .controller('staffrepay.ClaimFormController', ClaimFormController)
 
 
 } // Repay

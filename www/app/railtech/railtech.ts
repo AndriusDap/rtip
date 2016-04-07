@@ -13,7 +13,9 @@ angular.module('railtech', [
         'ionic-native-transitions',
 
         // Internal
-        'staffrepay'])
+        'thingsToDo',
+        'staffrepay',
+        'repay'])
 
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {

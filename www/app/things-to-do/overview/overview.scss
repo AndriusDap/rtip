@@ -1,0 +1,86 @@
+
+@import "colors.scss";
+
+$padding-event-top: 20px;
+$padding-event-sides: 40px;
+
+.railtech-things-to-do {
+	.settings-header {
+		margin-top:30px;
+		margin-bottom: 20px;
+
+		.icon-edit-container {
+			margin-top: 20px;
+			font-size: 2em;
+		}
+
+		.selected-date {
+			font-size: 2em;
+			margin-bottom: 13px;
+		}
+
+		.location-settings {
+			color: #747474;
+			font-size: 0.9em;
+
+			.selected-time {
+				color: #000;
+				font-size: 1.1em;
+			}
+
+			.selected-location {
+				color: #000;
+			}
+		}
+	}
+
+
+	.event-types-divider {
+		background-color: $main-theme-lighter;
+		clear: both;
+		text-align: center;
+
+		h3 {
+			padding: 3px 5px 6px;
+			color: #fff;
+		}
+	}
+
+
+	.events-found {
+		.item {
+			color: white;
+			float:right;
+			height:150px;
+			background-size:cover;
+			background-position:bottom;
+			font-size: 1.5em;
+			margin-bottom: 10px;
+			position: relative;
+
+			&:active {
+				background-color: #EDEDED;
+				transition: background-image 0.5s;
+			}
+
+			.event-name {
+				position: absolute;
+				top: $padding-event-top;
+				left: $padding-event-sides;
+				font-weight: bold;
+			}
+
+			.event-location {
+				position: absolute;
+				bottom: $padding-event-top;
+				left: $padding-event-sides;
+			}
+
+			.event-travel-time {
+				position: absolute;
+				top: $padding-event-top;
+				right: $padding-event-sides;
+			}
+		}
+	}
+}
