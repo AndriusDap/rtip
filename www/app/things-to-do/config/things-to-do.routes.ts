@@ -17,6 +17,12 @@ angular.module('thingsToDo')
                 url: '/overview',
                 templateUrl: 'app/things-to-do/overview/overview.html',
                 controller: "thingsToDo.OverviewController as $ctrl"
+            })
+
+            .state('app.thingsToDo.event', {
+                url: '/event',
+                templateUrl: 'app/things-to-do/event/event.html',
+                controller: "thingsToDo.EventController as $ctrl"
             });
     });
 }

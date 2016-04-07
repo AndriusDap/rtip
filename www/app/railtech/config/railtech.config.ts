@@ -15,13 +15,13 @@ angular.module('railtech')
             }
         });
     })
-    .config(function($ionicConfigProvider) {
+    .config(function($ionicConfigProvider, $mdGestureProvider) {
 
         $ionicConfigProvider.views.transition("android");
         
         // Quickfix for android ng-click firing twice.
         // TODO: remove. check https://github.com/driftyco/ionic/issues/1022
-        // $mdGestureProvider.skipClickHijack();
+        $mdGestureProvider.skipClickHijack();
 
     });
 

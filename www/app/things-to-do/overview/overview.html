@@ -23,8 +23,8 @@
             <ul class="list">
                 <li class="item" 
                             ng-repeat="event in $ctrl.events" 
-                            ng-click="$ctrl.selectEvent(event.id)"  
-                            style="background-image: linear-gradient( rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7) ), url({{ event.image }})">
+                            ui-sref="app.thingsToDo.event(event.id)"  
+                            style="background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url({{ event.image }})">
                     <div class="event-name">{{ event.name }}</div>
                     <div class="event-location">
                         <span>£</span>
