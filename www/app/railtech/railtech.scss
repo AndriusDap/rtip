@@ -124,8 +124,15 @@ p {
 }
 
 
-
-
+.dtp > .dtp-content > .dtp-date-view > header.dtp-header {
+  background: $main-theme;
+}
+.dtp div.dtp-date, .dtp div.dtp-time {
+  background: $main-theme-lighter;
+}
+.dtp table.dtp-picker-days tr > td > a.selected {
+  background: $main-theme-lighter;
+}
 
 
 

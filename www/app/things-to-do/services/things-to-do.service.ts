@@ -63,7 +63,18 @@ export class ThingsToDoService {
             ];
 
             deferred.resolve(events);
-        },2);
+        },1500);
+
+        return deferred.promise;
+    }
+
+    public getThingToDo(id) {
+
+        var deferred = this.$q.defer();
+
+        this.$timeout(() => {
+            deferred.resolve();
+        }, 500);
 
         return deferred.promise;
     }

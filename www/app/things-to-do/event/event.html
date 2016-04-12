@@ -1,5 +1,20 @@
 <ion-view view-title="Things to do" align-title="left" class="railtech-things-to-do">
     <ion-content>
+    
+    	<div class="hero slide-up" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ $ctrl.event.image || '' }});">
+            <div class="content">
+                <h3><a class="light">{{ $ctrl.event.name }}</a></h3>
+                <h4>Let's do this!</h4>
+            </div>
+        </div>
+
+	    <ion-footer-bar class="railtech-footer button-footer">
+	        <button ui-sref="app.staffrepay.claim(1)" 
+	        		native-options="{type: '2flip', direction:'up'}"
+	                class="button button-full button-balanced ink sticky-footer">
+	            Book tickets!
+	        </button>
+	    </ion-footer-bar>
         
     </ion-content>
 </ion-view>

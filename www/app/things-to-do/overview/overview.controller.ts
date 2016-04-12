@@ -14,17 +14,20 @@ export class OverviewController {
         "thingsToDo.thingsToDoService"];
 
     constructor(
-        private $scope,
-        private $ionicLoading,
-        private thingsToDoService) {
+            private $scope,
+            private $ionicLoading,
+            private thingsToDoService) {
+
+        var datetime = new Date();
+        datetime.setHours(2,30);
 
         this.settings = {
-            date: "Friday, 24th March",
-            time: "3 hours",
+            datetime: datetime,
             location: "London"
         }
 
         this.findEvents();
+        this.setupWatch();
     }
 
     public findEvents() {
@@ -40,6 +43,11 @@ export class OverviewController {
 
     }
 
+    private setupWatch() {
+        this.$scope.$watch('$ctrl.settings', (newVal, oldVal) => {
+            this.findEvents();
+        }, true);
+    }
 }
 
 angular.module('thingsToDo')

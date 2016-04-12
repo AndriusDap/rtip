@@ -5,36 +5,44 @@ export module ThingsToDo {
 
 class EventController {
 
-    private settings;
     private events;
 
     public static $inject = [
         "$scope",
         "$ionicLoading",
+        "ionicMaterialMotion",
+        "ionicMaterialInk",
         "thingsToDo.thingsToDoService"];
 
     constructor(
-        private $scope,
-        private $ionicLoading,
-        private thingsToDoService) {
+            private $scope,
+            private $ionicLoading,
+            private ionicMaterialMotion,
+            private ionicMaterialInk,
+            private thingsToDoService) {
 
-        this.settings = {
-            date: "Friday, 24th March",
-            time: "3 hours",
-            location: "London"
-        }
+        this.getEvent()
+            .then(() => {
 
-        this.getEvent();
+                this.ionicMaterialMotion.slideUp({
+                    selector: '.slide-up'
+                });
+
+                this.ionicMaterialMotion.fadeSlideInRight({
+                    startVelocity: 3000
+                });
+            });
+
+        this.ionicMaterialInk.displayEffect();
     }
 
     public getEvent(id) {
         this.$ionicLoading.show();
 
-        this.thingsToDoService.findThingsToDo()
+        return this.thingsToDoService.getThingToDo(id)
             .then((result) => {
 
-                this.events = result;
-                this.$scope.$broadcast('scroll.refreshComplete');
+                this.event = result;
                 this.$ionicLoading.hide();
             });     
 
