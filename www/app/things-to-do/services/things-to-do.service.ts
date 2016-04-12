@@ -6,6 +6,41 @@ export class ThingsToDoService {
 
     public ticket;
     public journey;
+    public events = [{
+                      id: 23,
+                      name: "[2 for 1] Manchester United Museum & Tour",
+                      city: "Manchester",
+                      travelTime: "2h 45m",
+                      image: "https://www.daysoutguide.co.uk/media/2503/7865-attractionimage.jpg"
+               },
+              {
+                     id: 44,
+                     name: "Sightseeing Liverpool Hop-Off Opentop Tour",
+                     city: "Liverpool",
+                     travelTime: "2h 30m",
+                     image: "https://www.daysoutguide.co.uk/media/2702/1225418-attractionimage.jpg"
+              },
+              {
+                     id: 12,
+                     name: "Chester Zoo",
+                     city: "Chester",
+                     travelTime: "2h 3m",
+                     image: "https://www.daysoutguide.co.uk/media/426478/chesterzoo.jpg"
+              },
+              {
+                     id: 11,
+                     name: "Liverpool Cathedral",
+                     city: "Liverpool",
+                     travelTime: "2h 35m",
+                     image: "https://www.daysoutguide.co.uk/media/2776/1300967-attractionimage.jpg"
+              },
+              {
+                     id: 5,
+                     name: "LEGOLAND Discovery Centre Manchester",
+                     city: "Manchester",
+                     travelTime: "2h 55m",
+                     image: "https://www.daysoutguide.co.uk/media/3007/1609607-attractionimage.jpg"
+              }];
 
     static $inject = [
         "$http",
@@ -24,45 +59,7 @@ export class ThingsToDoService {
         var deferred = this.$q.defer();
 
         this.$timeout(() => {
-            var events = [
-                {
-                    id: 23,
-                    name: "[2 for 1] Manchester United Museum & Tour",
-                    city: "Manchester",
-                    travelTime: "2h 45m",
-                    image: "https://www.daysoutguide.co.uk/media/2503/7865-attractionimage.jpg"
-                },
-                {
-                    id: 44,
-                    name: "Sightseeing Liverpool Hop-Off Opentop Tour",
-                    city: "Liverpool",
-                    travelTime: "2h 30m",
-                    image: "https://www.daysoutguide.co.uk/media/2702/1225418-attractionimage.jpg"
-                },
-                {
-                    id: 12,
-                    name: "Chester Zoo",
-                    city: "Chester",
-                    travelTime: "2h 3m",
-                    image: "https://www.daysoutguide.co.uk/media/426478/chesterzoo.jpg"
-                },
-                {
-                    id: 11,
-                    name: "Liverpool Cathedral",
-                    city: "Liverpool",
-                    travelTime: "2h 35m",
-                    image: "https://www.daysoutguide.co.uk/media/2776/1300967-attractionimage.jpg"
-                },
-                {
-                    id: 5,
-                    name: "LEGOLAND Discovery Centre Manchester",
-                    city: "Manchester",
-                    travelTime: "2h 55m",
-                    image: "https://www.daysoutguide.co.uk/media/3007/1609607-attractionimage.jpg"
-                }
-            ];
-
-            deferred.resolve(events);
+            deferred.resolve(this.events);
         },1500);
 
         return deferred.promise;
@@ -71,9 +68,19 @@ export class ThingsToDoService {
     public getThingToDo(id) {
 
         var deferred = this.$q.defer();
+        console.log("finding", id);
 
         this.$timeout(() => {
-            deferred.resolve();
+
+            for (var i = 0; i < this.events.length; i++) {
+                console.log(this.events[i].id === id, this.events[i].id, id)
+                if(this.events[i].id.toString() === id) {
+                    deferred.resolve(this.events[i]);
+                }
+            }
+
+            deferred.reject();
+
         }, 500);
 
         return deferred.promise;

@@ -5,23 +5,27 @@ export module ThingsToDo {
 
 class EventController {
 
-    private events;
+    private event;
 
     public static $inject = [
         "$scope",
         "$ionicLoading",
         "ionicMaterialMotion",
         "ionicMaterialInk",
-        "thingsToDo.thingsToDoService"];
+        "thingsToDo.thingsToDoService",
+        "$stateParams"];
 
     constructor(
             private $scope,
             private $ionicLoading,
             private ionicMaterialMotion,
             private ionicMaterialInk,
-            private thingsToDoService) {
+            private thingsToDoService,
+            private $stateParams) {
 
-        this.getEvent()
+        var eventId = $stateParams.eventId;
+
+        this.getEvent(eventId)
             .then(() => {
 
                 this.ionicMaterialMotion.slideUp({

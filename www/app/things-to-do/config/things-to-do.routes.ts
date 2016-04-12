@@ -20,7 +20,7 @@ angular.module('thingsToDo')
             })
 
             .state('app.thingsToDo.event', {
-                url: '/event',
+                url: '/event/:eventId',
                 templateUrl: 'app/things-to-do/event/event.html',
                 controller: "thingsToDo.EventController as $ctrl"
             });

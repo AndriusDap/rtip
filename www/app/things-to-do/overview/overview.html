@@ -40,8 +40,8 @@
         <ul class="list">
                 <li class="item col-xs-12 col-sm-6 col-lg-4" 
                             ng-repeat="event in $ctrl.events" 
-                            ui-sref="app.thingsToDo.event(event.id)"  
-                            style="background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url({{ event.image }})">
+                            ui-sref="app.thingsToDo.event({ eventId: event.id })"  
+                            style="background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url({{ event.image }}); background-position: center;">
                     <div class="event-name">{{ event.name }}</div>
                     <div class="event-location">
                         <span>£</span>
