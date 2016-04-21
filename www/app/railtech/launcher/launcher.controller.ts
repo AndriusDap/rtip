@@ -4,7 +4,7 @@ module RailTech {
 
 export class LauncherController {
 
-    private ticketingSite = 'https://m-tickets.virgintrainseastcoast.com/webtis-ec/travel/search';
+    private theme = "GWR";
 
     public static $inject = [
         '$scope',
@@ -29,12 +29,24 @@ export class LauncherController {
 
     launchTicketing() {
 
+        var url,
+            themeColor;
+
+        if(this.theme === "GWR") {
+            url = 'http://tickets.gwr.com/gw/en/controls/ticketsearchcontrol';
+            themeColor = '#0A3A2F';
+        }
+        else if (this.theme === "VT") {
+            url = 'https://m-tickets.virgintrainseastcoast.com/webtis-ec/travel/search';
+            themeColor = '#B71C1C';
+        }
+
         try {
-            cordova.ThemeableBrowser.open(this.ticketingSite, '_blank', {statusbar: { color: '#B71C1C' }, toolbar: { height: 44, color: '#B71C1C' }, title: { color: '#B71C1C', showPageTitle: false }, closeButton: { wwwImage: 'img/close.png', align: 'left', event: 'closePressed' }, backButton: { wwwImage: 'img/back.png', imagePressed: 'back_pressed', align: 'left', event: 'backPressed' }, forwardButton: { wwwImage: 'img/forward.png', imagePressed: 'forward_pressed', align: 'left', event: 'forwardPressed' }});
+            cordova.ThemeableBrowser.open(url, '_blank', { statusbar: { color: themeColor }, toolbar: { height: 44, color: themeColor }, title: { color: themeColor, showPageTitle: false }, closeButton: { wwwImage: 'img/close.png', align: 'left', event: 'closePressed' }, backButton: { wwwImage: 'img/back.png', imagePressed: 'back_pressed', align: 'left', event: 'backPressed' }, forwardButton: { wwwImage: 'img/forward.png', imagePressed: 'forward_pressed', align: 'left', event: 'forwardPressed' } });
         }
         catch (err) {
             // Compatibility for in-browser.
-            window.open(this.ticketingSite, "_self");
+            window.open(url, "_self");
         }
     }
 

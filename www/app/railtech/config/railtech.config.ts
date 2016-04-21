@@ -1,8 +1,39 @@
 
 module RailTech {
 
+function getQueryParams(str) {
+  return str.replace(/(^\?)/,'').split("&").map(function(n){return n = n.split("="),this[n[0]] = n[1],this}.bind({}))[0];
+}
+
 angular.module('railtech')
-    .run(function($ionicPlatform) {
+    .config(function(
+            $ionicConfigProvider, 
+            $mdGestureProvider,
+            $locationProvider,
+            $ionicConfigProvider) {
+
+        $ionicConfigProvider.views.transition("android");
+        // Quickfix for android ng-click firing twice.
+        // TODO: remove. check https://github.com/driftyco/ionic/issues/1022
+        $mdGestureProvider.skipClickHijack();
+
+        // var url = window.location.href;
+        // var queryParamsArr = url.split("?");
+        // console.log(queryParamsArr[1]);
+
+        // try {
+        //     var queryParamsRaw = queryParamsArr[1];
+        //     var queryParams = getQueryParams(queryParamsRaw);
+
+        //     console.log(queryParams);
+        // }
+        // catch() {
+
+        // }
+    })
+    .run(function(
+            $ionicPlatform) {
+
         $ionicPlatform.ready(function() {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -14,14 +45,6 @@ angular.module('railtech')
                 window.StatusBar.styleDefault();
             }
         });
-    })
-    .config(function($ionicConfigProvider, $mdGestureProvider) {
-
-        $ionicConfigProvider.views.transition("android");
-        
-        // Quickfix for android ng-click firing twice.
-        // TODO: remove. check https://github.com/driftyco/ionic/issues/1022
-        $mdGestureProvider.skipClickHijack();
 
     });
 

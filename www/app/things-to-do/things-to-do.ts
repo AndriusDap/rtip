@@ -7,7 +7,8 @@ angular.module('thingsToDo', [
         'ionic',  
         'ionic-material', 
         'ionMdInput',
-        'ngMaterialDatePicker'
+        'ngMaterialDatePicker',
+		'ngMap'
     ]);
 
 

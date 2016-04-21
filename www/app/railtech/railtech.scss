@@ -51,6 +51,9 @@ p {
         font-weight: bold;
     }
 }
+.main-railtech-content-view {
+  top: 50px !important;
+}
 .menu-open {
     .ion-navicon {
         //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)

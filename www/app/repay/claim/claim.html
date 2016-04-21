@@ -1,5 +1,5 @@
 <ion-view class="claim" view-title="Buy tickets" align-title="left">
-    <ion-content>
+    <ion-content scroll="true" overflow-scroll="{{ embed }}">
        
         <div style="margin-top:50px" class="no-header flat">
             <div class="content">
@@ -47,7 +47,6 @@
 				<label for="journey_valid_from_date_input">Valid from date</label>
 				<input mdc-datetime-picker="" 
 						date="true" 
-						time="true" 
 						type="text" 
 						id="journey_valid_from_date_input"  
 						min-date="date" 
@@ -58,7 +57,6 @@
 				<label for="journey_valid_to_date_input">Valid to date</label>
 				<input mdc-datetime-picker="" 
 						date="true" 
-						time="true" 
 						type="text" 
 						id="journey_valid_to_date_input"  
 						min-date="date" 
@@ -189,7 +187,7 @@
         </div>
 
         <div>
-            <button ng-click="$ctrl.findResults()" class="button button-full button-assertive ink">Search</button>
+            <button ng-click="$ctrl.findResults()" class="button button-full button-assertive ink">Submit claim</button>
         </div>
 
         <br>
