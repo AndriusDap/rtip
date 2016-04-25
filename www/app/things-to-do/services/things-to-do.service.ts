@@ -18,7 +18,9 @@ export class ThingsToDoService {
                       phone: "0161 868 8000",
                       description: "Re - live the clubs triumphs, tragedies & trophies in the Museum. Delve behind the scenes on the Stadium tour, visit the home changing room, sit in the dug-out & run down the tunnel to the roar of the crowd.",
                       website: "http://www.manutd.com/museum",
-                      type: "Galleries & Museums,Sports & Recreation"
+                      type: "Galleries & Museums,Sports & Recreation",
+                      lat : 53.4629985,
+                      long : -2.2944832
                },
               {
                      id: 44,
@@ -32,7 +34,9 @@ export class ThingsToDoService {
                      phone: "0151 203 3920",
                      description: "The original Sightseeing Liverpool Tour Bus - we are the number one open top tour bus operator in Liverpool, which encompasses the sights of Liverpool and an educational tour in a clean, bright, fun, recognisable bus.\nOur open top bus tours of Liverpool depart every twenty minutes and each complete tour lasts one hour.The City Sightseeing Liverpool bus tour encompasses 14 stops starting at the famous Liver Buildings.Between stops you can experience sights like the war museum in Chapel Street or visit Mathew Street, the home of the world famous Cavern Club where the Beatles first played to excited local crowds. ",
                      website: "http://www.city-sightseeing.com/tours/united-kingdom/liverpool.htm",
-                     type: "Tours & Guided Walks"
+                     type: "Tours & Guided Walks",
+                    lat : 53.4073312,
+                    long : -2.9752073
               },
               {
                      id: 12,
@@ -46,7 +50,9 @@ export class ThingsToDoService {
                      phone: "01244 380 280",
                      description: "With 12,000 animals from 400 different species in 125 acres of award-winning zoological gardens, Chester Zoo is one of the world's top zoos and the UK's number one wildlife attraction. \n\nChester Zoo is easy to reach by train and you can save on your travel and zoo admission with a Combination Ticket.Buy a combination ticket from your local National Rail station when you buy your train ticket (or separately if you already have a valid rail ticket) and it will include the return bus link from Chester station to the zoo AND your zoo admission in one discounted price.",
                      website: "http://www.chesterzoo.org/",
-                     type: "Zoos, Farms & Wildlife"
+                     type: "Zoos, Farms & Wildlife",
+                  lat : 53.2277134,
+                  long : -2.886457
               },
               {
                      id: 11,
@@ -60,7 +66,9 @@ export class ThingsToDoService {
                      phone: "0151 709 6271",
                      description: "Spectacular views from the top of Britain's biggest Cathedral and great interactive 'Great Space' tour! Check website for opening times and for the few occasions when events restrict some of the elements of the tour.",
                      website: "http://www.liverpoolcathedral.org.uk/",
-                     type: "Landmarks & Historical Sites"
+                     type: "Landmarks & Historical Sites",
+                  lat : 53.3973865,
+                  long : -2.9754512
               },
               {
                      id: 5,
@@ -74,7 +82,9 @@ export class ThingsToDoService {
                      phone: "0844 844 8181",
                      description: "Explore the ultimate indoor LEGO® playground, the UK's only LEGOLAND® Discovery Centre, located at Manchester's intu Trafford Centre!\nDiscover how LEGO bricks are made in Professor Brick's Factory Tour, then zap the skeletons in the Kingdom Quest laser ride and explore all of the North West's famous buildings in MINILAND.Sing karaoke with the LEGO Friends, build and test a racing car in LEGO Racers and reach out and touch the stars as you join the LEGO Legends of Chima on a 4D movie adventure!\nPlus don't forget to earn your LEGO City Forest Pursuit Drivers Licence, become a fireman in our soft play area, meet the Master Model Builder and much more!\nOur indoor LEGOLAND Discovery Centre is ideal for children aged 3- 10 years and all attractions inside the centre are included in the admission price.\nLEGO, the LEGO logo and LEGOLAND are trademarks of the LEGO Group.©2015 The LEGO Group.",
                      website: "http://www.legolanddiscoverycentre.co.uk/",
-                     type: "Theme & Adventure Parks"
+                     type: "Theme & Adventure Parks",
+                  lat : 53.4674426,
+                  long : -2.3435372
               }];
 
     static $inject = [

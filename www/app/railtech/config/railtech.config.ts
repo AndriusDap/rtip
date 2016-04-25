@@ -17,22 +17,22 @@ angular.module('railtech')
         // TODO: remove. check https://github.com/driftyco/ionic/issues/1022
         $mdGestureProvider.skipClickHijack();
 
-        // var url = window.location.href;
-        // var queryParamsArr = url.split("?");
-        // console.log(queryParamsArr[1]);
+        var url = window.location.href;
+        var queryParamsArr = url.split("?");
 
-        // try {
-        //     var queryParamsRaw = queryParamsArr[1];
-        //     var queryParams = getQueryParams(queryParamsRaw);
+        if(queryParamsArr && queryParamsArr.length > 1) {
+            var queryParamsRaw = queryParamsArr[1];
+            var queryParams = getQueryParams(queryParamsRaw);
 
-        //     console.log(queryParams);
-        // }
-        // catch() {
-
-        // }
+            // Enabling js scrolling (not ionic) if embeded in an iframe            
+            var embed = (queryParams.embed == 'true');
+            $ionicConfigProvider.scrolling.jsScrolling(!embed);
+        }
     })
     .run(function(
-            $ionicPlatform) {
+            $ionicPlatform,
+            $location,
+            $rootScope) {
 
         $ionicPlatform.ready(function() {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -45,6 +45,11 @@ angular.module('railtech')
                 window.StatusBar.styleDefault();
             }
         });
+
+        window.queryParams = {};
+
+        var queryParams = $location.search();
+        $rootScope.embed = (queryParams.embed == 'true');
 
     });
 

@@ -22,6 +22,11 @@ angular.module('repay')
                 url: '/claim',
                 templateUrl: 'app/repay/claim/claim.html',
                 controller: 'repay.ClaimController as $ctrl'
+            })
+
+            .state('app.repay.success', {
+                url: '/success',
+                templateUrl: 'app/repay/successful-claim/successful-claim.html'
             });
     });
 }

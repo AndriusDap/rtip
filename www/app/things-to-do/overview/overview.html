@@ -1,22 +1,23 @@
 <ion-view view-title="Things to do" align-title="left" class="railtech-things-to-do">
     <ion-content scroll="false">
-        <div class="settings-header col-xs-12">
-            <div class="col-xs-12">
-                <div class="col-xs-12 col-md-5 col-lg-3 selected-date">{{ $ctrl.settings.datetime | date: "EEEE d, MMMM" }}
-                    <input mdc-datetime-picker="" 
-                            date="true" 
-                            time="false" 
-                            type="text" 
-                            ng-model="$ctrl.settings.datetime" 
-                            class="md-input background-input">
-                </div>
+        <div class="col-xs-12 col-sm-6 col-lg-4">
+            <div class="settings-header col-xs-12">
+                <div class="col-xs-12">
+                    <div class="col-xs-12 col-md-6 selected-date">{{ $ctrl.settings.datetime | date: "EEEE d, MMMM" }}
+                        <input mdc-datetime-picker="" 
+                                date="true" 
+                                time="false" 
+                                type="text" 
+                                ng-model="$ctrl.settings.datetime" 
+                                class="md-input background-input">
+                    </div>
 
 
-                <div class="col-xs-12 location-settings">
-                    <div class="col-xs-12">Travel Time</div>
-                    <div class="col-xs-12">
-                        <div class="selected-time">
-                            {{ $ctrl.settings.datetime | date:"H" }}h {{ $ctrl.settings.datetime | date:"m" }}m 
+                    <div class="col-md-6 location-settings">
+                        <div class="col-xs-6 time-container">
+                            <span>Travel time:</span> 
+                            <br>
+                            <span class="selected-time">{{ $ctrl.settings.datetime | date:"H" }}h {{ $ctrl.settings.datetime | date:"m" }}m </span>
                             <input mdc-datetime-picker="" 
                                 date="false" 
                                 time="true" 
@@ -24,35 +25,52 @@
                                 ng-model="$ctrl.settings.datetime" 
                                 class="md-input background-input">
                         </div>
-                        <span> from </span>
-                        <div class="selected-location">{{ $ctrl.settings.location }}</div>
+                        <div class="col-xs-6 location-container">
+                            <span> from: </span>
+                            <br>
+                            <span class="selected-location">{{ $ctrl.settings.location }}</span>
+                        </div>
                     </div>
-                 </div>
+                </div>
+                <div id="repeat" ng-repeat="marker in $ctrl.markers | orderBy : 'title'">
+                     <button id="country_container" ng-click="$ctrl.openInfoWindow(marker)">
+                     <label id="names" >{{marker.title}}</label></button>
+                </div>
             </div>
-        </div>
 
-        <div class="event-types-divider">
-            <h3 class="events">Events</h3>
+            <div class="event-types-divider">
+                <h3 class="events">Events</h3>
+            </div>
+            
+            <!-- ui-sref="app.thingsToDo.event({ eventId: event.id })"  -->
+            
+            <ion-scroll class="events-found col-xs-12" overflow-scroll="true">
+                <ion-refresher pulling-text="Pull to refresh" on-refresh="$ctrl.findEvents()"></ion-refresher>
+                <ul class="list">
+                    <li class="item" 
+                                ng-repeat="event in $ctrl.events"  
+                                ng-click="$ctrl.openInfoWindow(event.marker)"
+                                style="background-image: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url({{ event.image }}); background-position: center;">
+                        <a ui-sref="app.thingsToDo.event({ eventId: event.id })" class="event-name">
+                            {{ event.name }}
+                        </a>
+                        <div class="event-location">
+                            <span>£</span>
+                            <i class="icon ion-ios-location"></i>
+                            <span>{{ event.city }}</span>
+                        </div>
+                        <div class="event-travel-time">{{ event.travelTime }}</div>
+                    </li>
+                    <li class="item last-item-padding show-xs hide"></li>
+                </ul>
+
+            </ion-scroll>
         </div>
-    
-        <ion-scroll class="events-found" overflow-scroll="true">
-        <ion-refresher pulling-text="Pull to refresh" on-refresh="$ctrl.findEvents()"></ion-refresher>
-        <ul class="list">
-                <li class="item col-xs-12 col-sm-6 col-lg-4" 
-                            ng-repeat="event in $ctrl.events" 
-                            ui-sref="app.thingsToDo.event({ eventId: event.id })"  
-                            style="background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url({{ event.image }}); background-position: center;">
-                    <div class="event-name">{{ event.name }}</div>
-                    <div class="event-location">
-                        <span>£</span>
-                        <i class="icon ion-ios-location"></i>
-                        <span>{{ event.city }}</span>
-                    </div>
-                    <div class="event-travel-time">{{ event.travelTime }}</div>
-                </li>
-                <li class="item last-item-padding"></li>
-            </ul>
-        </ion-scroll>
+    </div>
+
+    <div class="map-container hide-xs sm-show col-sm-6 col-lg-8">
+        <div id="map"></div>
+    </div> 
 
     </ion-content>
 </ion-view>
