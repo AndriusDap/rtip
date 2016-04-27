@@ -1,6 +1,6 @@
 <ion-view view-title="Things to do" align-title="left" class="railtech-things-to-do">
     <ion-content scroll="false">
-        <div class="col-xs-12 col-sm-6 col-lg-4">
+        <div class="events-column" style="max-width: {{ $ctrl.eventsContainerWidth }}px">
             <div class="settings-header col-xs-12">
                 <div class="col-xs-12">
                     <div class="col-xs-12 col-md-6 selected-date">{{ $ctrl.settings.datetime | date: "EEEE d, MMMM" }}
@@ -49,17 +49,22 @@
                 <ul class="list">
                     <li class="item" 
                                 ng-repeat="event in $ctrl.events"  
-                                ng-click="$ctrl.openInfoWindow(event.marker)"
-                                style="background-image: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url({{ event.image }}); background-position: center;">
+                                ng-click="$ctrl.openInfoWindow(event.marker)">
+                        <div class="image-container" style="background-image: url({{ event.image }}); background-size: cover;"></div>
                         <a ui-sref="app.thingsToDo.event({ eventId: event.id })" class="event-name">
                             {{ event.name }}
                         </a>
-                        <div class="event-location">
-                            <span>£</span>
-                            <i class="icon ion-ios-location"></i>
-                            <span>{{ event.city }}</span>
+                        <div class="event-cost">
+                            £ {{ event.price }}
                         </div>
-                        <div class="event-travel-time">{{ event.travelTime }}</div>
+                        <div class="event-location">
+                            <i class="icon ion-ios-location"></i>
+                            <span>{{ event.location }}</span>
+                        </div>
+                        <div class="event-travel-time">
+                            {{ event.travelTime }}
+                        </div>
+
                     </li>
                     <li class="item last-item-padding show-xs hide"></li>
                 </ul>
@@ -68,7 +73,7 @@
         </div>
     </div>
 
-    <div class="map-container hide-xs sm-show col-sm-6 col-lg-8">
+    <div class="map-container hide-xs sm-show" ng-style="{ width: $ctrl.mapWidth + 'px' }">
         <div id="map"></div>
     </div> 
 

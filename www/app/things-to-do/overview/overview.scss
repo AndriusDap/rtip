@@ -4,10 +4,15 @@
 $padding-event-top: 30px;
 $padding-event-sides: 30px;
 
-$link-color-light: #A3EAEA;
-$link-color-dark: darken($link-color-light, 40);
 
 .railtech-things-to-do {
+
+	.events-column {
+		width: 100%;
+		height: 100%;
+		background-color: white;
+	}
+
 	.settings-header {
 		padding-top:30px;
 		padding-bottom: 20px;
@@ -32,12 +37,21 @@ $link-color-dark: darken($link-color-light, 40);
 
 			background-color: $main-theme-lighter;
 			color: white;
+
+			input {
+				cursor: pointer;
+			}
 		}
 
 		.location-settings {
 			color: #747474;
 
 			.time-container {
+				cursor: pointer;
+
+				* {
+					cursor: pointer;
+				}
 
 				.selected-time {
 					color: #000;
@@ -45,6 +59,9 @@ $link-color-dark: darken($link-color-light, 40);
 					position:relative;
 					font-weight: bold;
 					width: 80px;
+					background-color: $main-theme-lighter;
+					color: white;
+					padding: 5px 5px 5px 5px;
 				}
 			}
 			h2 {
@@ -54,10 +71,17 @@ $link-color-dark: darken($link-color-light, 40);
 			span {
 				width: 40px;
 			}
+			.location-container{
+				cursor: pointer;
 
-			.selected-location {
-				color: #000;
-				font-weight: bold;
+				.selected-location {
+					color: #000;
+					font-weight: bold;
+
+					background-color: $main-theme-lighter;
+					color: white;
+					padding: 5px 5px 5px 5px;
+				}
 			}
 
 		}
@@ -90,24 +114,38 @@ $link-color-dark: darken($link-color-light, 40);
 		}
 
 		.item {
-			color: white;
+			color: black;
 			float:right;
 			height:180px;
 			background-size:cover;
 			background-position:center;
-			font-size: 1.5em;
 			// margin-bottom: 10px;
 			position: relative;
+			border-bottom: 1px solid gray;
+			padding-top: 30px;
 
 			&:active {
 				background-color: #EDEDED;
 				transition: background-image 0.5s;
 			}
+			
+			.image-container {
+				height: 100px;
+				width: 100px;
+				border-radius: 15px;
+				float: left;
+				margin: 0 10px 10px 0px;
+			}
 
+			.event-cost {
+				background-color: #00B551;
+				color: white;
+				padding: 5px  5px  5px  5px;
+				float: right;
+			}
+			
 			.event-name {
-				position:absolute;
-				top: $padding-event-top;
-				left: $padding-event-sides;
+				font-size: 1.5em;
 				font-weight: bold;
 				width: 85vw;
 				white-space: nowrap;
@@ -115,19 +153,19 @@ $link-color-dark: darken($link-color-light, 40);
 				height:30px;
 				padding: 5px;
 				text-overflow: ellipsis;
-				color: $link-color-light;
+				color: $main-theme;
 			}
 
 			.event-location {
-				position: absolute;
-				bottom: $padding-event-top;
-				left: $padding-event-sides;
+				padding-top: 10px;
 			}
 
 			.event-travel-time {
 				position: absolute;
 				bottom: $padding-event-top;
 				right: $padding-event-sides;
+				font-weight: 900;
+				font-size: 1.2em;
 			}
 		}
 	}
@@ -137,14 +175,30 @@ $link-color-dark: darken($link-color-light, 40);
 	.map-container {
 		height: 100%;
 		padding: 0 0 0 0;
+		position: absolute;
+		right: 0px;
+		bottom: 0px;
+		top: 0px;
+		z-index: -1;
 
 		#map {
 			width: 100%;
 			height: 100%;
 		}
 
+		.map-image-container {
+			height: 50px;
+			width: 50px;
+			float: left;
+			border-radius: 15px;
+			margin-right: 10px;
+		}
+
 		.marker-title {
-			color: $link-color-dark !important;
+			color: $main-theme !important;
+			font-size: 1.4em;
+			overflow: hidden;
+			height: 10px;
 		}
 	}
 }

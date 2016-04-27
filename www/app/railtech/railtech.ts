@@ -10,7 +10,6 @@ angular.module('railtech', [
         'ionic',  
         'ionic-material', 
         'ionMdInput',
-        'ionic-native-transitions',
 
         // Internal
         'thingsToDo',

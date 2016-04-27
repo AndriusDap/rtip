@@ -20,7 +20,9 @@ export class ThingsToDoService {
                       website: "http://www.manutd.com/museum",
                       type: "Galleries & Museums,Sports & Recreation",
                       lat : 53.4629985,
-                      long : -2.2944832
+                      long : -2.2944832,
+                      fromStation: "London Terminals",
+                      toStation: "Manchester Stations"
                },
               {
                      id: 44,
@@ -36,7 +38,9 @@ export class ThingsToDoService {
                      website: "http://www.city-sightseeing.com/tours/united-kingdom/liverpool.htm",
                      type: "Tours & Guided Walks",
                     lat : 53.4073312,
-                    long : -2.9752073
+                    long : -2.9752073,
+                      fromStation: "London Terminals",
+                      toStation: "Liverpool Stations"
               },
               {
                      id: 12,
@@ -52,7 +56,9 @@ export class ThingsToDoService {
                      website: "http://www.chesterzoo.org/",
                      type: "Zoos, Farms & Wildlife",
                   lat : 53.2277134,
-                  long : -2.886457
+                  long : -2.886457,
+                      fromStation: "London Terminals",
+                      toStation: "Chester"
               },
               {
                      id: 11,
@@ -68,7 +74,9 @@ export class ThingsToDoService {
                      website: "http://www.liverpoolcathedral.org.uk/",
                      type: "Landmarks & Historical Sites",
                   lat : 53.3973865,
-                  long : -2.9754512
+                  long : -2.9754512,
+                      fromStation: "London Terminals",
+                      toStation: "Liverpool Stations"
               },
               {
                      id: 5,
@@ -84,7 +92,9 @@ export class ThingsToDoService {
                      website: "http://www.legolanddiscoverycentre.co.uk/",
                      type: "Theme & Adventure Parks",
                   lat : 53.4674426,
-                  long : -2.3435372
+                  long : -2.3435372,
+                      fromStation: "London Terminals",
+                      toStation: "Manchester Stations"
               }];
 
     static $inject = [

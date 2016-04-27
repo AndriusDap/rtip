@@ -13,6 +13,12 @@ $url_0: url(../img/crown.jpg);
 
 * {
   font-family: "AvenirN" !important;
+
+  // Make text selectable
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
 }
 
 h1 {

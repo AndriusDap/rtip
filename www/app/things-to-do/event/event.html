@@ -1,50 +1,86 @@
 <ion-view view-title="Things to do" align-title="left" class="railtech-things-to-do">
-    <ion-content>
+    <ion-content scroll="false">
 
-    	<div class="hero slide-up" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ $ctrl.event.image || '' }});">
-            <div class="content">
-                <h3><a class="light">{{ $ctrl.event.name }}</a></h3>
-                <h4>Let's do this!</h4>
-            </div>
-        </div>
-
-		<div class="event-content">
-	        <div class="event-details">
-	        	<span class="pull-left">
-	        		{{ $ctrl.event.type }}
-	        	</span>
-	        	<span class="event-price pull-right">
-	        		£ {{ $ctrl.event.price }}
-	        	</span>
-	        </div>
-
-	        <div class="description">
-	        	{{ $ctrl.event.description }}
-	        </div>
-
-
-			<div class="event-map-container">
-		        <ng-map ng-if="$ctrl.event.location" 
-		        		class="event-map"
-	        			zoom="16" 
-	        			pan-control="false"
-	        			map-type-control="false"
-	        			zoom-control="false"
-	        			center="{{ $ctrl.event.location }}">
-					<marker animation="Animation.BOUNCE"
-							position="{{ $ctrl.event.location }}"></marker>
-	        	</ng-map>
+    	<div class="event-container col-sm-7 col-md-6 col-lg-4">
+    		
+			<div class="book-button-container">
+				<div class="col-xs-6 button">
+					Book Train!
+				</div>
+				<div class="col-xs-6 button">
+					Book Event!
+				</div>
 			</div>
+
+    		<div class="hero slide-up" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ $ctrl.event.image || '' }});">
+	            <div class="content">
+	                <h3><a class="light">{{ $ctrl.event.name }}</a></h3>
+	                <h4>Let's do this!</h4>
+	            </div>
+	        </div>
+	
+			<div class="event-content">
+		        <div class="event-details">
+
+		        	<span class="event-time pull-left">
+		        		Time: {{ $ctrl.event.travelTime }}
+		        	</span>
+
+		        	<span class="event-price pull-right">
+		        		Cost: £ {{ $ctrl.event.price }}
+		        	</span>
+
+		        </div>
+				
+		        <div class="description col-md-8">
+		        	{{ $ctrl.event.description }}
+		        </div>
+
+				<div class="key-points-container col-md-4">
+					<div class="field-container">
+						<span class="field-label">
+							Expires:
+						</span>
+						<span class="field-value">
+							{{ $ctrl.event.expires }}
+						</span>
+					</div>
+					<div class="field-container">
+						<span class="field-label">
+							Phone:
+						</span>
+						<span class="field-value">
+							{{ $ctrl.event.phone }}
+						</span>
+					</div>
+				
+					<div class="field-container">
+						<span class="field-label">
+							<a href="{{ $ctrl.event.website }}">Visit website</a>
+						</span>
+					</div>
+				</div>
+
+		        <div class="journey">
+		        	
+		        </div>
+			</div>
+    	</div>
+	
+		<div class="event-map-container col-sm-5 col-md-6 col-lg-8">
+	        <ng-map ng-if="$ctrl.event.location" 
+	        		class="event-map"
+        			zoom="16" 
+        			pan-control="false"
+        			map-type-control="false"
+        			zoom-control="false"
+        			center="{{ $ctrl.event.location }}">
+				<marker animation="Animation.BOUNCE"
+						position="{{ $ctrl.event.location }}"></marker>
+        	</ng-map>
 		</div>
         
     </ion-content>
 
-    <ion-footer-bar class="railtech-footer button-footer">
-        <button ui-sref="app.staffrepay.claim(1)" 
-        		native-options="{type: '2flip', direction:'up'}"
-                class="button button-full button-balanced ink sticky-footer">
-            Book tickets!
-        </button>
-    </ion-footer-bar>
 </ion-view>
 

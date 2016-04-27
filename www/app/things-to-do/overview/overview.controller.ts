@@ -9,19 +9,25 @@ export class OverviewController {
     private events;
     private map;
     private markers;
+    private eventsContainerWidth;
+    private mapWidth;
 
     public static $inject = [
         "$scope",
         "$ionicLoading",
+        "$window",
         "thingsToDo.thingsToDoService"];
 
     constructor(
             private $scope,
             private $ionicLoading,
+            private $window,
             private thingsToDoService) {
 
         var datetime = new Date();
         datetime.setHours(2,30);
+        this.mapWidth = 0;
+        this.eventsContainerWidth = 650;
 
         this.settings = {
             datetime: datetime,
@@ -30,6 +36,7 @@ export class OverviewController {
 
         this.findEvents();
         this.setupWatch();
+        this.setupMapResize();
     }
 
     public findEvents() {
@@ -76,11 +83,10 @@ export class OverviewController {
                 title: info.name
             });
 
-            console.log(info);
             marker.content = '<div class="infoWindowContent">' + info.location + '<br /></div>';
 
             google.maps.event.addListener(marker, 'click', () => {
-                infoWindow.setContent('<h2><a class="marker-title" href="/#app/thingsToDo/event/' + info.id + '">' + marker.title + '</a></h2>' + marker.content);
+                infoWindow.setContent('<div class="map-image-container" style="background: url(' + info.image + '); background-size: cover;"></div><div><a class="marker-title" href="/#app/thingsToDo/event/' + info.id + '">' + marker.title + '</a></div>' + marker.content);
                 infoWindow.open(this.map, marker);
             });
 
@@ -96,6 +102,19 @@ export class OverviewController {
         var center = new google.maps.LatLng(selectedMarker.lat, selectedMarker.long);
         this.map.setCenter(selectedMarker.position);
         google.maps.event.trigger(selectedMarker, 'click');
+    }
+
+    setupMapResize() {
+        var width = this.$window.innerWidth;
+        this.mapWidth = width - this.eventsContainerWidth;
+
+        angular.element(this.$window).bind('resize', () => {
+            console.log("doing");
+
+            var width = this.$window.innerWidth;
+            this.mapWidth = width - this.eventsContainerWidth;
+            this.$scope.$digest();
+       });
     }
 }
 
