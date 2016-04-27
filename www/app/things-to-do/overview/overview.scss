@@ -31,7 +31,7 @@ $padding-event-sides: 30px;
 		}
 
 		.selected-date {
-			font-size: 2em;
+			font-size: 1.5em;
 			height: 40px;
 			padding-top:13px;
 
@@ -137,27 +137,36 @@ $padding-event-sides: 30px;
 				margin: 0 10px 10px 0px;
 			}
 
+			.event-main-text-container {
+				overflow: hidden;
+  				text-overflow: ellipsis;
+  				padding-top: 10px;
+
+				.event-name {
+					font-size: 1.5em;
+					font-weight: bold;
+					width: 85vw;
+					white-space: nowrap;
+					overflow: hidden;
+					height:30px;
+					padding: 5px;
+					text-overflow: ellipsis;
+					color: $main-theme;
+				}
+
+				.event-location {
+					padding-top: 10px;
+				}
+
+			}
+
 			.event-cost {
 				background-color: #00B551;
 				color: white;
-				padding: 5px  5px  5px  5px;
+				padding: 10px  10px  10px  10px;
 				float: right;
-			}
-			
-			.event-name {
-				font-size: 1.5em;
-				font-weight: bold;
-				width: 85vw;
-				white-space: nowrap;
-				overflow: hidden;
-				height:30px;
-				padding: 5px;
-				text-overflow: ellipsis;
-				color: $main-theme;
-			}
-
-			.event-location {
-				padding-top: 10px;
+				font-size: 1.3em;
+				border-radius: 10px;
 			}
 
 			.event-travel-time {
