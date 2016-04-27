@@ -44,7 +44,7 @@
             
             <!-- ui-sref="app.thingsToDo.event({ eventId: event.id })"  -->
             
-            <ion-scroll class="events-found col-xs-12" overflow-scroll="true">
+            <ion-content class="events-found col-xs-12" overflow-scroll="true">
                 <ion-refresher pulling-text="Pull to refresh" on-refresh="$ctrl.findEvents()"></ion-refresher>
                 <ul class="list">
                     <li class="item" 
@@ -69,7 +69,7 @@
                     <li class="item last-item-padding show-xs hide"></li>
                 </ul>
 
-            </ion-scroll>
+            </ion-content>
         </div>
     </div>
 
