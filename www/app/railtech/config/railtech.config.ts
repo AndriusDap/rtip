@@ -50,6 +50,7 @@ angular.module('railtech')
 
         var queryParams = $location.search();
         $rootScope.embed = (queryParams.embed == 'true');
+        $rootScope.toc = (queryParams.toc || "GWR");
 
     });
 

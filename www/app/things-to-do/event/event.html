@@ -4,12 +4,16 @@
     	<div class="event-container col-sm-7 col-md-6 col-lg-4">
     		
 			<div class="book-button-container">
-				<div class="col-xs-6 button">
-					Book Train!
-				</div>
-				<div class="col-xs-6 button">
-					Book Event!
-				</div>
+				<a target="_blank" href="{{ $ctrl.event.website }}">
+					<div class="col-xs-6 button">
+						Book Train!
+					</div>
+				</a>
+				<a target="_blank" href="{{ $ctrl.event.website }}">
+					<div class="col-xs-6 button">
+						Book Event!
+					</div>
+				</a>
 			</div>
 
     		<div class="hero slide-up" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ $ctrl.event.image || '' }});">
@@ -56,7 +60,7 @@
 				
 					<div class="field-container">
 						<span class="field-label">
-							<a href="{{ $ctrl.event.website }}">Visit website</a>
+							<a target="_blank" href="{{ $ctrl.event.website }}">Visit website</a>
 						</span>
 					</div>
 				</div>
