@@ -37,6 +37,11 @@ $padding-event-sides: 30px;
 
 			background-color: $main-theme-lighter;
 			color: white;
+			transition: background-color .3s, color .3s;
+
+			&:hover {
+				background-color: lighten($main-theme-lighter, 10);
+			}
 
 			input {
 				cursor: pointer;
@@ -62,6 +67,12 @@ $padding-event-sides: 30px;
 					background-color: $main-theme-lighter;
 					color: white;
 					padding: 5px 5px 5px 5px;
+					
+					transition: background-color .3s, color .3s;
+
+					&:hover {
+						background-color: lighten($main-theme-lighter, 10);
+					}
 				}
 			}
 			h2 {
@@ -81,6 +92,12 @@ $padding-event-sides: 30px;
 					background-color: $main-theme-lighter;
 					color: white;
 					padding: 5px 5px 5px 5px;
+					
+					transition: background-color .3s, color .3s;
+
+					&:hover {
+						background-color: lighten($main-theme-lighter, 10);
+					}
 				}
 			}
 
