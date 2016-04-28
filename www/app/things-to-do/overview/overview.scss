@@ -58,6 +58,10 @@ $padding-event-sides: 30px;
 					cursor: pointer;
 				}
 
+				:hover .selected-time {
+					background-color: lighten($main-theme-lighter, 10);
+				}
+
 				.selected-time {
 					color: #000;
 					height:30px;
@@ -70,9 +74,6 @@ $padding-event-sides: 30px;
 					
 					transition: background-color .3s, color .3s;
 
-					&:hover {
-						background-color: lighten($main-theme-lighter, 10);
-					}
 				}
 			}
 			h2 {

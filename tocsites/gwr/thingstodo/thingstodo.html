@@ -1075,50 +1075,8 @@
 
     <div class="row">
 
-        <style>
-            .railtech-map-button {
-                height: 50px; 
-                background-color: #018675; 
-                color: white; 
-                font-family: 'Glypha W01', 'Times New Roman',serif; 
-                text-align: center; 
-                padding-top: 10px;
-                cursor: pointer;
+        <style>.railtech-map-button{height: 50px; background-color: #018675; color: white; font-family: 'Glypha W01', 'Times New Roman',serif; text-align: center; padding-top: 10px; cursor: pointer; transition: background-color 0.2s ease;}.railtech-map-button:hover{background-color: #126C58;}.railtech-map-button:hover:active{background-color: #0A4135;}</style> <div id="railtech-map" class="railtech-map" style="width: 100%; height: 50px; overflow: hidden;"> <div id="railtech-map-button" class="railtech-map-button" onclick="RailTech.expandRailTechMapView()"> View Map </div><iframe border="0" id="railtech-map-view" style="width: 100%; height: 73vh;" src="http://localhost:8100/#/app/thingsToDo/overview?embed=true&toc=gwr"></iframe> </div><script>var RailTech; (function(RailTech){var railtechMapUnexpandedHeight="50px"; var railtechMapExpandedHeight="80vh"; RailTech.expandRailTechMapView=function(){var railtechMap=document.getElementById("railtech-map"); var currHeight=railtechMap.style.height; if (currHeight===railtechMapUnexpandedHeight){railtechMap.style.height=railtechMapExpandedHeight;}else{railtechMap.style.height=railtechMapUnexpandedHeight;}}})(RailTech || (RailTech={})); </script>
 
-                transition: background-color 0.2s ease;
-            }
-            .railtech-map-button:hover {
-                background-color: #126C58;
-            }
-            .railtech-map-button:hover:active {
-                background-color: #0A4135;
-            }
-        </style>
-        <div id="railtech-map" class="railtech-map" style="width: 100%; height: 50px; overflow: hidden;">
-            <div id="railtech-map-button" class="railtech-map-button" onclick="RailTech.expandRailTechMapView()">
-                View Map 
-            </div>
-            <iframe border="0" id="railtech-map-view" style="width: 100%; height: 73vh;" src="http://localhost:8100/#/app/thingsToDo/overview?embed=true"></iframe>
-        </div>
-        <script>
-            var RailTech;
-            (function(RailTech) {
-                var railtechMapUnexpandedHeight = "50px";
-                var railtechMapExpandedHeight = "80vh";
-
-                RailTech.expandRailTechMapView = function() {
-                    var railtechMap = document.getElementById("railtech-map");
-                    var currHeight = railtechMap.style.height;
-                    if (currHeight === railtechMapUnexpandedHeight) {
-                        railtechMap.style.height = railtechMapExpandedHeight;
-                    }
-                    else {
-                        railtechMap.style.height = railtechMapUnexpandedHeight;
-                    }
-                }
-            })(RailTech || (RailTech = {}));
-        </script>
-        
         <div class="explore-filters">
 
                     <h2 class="explore-filters-title">Select a destination to view relevant offers</h2>
