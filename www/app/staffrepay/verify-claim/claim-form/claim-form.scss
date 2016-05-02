@@ -12,16 +12,65 @@
 
 	.form-content {
 		margin-top:90px;
+
+		.form-search-container {
+			height: 40vh;
+		}
 	}
 	
 
 	.staffrepay-text-input-group {
+
+		.journey-found-list {
+			height: 30vh;
+			overflow: scroll;
+		}
+
 		.journey-found-container {
 
 			.journey-delayed {
 				color: red;
 				font-size: 1.2em;
 			}
+		}
+	}
+
+	.claim-ticket {
+		border-radius: 50px;
+		background-color: #FDEFDE;
+		margin-top:5px;
+		padding: 100px 0;
+
+		&:hover {
+			background-color: #FD4A00;
+		}
+
+		.claim-item-container {
+			background-color: #FFFFFF;
+			padding: 25px;
+			:after { content:""; clear:both; display:block; }
+
+			.claim-field-container {
+				margin-top: 50px;
+
+				.claim-label {
+					font-size: 1.2em;
+					color: #8D9297;
+				}
+				.claim-field {
+					padding: 10px;
+					font-size: 2em;
+				}
+			}
+
+			.claim-id {
+				font-weight: bold;
+				float:right;
+				background-color: #D0D0D0;
+				padding: 0 8px;
+			}
+
+
 		}
 	}
 }

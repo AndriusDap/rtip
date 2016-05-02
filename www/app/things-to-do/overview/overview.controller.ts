@@ -11,6 +11,7 @@ export class OverviewController {
     private markers;
     private eventsContainerWidth;
     private mapWidth;
+    private currentPolyLines;
 
     public static $inject = [
         "$scope",
@@ -28,6 +29,7 @@ export class OverviewController {
         datetime.setHours(2,30);
         this.mapWidth = 0;
         this.eventsContainerWidth = 650;
+        this.currentPolyLines = [];
 
         this.settings = {
             datetime: datetime,
@@ -67,7 +69,7 @@ export class OverviewController {
 
         var mapOptions = {
                   zoom: 9,
-                  center: new google.maps.LatLng(53.4629985, -2.2944832),
+                  center: new google.maps.LatLng(51.733315, -1.337027),
                   mapTypeId: google.maps.MapTypeId.ROADMAP
               }
 
@@ -75,12 +77,13 @@ export class OverviewController {
 
         var infoWindow = new google.maps.InfoWindow();
 
-        var createMarker = (info) => {
+        var createMarker = (info, route) => {
 
             var marker = new google.maps.Marker({
                 map: this.map,
-                position: new google.maps.LatLng(info.lat, info.long),
-                title: info.name
+                position: new google.maps.LatLng(info.coords[0], info.coords[1]),
+                title: info.name,
+                route: route
             });
 
             marker.content = '<div class="infoWindowContent">' + info.location + '<br /></div>';
@@ -88,20 +91,72 @@ export class OverviewController {
             google.maps.event.addListener(marker, 'click', () => {
                 infoWindow.setContent('<div class="map-image-container" style="background: url(' + info.image + '); background-size: cover;"></div><div><a class="marker-title" href="/#app/thingsToDo/event/' + info.id + '">' + marker.title + '</a></div>' + marker.content);
                 infoWindow.open(this.map, marker);
+                this.createPolyLine(marker.route);
             });
 
             return marker;
         }  
 
-        for (i = 0; i < this.events.length; i++){
-            this.events[i].marker = createMarker(this.events[i]);
+        for (var i = 0; i < this.events.length; i++){
+            this.events[i].marker = createMarker(this.events[i].event, this.events[i].route);
         }
     }
 
     openInfoWindow(selectedMarker) {
         var center = new google.maps.LatLng(selectedMarker.lat, selectedMarker.long);
         this.map.setCenter(selectedMarker.position);
+
+        this.createPolyLine(selectedMarker.route);
+
         google.maps.event.trigger(selectedMarker, 'click');
+    }
+
+    createPolyLine(route) {
+
+        if (this.currentPolyLines) {
+            for (var i = 0; i < this.currentPolyLines.length; i++) {
+                this.currentPolyLines[i].setMap(null);
+            }
+        }
+
+        for (var i = 0; i < route.parts.length; i++) {
+            var currPart = route.parts[i];
+
+            var mode = currPart.mode;
+            var color;
+            if(mode === "walk"){
+                color = "#FF00FF";
+            } else if(mode === "bus") {
+                color = "#0000FF";
+            } else if(mode === "rail_underground") {
+                color = "#FF7F00";
+            } else if(mode === "rail_national") {
+                color = "#FF0000";
+            }
+
+            var flightPlanCoordinates = [];
+
+            for (var j = 0; j < currPart.coords.length; j++) {
+                var currCoord = currPart.coords[j];
+
+                flightPlanCoordinates.push({
+                    lat: currCoord[0],
+                    lng: currCoord[1]
+                });
+            }       
+
+            var polyline = new google.maps.Polyline({
+                path: flightPlanCoordinates,
+                geodesic: true,
+                strokeColor: color,
+                strokeOpacity: 1.0,
+                strokeWeight: 2
+            });
+
+            polyline.setMap(this.map);
+
+            this.currentPolyLines.push(polyline)
+        }
     }
 
     setupMapResize() {
@@ -109,7 +164,6 @@ export class OverviewController {
         this.mapWidth = width - this.eventsContainerWidth;
 
         angular.element(this.$window).bind('resize', () => {
-            console.log("doing");
 
             var width = this.$window.innerWidth;
             this.mapWidth = width - this.eventsContainerWidth;

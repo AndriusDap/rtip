@@ -4,49 +4,51 @@
 	</ion-header-bar>
     <ion-content class="form-content">
        	<div class="col-xs-12">
-	        <div>
-				<md-input-container class="md-block flex-gt-sm col-xs-6" flex-gt-sm="">
-					<label for="station_departing_input">Departing station</label>
-					<input ng-model="$ctrl.journey.fromStation" 
-							ng-required="true" 
-							ng-disabled="$ctrl.verifications.fromStation"
-							type="text"
-							id="station_departing_input">
-					<div class="md-errors-spacer"></div>
-				</md-input-container>
-
-				<md-input-container class="md-block flex-gt-sm col-xs-6" flex-gt-sm="">
-					<label for="station_arriving_input">Arriving station</label>
-					<input ng-model="$ctrl.journey.toStation" 
-							ng-required="true" 
-							ng-disabled="$ctrl.verifications.toStation"
-							type="text"
-							id="station_arriving_input" >
-					<div class="md-errors-spacer"></div>
-				</md-input-container>
-
-				<md-input-container class="md-block col-xs-6 flex-gt-sm" flex-gt-sm="">
-					<label for="journey_date_input">Journey date</label>
-					<input mdc-datetime-picker="" 
-							date="true" 
-							time="true" 
-							type="text" 
-							id="journey_date_input"  
-							min-date="date" 
-							ng-model="$ctrl.journey.journeyDate"
-							ng-disabled="$ctrl.verifications.journeyDate"
-							ng-disabled="true"
-							class="md-input">
-				</md-input-container>
-
-		        <button ng-click="$ctrl.search()"
-		                class="button  button-energized ink col-xs-6">
-		            Search
-		        </button>
+			<div class="col-lg-4 col-md-6">
+				<div class="form-search-containe">
+					<md-input-container class="md-block flex-gt-sm col-xs-12" flex-gt-sm="">
+						<label for="station_departing_input">Departing station</label>
+						<input ng-model="$ctrl.journey.fromStation" 
+								ng-required="true" 
+								ng-disabled="$ctrl.verifications.fromStation"
+								type="text"
+								id="station_departing_input">
+						<div class="md-errors-spacer"></div>
+					</md-input-container>
+					
+					<md-input-container class="md-block flex-gt-sm col-xs-12" flex-gt-sm="">
+						<label for="station_arriving_input">Arriving station</label>
+						<input ng-model="$ctrl.journey.toStation" 
+								ng-required="true" 
+								ng-disabled="$ctrl.verifications.toStation"
+								type="text"
+								id="station_arriving_input" >
+						<div class="md-errors-spacer"></div>
+					</md-input-container>
+					
+					<md-input-container class="md-block col-xs-12 flex-gt-sm" flex-gt-sm="">
+						<label for="journey_date_input">Journey date</label>
+						<input mdc-datetime-picker="" 
+								date="true" 
+								time="true" 
+								type="text" 
+								id="journey_date_input"  
+								min-date="date" 
+								ng-model="$ctrl.journey.journeyDate"
+								ng-disabled="$ctrl.verifications.journeyDate"
+								ng-disabled="true"
+								class="md-input">
+					</md-input-container>
+					
+							        <button ng-click="$ctrl.search()"
+							                class="button  button-energized ink col-xs-12">
+							            Search
+							        </button>
+				</div>
 
 	        	<div class="staffrepay-text-input-group">
-					<md-input-container class="col-sm-6 pull-left md-block flex-gt-sm" flex-gt-sm="">
-						<md-radio-group ng-model="$ctrl.journeySelected">
+					<md-input-container class="col-md-12 pull-left md-block flex-gt-sm journey-found-list">
+						<md-radio-group ng-model="$ctrl.journeySelected" class="">
 							<h4 ng-show="!$ctrl.journeysFound.length">
 								No journeys found! Please click on search
 							</h4>
@@ -72,16 +74,108 @@
 					</md-input-container>
 				</div>
 
+
+				<button ui-sref="app.staffrepay.contact(1)" 
+		        		ng-disabled="!$ctrl.verifyInputs()"
+		                class="button button-full button-balanced ink sticky-footer">
+		            Confirm
+		        </button>
+			</div>
+
+			<div class="col-lg-8 col-md-6 hide-sm">
+				<div class="claim-ticket">
+					<div class="claim-item-container">
+						<div class="col-xs-4 claim-field-container">
+							<div class="claim-label">
+								Class
+							</div>
+							<div class="claim-field">
+								{{ $ctrl.ticket.class }}
+							</div>
+						</div>
+						<div class="col-xs-4 claim-field-container">
+							<div class="claim-label">
+								Type
+							</div>
+							<div class="claim-field">
+								{{ $ctrl.ticket.type }}
+							</div>
+						</div>
+						<div class="col-xs-4 claim-field-container">
+							<div class="claim-label">
+								Identification
+							</div>
+							<div class="claim-field">
+								{{ $ctrl.ticket.identification }}
+							</div>
+						</div>
+						<div class="claim-id">
+							Claim #{{ $ctrl.claim.id }}
+						</div>
+
+						<br>
+						<div class="col-xs-6 claim-field-container">
+							<div class="claim-label">
+								Valid From
+							</div>
+							<div class="claim-field">
+								{{ $ctrl.ticket.fromDate | date: "dd/MM/yyyy" }}
+							</div>
+						</div>
+						<div class="col-xs-6 claim-field-container">
+							<div class="claim-label">
+								Valid until
+							</div>
+							<div class="claim-field">
+								{{ $ctrl.ticket.toDate | date: "dd/MM/yyyy" }}
+							</div>
+						</div>
+
+						<br>
+						<div class="col-xs-6 claim-field-container">
+							<div class="claim-label">
+								From
+							</div>
+							<div class="claim-field">
+								{{ $ctrl.claim.from }}
+							</div>
+						</div>
+						<div class="col-xs-6 claim-field-container">
+							<div class="claim-label">
+								To
+							</div>
+							<div class="claim-field">
+								{{ $ctrl.claim.from }}
+							</div>
+						</div>
+
+						<br>
+						<div class="col-xs-6 claim-field-container">
+							<div class="claim-label">
+								Journey Date
+							</div>
+							<div class="claim-field">
+								{{ $ctrl.claim.date | date: "dd/MM/yyyy" }}
+							</div>
+						</div>
+						<div class="col-xs-6 claim-field-container">
+							<div class="claim-label">
+								Cost
+							</div>
+							<div class="claim-field">
+								£ {{ $ctrl.calculateRepay() || "0.0" }}
+							</div>
+						</div>
+
+
+						<br>
+						<div class="claim-status">
+							Status: {{ $ctrl.claim.status }}
+						</div>
+					</div>
+				</div>
 			</div>
 
 	    </div>
     </ion-content>
-
-    <ion-footer-bar class="railtech-footer button-footer">
-        <button ui-sref="app.staffrepay.contact(1)" 
-        		ng-disabled="!$ctrl.verifyInputs()"
-                class="button button-full button-balanced ink sticky-footer">
-            Confirm
-        </button>
-    </ion-footer-bar>
 </ion-view>

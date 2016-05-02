@@ -7,7 +7,7 @@
   <author email="hi@ionicframework" href="http://ionicframework.com/">
       RailTech App
     </author>
-  <content src="index.html"/>
+  <content src="http://10.64.110.68:8100" original-src="index.html"/>
   <allow-navigation href="http://localhost:3000"/>
   <access origin="*"/>
   <preference name="webviewbounce" value="false"/>
@@ -16,7 +16,7 @@
   <preference name="BackupWebStorage" value="none"/>
   <preference name="SplashScreen" value="screen"/>
   <preference name="SplashScreenDelay" value="3000"/>
-  <preference name="CrosswalkAnimatable" value="true" />
+  <preference name="CrosswalkAnimatable" value="true"/>
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>

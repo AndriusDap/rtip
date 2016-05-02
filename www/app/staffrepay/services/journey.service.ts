@@ -47,6 +47,31 @@ export class JourneyService {
     				fromDatetime: "2016-03-15T14:18:00",
     				delay: 33
     			},
+                {
+                    serviceId: "R21232",
+                    fromDatetime: "2016-03-15T14:18:00",
+                    delay: 20
+                },
+                {
+                    serviceId: "R21232",
+                    fromDatetime: "2016-03-15T14:18:00",
+                    delay: 2
+                },
+                {
+                    serviceId: "R21232",
+                    fromDatetime: "2016-03-15T14:18:00",
+                    delay: 0
+                },
+                {
+                    serviceId: "R21232",
+                    fromDatetime: "2016-03-15T14:18:00",
+                    delay: 0
+                },
+                {
+                    serviceId: "R21232",
+                    fromDatetime: "2016-03-15T14:18:00",
+                    delay: 0
+                },
     		];
 
     		deferred.resolve(tripResults);

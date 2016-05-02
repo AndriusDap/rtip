@@ -2,10 +2,16 @@
 	margin-top: 20px;
 
 	.ticket-container {
-		max-height: 50vh !important;
+		max-height: 90vh !important;
 	}
+
 	.form-container {
 		height: 90vh !important;
+
+		.list {
+			width: 80%;
+			margin: auto auto;
+		}
 	}
 	
 	.ticket-image {

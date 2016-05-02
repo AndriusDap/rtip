@@ -5,6 +5,8 @@ export module StaffRepay {
 
 class ClaimFormController {
 
+    public claim;
+    public ticket;
 	public journey;
     public journeysFound;
     public journeySelected;
@@ -24,6 +26,22 @@ class ClaimFormController {
     	this.journey.delayLength = 28;
         this.journey.fromStation = "London Euston";
         this.journey.toStation = "Manchester Picadilli";
+
+        this.claim = {};
+        this.claim.id = 1231412;
+        this.claim.from = "London Euston";
+        this.claim.to = "Manchester Picadilli";
+        this.claim.date = (new Date()).toISOString();
+        this.claim.status = "OUTSTANDING";
+
+        this.ticket = {};
+        this.ticket.identification = 727182
+        this.ticket.cost = 82.40;
+        this.ticket.class = "Standard";
+        this.ticket.type = "Off-peak Return";
+        this.ticket.fromDate = new Date(2016,2,26);
+        this.ticket.toDate = new Date(2016,2,26);
+        this.ticket.ticketImage = "img/ticket.jpg";
 
         this.search();
     }

@@ -50,21 +50,21 @@
                     <li class="item" 
                                 ng-repeat="event in $ctrl.events"  
                                 ng-click="$ctrl.openInfoWindow(event.marker)">
-                        <div class="image-container" style="background-image: url({{ event.image }}); background-size: cover;"></div>
+                        <div class="image-container" style="background-image: url(); background-size: cover;"></div>
                         <div class="event-main-text-container col-xs-8">
-                            <a ui-sref="app.thingsToDo.event({ eventId: event.id })" class="event-name">
-                                {{ event.name }}
+                            <a ui-sref="app.thingsToDo.event({ eventId: event.event.id })" class="event-name">
+                                {{ event.event.name }}
                             </a>
                             <div class="event-location">
                                 <i class="icon ion-ios-location"></i>
-                                <span>{{ event.location }}</span>
+                                <span>{{ event.event.location }}</span>
                             </div>
                         </div>
                         <div class="event-cost">
-                            £ {{ event.price }}
+                            £ {{ event.event.price | number:0 }}
                         </div>
                         <div class="event-travel-time">
-                            {{ event.travelTime }}
+                            {{ event.route.time / 60 | number:0 }} minutes
                         </div>
 
                     </li>
