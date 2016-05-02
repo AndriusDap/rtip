@@ -9,7 +9,7 @@
 						Book Train!
 					</div>
 				</a>
-				<a target="_blank" href="{{ $ctrl.event.website }}">
+				<a target="_blank" href="{{ $ctrl.event.event.website }}">
 					<div class="col-xs-6 button">
 						Book Event!
 					</div>
@@ -27,17 +27,17 @@
 		        <div class="event-details">
 
 		        	<span class="event-time pull-left">
-		        		Time: {{ $ctrl.event.travelTime }}
+		        		Time: {{ $ctrl.event.event.travelTime }}
 		        	</span>
 
 		        	<span class="event-price pull-right">
-		        		Cost: £ {{ $ctrl.event.price }}
+		        		Cost: £ {{ $ctrl.event.event.price }}
 		        	</span>
 
 		        </div>
 				
 		        <div class="description col-md-8">
-		        	{{ $ctrl.event.description }}
+		        	{{ $ctrl.event.event.description }}
 		        </div>
 
 				<div class="key-points-container col-md-4">
@@ -46,7 +46,7 @@
 							Expires:
 						</span>
 						<span class="field-value">
-							{{ $ctrl.event.expires }}
+							{{ $ctrl.event.event.expires }}
 						</span>
 					</div>
 					<div class="field-container">
@@ -54,13 +54,13 @@
 							Phone:
 						</span>
 						<span class="field-value">
-							{{ $ctrl.event.phone }}
+							{{ $ctrl.event.event.phone }}
 						</span>
 					</div>
 				
 					<div class="field-container">
 						<span class="field-label">
-							<a target="_blank" href="{{ $ctrl.event.website }}">Visit website</a>
+							<a target="_blank" href="{{ $ctrl.event.event.website }}">Visit website</a>
 						</span>
 					</div>
 				</div>
@@ -72,15 +72,15 @@
     	</div>
 	
 		<div class="event-map-container col-sm-5 col-md-6 col-lg-8">
-	        <ng-map ng-if="$ctrl.event.location" 
+	        <ng-map ng-if="$ctrl.event.event.location" 
 	        		class="event-map"
         			zoom="16" 
         			pan-control="false"
         			map-type-control="false"
         			zoom-control="false"
-        			center="{{ $ctrl.event.location }}">
+        			center="{{ $ctrl.event.event.location }}">
 				<marker animation="Animation.BOUNCE"
-						position="{{ $ctrl.event.location }}"></marker>
+						position="{{ $ctrl.event.event.location }}"></marker>
         	</ng-map>
 		</div>
         
