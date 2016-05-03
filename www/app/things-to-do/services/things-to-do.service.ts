@@ -35,6 +35,7 @@ module RailTech {
         this.$http.post(this.thingsToDoUrl, request)
           .then((response) => {
             
+            this.events = response["data"]["results"];
             deferred.resolve(response["data"]["results"]);
 
           });
