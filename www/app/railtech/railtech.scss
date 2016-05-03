@@ -71,7 +71,6 @@ p {
         }
     }
     .bar.bar-header.expanded {
-        background-color: $main-theme-darker;
     }
 }
 .app-icon {
@@ -95,7 +94,6 @@ p {
 }
 
 .railtech-navbar {
-    background-color: $main-theme;
     color: white;
     height:50px;
 
@@ -112,7 +110,6 @@ p {
 }
 
 .railtech-footer {
-  background-color: $main-theme;
   height: 50px;
   position: fixed;
   bottom: 50px;
@@ -134,13 +131,10 @@ p {
 
 
 .dtp > .dtp-content > .dtp-date-view > header.dtp-header {
-  background: $main-theme;
 }
 .dtp div.dtp-date, .dtp div.dtp-time {
-  background: $main-theme-lighter;
 }
 .dtp table.dtp-picker-days tr > td > a.selected {
-  background: $main-theme-lighter;
 }
 
 

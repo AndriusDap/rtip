@@ -6,11 +6,44 @@ $c2c: #BC0087;
 $goAhead: #205C9D;
 $londonMidland: #3CAF32;
 
-$main-theme: $gwr;
+$main-theme: $vtec;
 $main-theme-darker: darken($main-theme, 4);
 $main-theme-lighter: lighten($main-theme, 30);
 $main-theme-lightest: lighten($main-theme-lighter, 40);
 
+.main-theme- {
+	.theme-main-color {
+		background-color: black;
+		color: white;
+	}
+	.theme-main-color-light {
+		background-color: gray;
+		color: white;
+	}
+}
+
+.main-theme-gwr {
+	.theme-main-color {
+		background-color: $gwr;
+		color: white;
+	}
+	.theme-main-color-light {
+		background-color: lighten($gwr, 30);
+		color: white;
+	}
+}
+
+.main-theme-vtec {
+	.theme-main-color {
+		background-color: $vtec;
+		color: white;
+	}
+	.theme-main-color-light {
+		background-color: lighten($vtec, 30);
+		color: white;
+	}
+}
+ 
 
 // Fonts
 @font-face {

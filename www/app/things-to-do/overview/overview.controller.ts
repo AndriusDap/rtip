@@ -17,12 +17,14 @@ export class OverviewController {
         "$scope",
         "$ionicLoading",
         "$window",
+        "$rootScope",
         "thingsToDo.thingsToDoService"];
 
     constructor(
             private $scope,
             private $ionicLoading,
             private $window,
+            private $rootScope,
             private thingsToDoService) {
 
         var datetime = new Date();
@@ -50,7 +52,7 @@ export class OverviewController {
 
         var coords = [51.51, -0.14];
         var datetime = this.settings.datetime.toISOString();
-        var toc = "VTEC";
+        var toc = this.$rootScope.toc;
 
         var travelHours = this.settings.traveltime.getHours();
         var travelMinutes = this.settings.traveltime.getMinutes();
