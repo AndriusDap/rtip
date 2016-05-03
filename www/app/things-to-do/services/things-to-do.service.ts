@@ -23,16 +23,7 @@ module RailTech {
 
       public findThingsToDo(coords, travelTime, startTime, toc) {
 
-      console.log(coords + ", " + travelTime + ", " + startTime + ", " + toc);
-
         var deferred = this.$q.defer();
-
-        // var request = {
-        //   "coords": [51.51, -0.14],
-        //   "travel_time": 43200,
-        //   "start_time": "2016-05-02T09:00:00Z",
-        //   "toc": "VT"
-        // };
 
         var request = {
           "coords": coords,
@@ -44,8 +35,6 @@ module RailTech {
         this.$http.post(this.thingsToDoUrl, request)
           .then((response) => {
             
-            console.log(response["data"]["results"]);
-
             deferred.resolve(response["data"]["results"]);
 
           });

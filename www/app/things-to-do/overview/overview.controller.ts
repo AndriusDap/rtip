@@ -56,7 +56,6 @@ export class OverviewController {
         var travelMinutes = this.settings.traveltime.getMinutes();
         var travelTime = travelHours * 60 * 60 + travelMinutes * 60;
 
-
         this.thingsToDoService.findThingsToDo(coords, travelTime, datetime, toc)
             .then((events) => {
 
@@ -183,6 +182,15 @@ export class OverviewController {
             this.$scope.$digest();
        });
     }
+
+    // sortEvents() {
+    //     this.events.sort(function(a, b) {
+    //         var keyA = a.route.time,
+    //             keyB = b.route.time;
+
+    //         return keyA - keyB
+    //     });
+    // }
 }
 
 angular.module('thingsToDo')
