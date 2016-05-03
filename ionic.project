@@ -1,6 +1,11 @@
 {
   "name": "Delay Repay",
   "app_id": "",
+  "proxies": [
+    {
+      "path": "/api/igeolise/events",
+      "proxyUrl": "http://magellan.traveltimeapp.com:15427/events"
+  ],
   "gulpStartupTasks": [
     "default",
     "watch"

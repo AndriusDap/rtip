@@ -26,15 +26,19 @@ export class OverviewController {
             private thingsToDoService) {
 
         var datetime = new Date();
-        datetime.setHours(2,30);
+        var traveltime = new Date();
+        
+        traveltime.setHours(2,30);
+
         this.mapWidth = 0;
         this.eventsContainerWidth = 650;
         this.currentPolyLines = [];
 
         this.settings = {
             datetime: datetime,
+            traveltime: traveltime,
             location: "London"
-        }
+        };
 
         this.findEvents();
         this.setupWatch();
@@ -44,10 +48,19 @@ export class OverviewController {
     public findEvents() {
         this.$ionicLoading.show();
 
-        this.thingsToDoService.findThingsToDo()
-            .then((result) => {
+        var coords = [51.51, -0.14];
+        var datetime = this.settings.datetime.toISOString();
+        var toc = "VTEC";
 
-                this.events = result;
+        var travelHours = this.settings.traveltime.getHours();
+        var travelMinutes = this.settings.traveltime.getMinutes();
+        var travelTime = travelHours * 60 * 60 + travelMinutes * 60;
+
+
+        this.thingsToDoService.findThingsToDo(coords, travelTime, datetime, toc)
+            .then((events) => {
+
+                this.events = events;
 
                 return this.setupMap();
             })
