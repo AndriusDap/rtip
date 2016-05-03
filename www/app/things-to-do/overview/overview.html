@@ -30,11 +30,6 @@
                             <br>
                             <span class="selected-location">{{ $ctrl.settings.location }}</span>
                         </div>
-                        <div class="col-xs-6 location-container">
-                            <span> from: </span>
-                            <br>
-                            <span class="selected-location">{{ $ctrl.settings.location }}</span>
-                        </div>
                     </div>
                 </div>
                 <div id="repeat" ng-repeat="marker in $ctrl.markers | orderBy : 'title'">
