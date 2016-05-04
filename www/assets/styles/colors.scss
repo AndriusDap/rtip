@@ -16,6 +16,11 @@ $main-theme-lightest: lighten($main-theme-lighter, 40);
 		background-color: black;
 		color: white;
 	}
+	.theme-main-color-active {
+		&:active {
+			background-color: gray !important;
+		}
+	}
 	.theme-main-color-light {
 		background-color: gray;
 		color: white;
@@ -27,6 +32,9 @@ $main-theme-lightest: lighten($main-theme-lighter, 40);
 		background-color: $gwr;
 		color: white;
 	}
+	.theme-main-color-active {
+		background-color: darken($gwr, 20) !important;
+	}
 	.theme-main-color-light {
 		background-color: lighten($gwr, 30);
 		color: white;
@@ -37,6 +45,9 @@ $main-theme-lightest: lighten($main-theme-lighter, 40);
 	.theme-main-color {
 		background-color: $vtec;
 		color: white;
+	}
+	.theme-main-color-active {
+		background-color: darken($vtec, 4) !important;
 	}
 	.theme-main-color-light {
 		background-color: lighten($vtec, 30);

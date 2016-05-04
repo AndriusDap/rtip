@@ -39,7 +39,21 @@
             </div>
 
             <div class="event-types-divider theme-main-color">
-                <h3 class="events">Events</h3>
+                <div ng-class="{ 'theme-main-color-active': $ctrl.sortingBy === 'time' }" 
+                        class="col-xs-4 theme-main-color" 
+                        ng-click="$ctrl.sortBy('time')">
+                    <i class="icon ion-clock"></i>
+                </div>
+                <div ng-class="{ 'theme-main-color-active': $ctrl.sortingBy === 'price' }" 
+                        class="col-xs-4 theme-main-color" 
+                        ng-click="$ctrl.sortBy('price')">
+                    <i class="icon ion-social-usd"></i>
+                </div>
+                <div ng-class="{ 'theme-main-color-active': $ctrl.sortingBy === 'name' }" 
+                        class="col-xs-4 theme-main-color" 
+                        ng-click="$ctrl.sortBy('name')">
+                    A - Z
+                </div>
             </div>
             
             <!-- ui-sref="app.thingsToDo.event({ eventId: event.id })"  -->

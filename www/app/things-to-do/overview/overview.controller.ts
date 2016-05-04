@@ -13,6 +13,16 @@ export class OverviewController {
     private mapWidth;
     private currentPolyLines;
 
+    private sortingBy;
+    private sortFunctions = {
+        time: (a, b) => { return a.route.time - b.route.time },
+        price: (a, b) => { return a.event.price - b.event.price },
+        name: (a, b) => { return a.event.name - b.event.name }
+    }
+
+    private types = ["Places to stay", "Things to do", "Places to eat", "Competition"]
+    private themes = ["Family fun", "Romantic break", "History and heritage", "City break", "Family fun", "Food lovers", "City break", "Sports and adventure", "Arts and culture", "Beach", "Health and wellbeing", "Music", ""]
+
     public static $inject = [
         "$scope",
         "$ionicLoading",
@@ -52,7 +62,7 @@ export class OverviewController {
 
         var coords = [51.51, -0.14];
         var datetime = this.settings.datetime.toISOString();
-        var toc = this.$rootScope.toc;
+        var toc = this.$rootScope.toc || "GWR";
 
         var travelHours = this.settings.traveltime.getHours();
         var travelMinutes = this.settings.traveltime.getMinutes();
@@ -185,14 +195,18 @@ export class OverviewController {
        });
     }
 
-    // sortEvents() {
-    //     this.events.sort(function(a, b) {
-    //         var keyA = a.route.time,
-    //             keyB = b.route.time;
+    sortBy(sortFuncStr) {
 
-    //         return keyA - keyB
-    //     });
-    // }
+        if (this.sortingBy === sortFuncStr) {
+            this.sortingBy = "";
+            return;
+        }
+
+        this.sortingBy = sortFuncStr;
+
+        var sortFunc = this.sortFunctions[sortFuncStr];
+        this.events.sort(sortFunc);
+    }
 }
 
 angular.module('thingsToDo')

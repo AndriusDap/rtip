@@ -107,14 +107,18 @@ $padding-event-sides: 30px;
 
 
 	.event-types-divider {
-		background-color: $main-theme;
 		clear: both;
 		text-align: center;
 
-		h3 {
-			padding: 3px 5px 6px;
-			color: #fff;
-			margin-bottom: 0px;
+		.col-xs-4 {
+			cursor: pointer;
+			height: 40px;
+			padding: 10px;
+			font-size: 1.5em;
+
+			&:active {
+				
+			}
 		}
 	}
 
