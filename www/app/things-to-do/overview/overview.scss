@@ -35,13 +35,8 @@ $padding-event-sides: 30px;
 			height: 40px;
 			padding-top:13px;
 
-			background-color: $main-theme-lighter;
 			color: white;
 			transition: background-color .3s, color .3s;
-
-			&:hover {
-				background-color: lighten($main-theme-lighter, 10);
-			}
 
 			input {
 				cursor: pointer;
@@ -58,17 +53,12 @@ $padding-event-sides: 30px;
 					cursor: pointer;
 				}
 
-				:hover .selected-time {
-					background-color: lighten($main-theme-lighter, 10);
-				}
-
 				.selected-time {
 					color: #000;
 					height:30px;
 					position:relative;
 					font-weight: bold;
 					width: 80px;
-					background-color: $main-theme-lighter;
 					color: white;
 					padding: 5px 5px 5px 5px;
 					
@@ -90,18 +80,20 @@ $padding-event-sides: 30px;
 					color: #000;
 					font-weight: bold;
 
-					background-color: $main-theme-lighter;
 					color: white;
 					padding: 5px 5px 5px 5px;
 					
 					transition: background-color .3s, color .3s;
-
-					&:hover {
-						background-color: lighten($main-theme-lighter, 10);
-					}
 				}
 			}
 
+		}
+	}
+
+	.filters-container {
+		text-align: center;
+		.filter-container {
+			padding: 5px 0 5px;
 		}
 	}
 
@@ -117,7 +109,7 @@ $padding-event-sides: 30px;
 			font-size: 1.5em;
 
 			&:active {
-				
+
 			}
 		}
 	}
@@ -173,7 +165,6 @@ $padding-event-sides: 30px;
 					height:30px;
 					padding: 5px;
 					text-overflow: ellipsis;
-					color: $main-theme;
 				}
 
 				.event-location {
@@ -226,10 +217,52 @@ $padding-event-sides: 30px;
 		}
 
 		.marker-title {
-			color: $main-theme !important;
 			font-size: 1.4em;
 			overflow: hidden;
 			height: 10px;
 		}
+	}
+
+	/* ==========  Select Field Variables ========== */
+	$color-black: "0,0,0";
+	$select-border-color: unquote("rgba(#{$color-black}, 0.12)") !default;
+	$select-font-size: 16px;
+	$select-padding: 4px;
+
+	select {
+	  font-family: inherit;
+	  background-color: transparent;
+	  width: 100%;
+	  padding: $select-padding 0;
+	  border: none;
+	  color: white;
+	  border-bottom: 1px solid $select-border-color;
+	}
+
+	/* Remove focus */
+	select:focus {
+	  outline: none}
+
+	/* Hide label */
+	.mdl-selectfield label {display: none;}
+	/* Use custom arrow */
+	.mdl-selectfield select {appearance: none}
+	.mdl-selectfield {
+	  font-family: 'Roboto','Helvetica','Arial',sans-serif;
+	  position: relative;
+	    &:after {
+	        position: absolute;
+	        top: 0.75em;
+	        right: 0.5em;
+	        /* Styling the down arrow */
+	        width: 0;
+	        height: 0;
+	        padding: 0;
+	        content: '';
+	        border-left: .25em solid transparent;
+	        border-right: .25em solid transparent;
+	        border-top: .375em solid $select-border-color;
+	        pointer-events: none;
+	    }
 	}
 }

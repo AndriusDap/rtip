@@ -1,6 +1,22 @@
 <ion-view view-title="Things to do" align-title="left" class="railtech-things-to-do">
     <ion-content scroll="false">
         <div class="events-column" style="max-width: {{ $ctrl.eventsContainerWidth }}px">
+            <div class="col-xs-12 filters-container theme-main-color">
+                <div class="col-xs-6 filter-container">
+                    <select name="type" 
+                            ng-model="$ctrl.typeChosen" 
+                            ng-change="$ctrl.updateFilters()">
+                        <option ng-repeat="item in $ctrl.types" value="{{ item }}">{{ item }}</option>
+                    </select>
+                </div>
+                <div class="col-xs-6 filter-container">
+                    <select name="theme" 
+                            ng-model="$ctrl.themeChosen"
+                            ng-change="$ctrl.updateFilters()">
+                        <option ng-repeat="item in $ctrl.themes" value="{{ item }}">{{ item }}</option>
+                    </select>
+                </div>
+            </div>
             <div class="settings-header col-xs-12">
                 <div class="col-xs-12">
                     <div class="col-xs-12 col-md-6 selected-date theme-main-color-light">{{ $ctrl.settings.datetime | date: "EEEE d, MMMM" }}
@@ -34,7 +50,7 @@
                 </div>
                 <div id="repeat" ng-repeat="marker in $ctrl.markers | orderBy : 'title'">
                      <button id="country_container" ng-click="$ctrl.openInfoWindow(marker)">
-                     <label id="names" >{{marker.title}}</label></button>
+                     <label id="names" class="theme-main-color-link" >{{marker.title}}</label></button>
                 </div>
             </div>
 
@@ -62,11 +78,11 @@
                 <ion-refresher pulling-text="Pull to refresh" on-refresh="$ctrl.findEvents()"></ion-refresher>
                 <ul class="list">
                     <li class="item" 
-                                ng-repeat="event in $ctrl.events"  
+                                ng-repeat="event in $ctrl.visibleEvents"  
                                 ng-click="$ctrl.openInfoWindow(event.marker)">
                         <div class="image-container" style="background-image: url(); background-size: cover;"></div>
                         <div class="event-main-text-container col-xs-8">
-                            <a ui-sref="app.thingsToDo.event({ eventId: event.event.id })" class="event-name">
+                            <a ui-sref="app.thingsToDo.event({ eventId: event.event.id })" class="event-name theme-main-color-link">
                                 {{ event.event.name }}
                             </a>
                             <div class="event-location">
@@ -79,6 +95,14 @@
                         </div>
                         <div class="event-travel-time">
                             {{ event.route.time / 60 | number:0 }} minutes
+                        </div>
+                        <br><br>
+                        <div>
+                            {{ event.event.type }}
+                        </div>
+                        <br><br>
+                        <div>
+                            {{ event.event.theme }}
                         </div>
 
                     </li>

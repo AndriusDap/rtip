@@ -7,6 +7,8 @@ export class OverviewController {
 
     private settings;
     private events;
+    private visibleEvents;
+
     private map;
     private markers;
     private eventsContainerWidth;
@@ -20,8 +22,10 @@ export class OverviewController {
         name: (a, b) => { return a.event.name - b.event.name }
     }
 
-    private types = ["Places to stay", "Things to do", "Places to eat", "Competition"]
-    private themes = ["Family fun", "Romantic break", "History and heritage", "City break", "Family fun", "Food lovers", "City break", "Sports and adventure", "Arts and culture", "Beach", "Health and wellbeing", "Music", ""]
+    private typeChosen = "ALL TYPES";
+    private types = ["ALL TYPES", "Places to stay", "Things to do", "Places to eat", "Competition"]
+    private themeChosen = "ALL THEMES";
+    private themes = ["ALL THEMES", "Family fun", "Romantic break", "History and heritage", "City break", "Food lovers", "Sports and adventure", "Arts and culture", "Beach", "Health and wellbeing", "Music"]
 
     public static $inject = [
         "$scope",
@@ -52,7 +56,6 @@ export class OverviewController {
             location: "London"
         };
 
-        this.findEvents();
         this.setupWatch();
         this.setupMapResize();
     }
@@ -72,6 +75,7 @@ export class OverviewController {
             .then((events) => {
 
                 this.events = events;
+                this.visibleEvents = this.events.slice();
 
                 return this.setupMap();
             })
@@ -121,8 +125,8 @@ export class OverviewController {
             return marker;
         }  
 
-        for (var i = 0; i < this.events.length; i++){
-            this.events[i].marker = createMarker(this.events[i].event, this.events[i].route);
+        for (var i = 0; i < this.visibleEvents.length; i++) {
+            this.visibleEvents[i].marker = createMarker(this.visibleEvents[i].event, this.visibleEvents[i].route);
         }
     }
 
@@ -198,6 +202,7 @@ export class OverviewController {
     sortBy(sortFuncStr) {
 
         if (this.sortingBy === sortFuncStr) {
+            this.visibleEvents = this.events.slice();
             this.sortingBy = "";
             return;
         }
@@ -205,7 +210,20 @@ export class OverviewController {
         this.sortingBy = sortFuncStr;
 
         var sortFunc = this.sortFunctions[sortFuncStr];
-        this.events.sort(sortFunc);
+        this.visibleEvents.sort(sortFunc);
+    }
+
+    updateFilters() {
+        this.visibleEvents = this.events.slice();
+
+        if(this.typeChosen !== "ALL TYPES") {
+            this.visibleEvents = this.visibleEvents.filter((o) => { return o.event.type === this.typeChosen; });
+        }
+        if(this.themeChosen !== "ALL THEMES") {
+            this.visibleEvents = this.visibleEvents.filter((o) => { return o.event.theme.indexOf(this.themeChosen) > -1; });
+        }
+
+        this.setupMap();
     }
 }
 

@@ -22,15 +22,15 @@ module RailTech {
       }
 
       public findThingsToDo(coords, travelTime, startTime, toc) {
-      console.log(coords + ", " + travelTime + ", " + startTime + ", " + toc);
 
-                var deferred = this.$q.defer();
+        var deferred = this.$q.defer();
 
         var request = {
           "coords": coords,
+          "city": "London",
           "travel_time": travelTime,
           "start_time": startTime,
-          "toc": toc
+          "toc": toc.toUpperCase()
         };
 
         this.$http.post(this.thingsToDoUrl, request)

@@ -25,6 +25,9 @@ $main-theme-lightest: lighten($main-theme-lighter, 40);
 		background-color: gray;
 		color: white;
 	}
+	.theme-main-color-link {
+		color: black;
+	}
 }
 
 .main-theme-gwr {
@@ -39,6 +42,9 @@ $main-theme-lightest: lighten($main-theme-lighter, 40);
 		background-color: lighten($gwr, 30);
 		color: white;
 	}
+	.theme-main-color-link {
+		color: $gwr;
+	}
 }
 
 .main-theme-vtec {
@@ -52,6 +58,9 @@ $main-theme-lightest: lighten($main-theme-lighter, 40);
 	.theme-main-color-light {
 		background-color: lighten($vtec, 30);
 		color: white;
+	}
+	.theme-main-color-link {
+		color: $vtec;
 	}
 }
  
