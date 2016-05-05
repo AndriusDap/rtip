@@ -4,6 +4,7 @@ module RailTech {
 
     export class ThingsToDoService {
 
+      public events;
       public ticket;
       public journey;
 
@@ -45,21 +46,18 @@ module RailTech {
       }
 
       public getThingToDo(id) {
+        console.log(id);
 
         var deferred = this.$q.defer();
 
-        this.$timeout(() => {
-
-          for (var i = 0; i < this.events.length; i++) {
-            if(this.events[i].event.id.toString() === id) {
-              deferred.resolve(this.events[i]);
-            }
+        for (var i = 0; i < this.events.length; i++) {
+          if(this.events[i].event.id.toString() === id) {
+            deferred.resolve(this.events[i]);
+            return deferred.promise;
           }
+        }
 
-          deferred.reject();
-
-        }, 500);
-
+        deferred.reject();
         return deferred.promise;
       }
     }

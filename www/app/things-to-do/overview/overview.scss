@@ -145,6 +145,16 @@ $padding-event-sides: 30px;
 				background-color: #EDEDED;
 				transition: background-image 0.5s;
 			}
+
+			&:hover .event-next-steps-button-group .hidden-link {
+				display: block !important;
+			}
+
+			.event-next-steps-button-group {
+				.hidden-link {
+					display: none;
+				}
+			}
 			
 			.image-container {
 				height: 100px;
@@ -284,3 +294,10 @@ $padding-event-sides: 30px;
 	    }
 	}
 }
+
+
+
+
+
+
+

@@ -5,42 +5,42 @@
     		
 			<div class="book-button-container">
 				<a target="_blank" href="{{ $ctrl.event.website }}">
-					<div class="col-xs-6 button">
+					<div class="col-xs-6 button theme-main-color-light">
 						Book Train!
 					</div>
 				</a>
 				<a target="_blank" href="{{ $ctrl.event.event.website }}">
-					<div class="col-xs-6 button">
+					<div class="col-xs-6 button book-event-button">
 						Book Event!
 					</div>
 				</a>
 			</div>
 
-    		<div class="hero slide-up" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ $ctrl.event.image || '' }});">
+    		<div class="hero slide-up" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(http://www.fullwidehd.com/wp-content/uploads/2015/10/abstract-wallpaper-pictures-best.jpg);">
 	            <div class="content">
-	                <h3><a class="light">{{ $ctrl.event.name }}</a></h3>
-	                <h4>Let's do this!</h4>
+	                <h3><a class="light">{{ $ctrl.event.event.name }}</a></h3>
+	                <h4>#LetsDoThis</h4>
 	            </div>
 	        </div>
 	
 			<div class="event-content">
-		        <div class="event-details">
+		        <div class="event-details theme-main-color-light">
 
 		        	<span class="event-time pull-left">
-		        		Time: {{ $ctrl.event.event.travelTime }}
+		        		Time: {{ $ctrl.event.route.time / 60 | number:0 }} minutes
 		        	</span>
 
 		        	<span class="event-price pull-right">
-		        		Cost: £ {{ $ctrl.event.event.price }}
+		        		Cost: £ {{ $ctrl.event.event.price | number:0  }}
 		        	</span>
 
 		        </div>
 				
-		        <div class="description col-md-8">
+		        <ion-scroll class="description col-md-12">
 		        	{{ $ctrl.event.event.description }}
-		        </div>
+		        </ion-scroll>
 
-				<div class="key-points-container col-md-4">
+				<!-- <div class="key-points-container col-md-4">
 					<div class="field-container">
 						<span class="field-label">
 							Expires:
@@ -63,7 +63,7 @@
 							<a target="_blank" href="{{ $ctrl.event.event.website }}">Visit website</a>
 						</span>
 					</div>
-				</div>
+				</div> -->
 
 		        <div class="journey">
 		        	
