@@ -19,7 +19,11 @@ export class OverviewController {
     private sortFunctions = {
         time: (a, b) => { return a.route.time - b.route.time },
         price: (a, b) => { return a.event.price - b.event.price },
-        name: (a, b) => { return a.event.name - b.event.name }
+        name: (a, b) => { 
+            if (a.event.name < b.event.name) return -1;
+            if (a.event.name > b.event.name) return 1;
+            return 0;
+        }
     }
 
     private typeChosen = "ALL TYPES";
@@ -47,7 +51,7 @@ export class OverviewController {
         traveltime.setHours(2,30);
 
         this.mapWidth = 0;
-        this.eventsContainerWidth = 550;
+        this.eventsContainerWidth = 450;
         this.currentPolyLines = [];
 
         this.settings = {
@@ -117,7 +121,8 @@ export class OverviewController {
             marker.content = '<div class="infoWindowContent">' + info.location + '<br /></div>';
 
             google.maps.event.addListener(marker, 'click', () => {
-                infoWindow.setContent('<div class="map-image-container" style="background: url(' + info.image + '); background-size: cover;"></div><div><a class="marker-title" href="/#app/thingsToDo/event/' + info.id + '">' + marker.title + '</a></div>' + marker.content);
+                // removed <div class="map-image-container" style="background: url(' + info.image + '); background-size: cover;"></div>
+                infoWindow.setContent('<div><a class="marker-title theme-main-color-link" href="/#app/thingsToDo/event/' + info.id + '">' + marker.title + '</a></div>' + marker.content);
                 infoWindow.open(this.map, marker);
                 this.createPolyLine(marker.route);
             });

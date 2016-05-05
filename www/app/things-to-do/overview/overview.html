@@ -19,7 +19,7 @@
             </div>
             <div class="settings-header col-xs-12">
                 <div class="col-xs-12">
-                    <div class="col-xs-12 col-md-6 selected-date theme-main-color-light">{{ $ctrl.settings.datetime | date: "EEEE d, MMMM" }}
+                    <div class="col-xs-12 col-sm-6 selected-date theme-main-color-light">{{ $ctrl.settings.datetime | date: "EEEE d, MMMM" }}
                         <input mdc-datetime-picker="" 
                                 date="true" 
                                 time="false" 
@@ -29,7 +29,7 @@
                     </div>
 
 
-                    <div class="col-md-6 location-settings">
+                    <div class="col-sm-6 location-settings">
                         <div class="col-xs-6 time-container">
                             <span>Travel time:</span> 
                             <br>
@@ -80,14 +80,16 @@
                     <li class="item" 
                                 ng-repeat="event in $ctrl.visibleEvents"  
                                 ng-click="$ctrl.openInfoWindow(event.marker)">
-                        <div class="image-container hide-xs" style="background-image: url({{ event.event.image }}); background-size: cover;"></div>
-                        <div class="event-main-text-container col-xs-8">
-                            <a ui-sref="app.thingsToDo.event({ eventId: event.event.id })" class="event-name theme-main-color-link">
+                        <!-- <div class="image-container hide-xs" style='background-image: url("http://gwr.com/{{ event.event.image }}"); background-size: cover;'></div> -->
+                        <div class="event-main-text-container col-xs-10">
+                            <a      ui-sref="app.thingsToDo.event({ eventId: event.event.id })" 
+                                    title="{{ event.event.name }}"
+                                    class="event-name theme-main-color-link">
                                 {{ event.event.name }}
                             </a>
                             <div class="event-location">
                                 <i class="icon ion-ios-location"></i>
-                                <span>{{ event.event.location }}</span>
+                                <span>{{ event.event.city }}</span>
                             </div>
                         </div>
                         <div class="event-cost">
@@ -97,11 +99,9 @@
                             {{ event.route.time / 60 | number:0 }} minutes
                         </div>
                         <br><br>
-                        <br><br>
-                        <div>
-                            {{ event.event.type }}
-                        </div>
-                        <div>
+                        <br>
+                        <br>
+                        <div class="event-theme" title="{{ event.event.theme }}">
                             {{ event.event.theme }}
                         </div>
 
