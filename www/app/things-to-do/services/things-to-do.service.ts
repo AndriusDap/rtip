@@ -30,7 +30,7 @@ module RailTech {
           "city": "London",
           "travel_time": travelTime,
           "start_time": startTime,
-          "toc": toc.toUpperCase()
+          "toc": "GWR"
         };
 
         this.$http.post(this.thingsToDoUrl, request)
