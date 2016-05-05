@@ -80,7 +80,7 @@
                     <li class="item" 
                                 ng-repeat="event in $ctrl.visibleEvents"  
                                 ng-click="$ctrl.openInfoWindow(event.marker)">
-                        <div class="image-container" style="background-image: url(); background-size: cover;"></div>
+                        <div class="image-container hide-xs" style="background-image: url({{ event.event.image }}); background-size: cover;"></div>
                         <div class="event-main-text-container col-xs-8">
                             <a ui-sref="app.thingsToDo.event({ eventId: event.event.id })" class="event-name theme-main-color-link">
                                 {{ event.event.name }}
