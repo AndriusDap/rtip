@@ -47,7 +47,7 @@ export class OverviewController {
         traveltime.setHours(2,30);
 
         this.mapWidth = 0;
-        this.eventsContainerWidth = 650;
+        this.eventsContainerWidth = 550;
         this.currentPolyLines = [];
 
         this.settings = {
