@@ -53,6 +53,7 @@ export class CapturePictureController {
     capturePicture() {
         this.context.drawImage(video, 0, 0, 640, 480);
         this.$scope.ticketImage64 = this.canvas.toDataURL('image/png');
+        this.$scope.modal.ticketImage64 = this.canvas.toDataURL('image/png');
         this.$scope.modal.remove();
     }
 

@@ -1,5 +1,7 @@
-.claim {
+.claim-container {
+	margin: 0 30px 0 30px;
 	.ticket-image {
-		width: 100%;
+		max-width: 100px;
+		opacity: 0.4;
 	}
 }

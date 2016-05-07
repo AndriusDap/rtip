@@ -5,7 +5,6 @@ export module Repay {
 export class TicketUploadService {
 
     private modal;
-    private ticketImage64;
 
     static $inject = [
         "$rootScope",
@@ -29,14 +28,17 @@ export class TicketUploadService {
         // Necessary as otherwise we get error that "Camera" is not defined.
         var isWebView = ionic.Platform.is('browser');
         if(isWebView) {
-            this.captureTicketBrowser();
+            return this.captureTicketBrowser();
         }
         else {
-            this.captureTicketMobile();
+            return this.captureTicketMobile();
         }
     }
 
     private captureTicketBrowser() {
+
+        var deferred = this.$q.defer();
+
         var modalLocation = "app/repay/capture-picture/";
         var modalTemplate = "capture-picture.html";
         var modalScope = this.$rootScope.$new(true); // True makes scope isolated
@@ -52,16 +54,22 @@ export class TicketUploadService {
             });
 
         modalScope.$on("$destroy", () => {
-            console.log("modal scope removed");
             modalScope.modal.remove();
         });
-        // Execute action on remove modal
-        modalScope.$on("modal.removed", function() {
-            this.ticketImage64 = modalScope.ticketImage64;
+        modalScope.$on('modal.hidden', () => {
+            modalScope.$destroy();
         });
+        modalScope.$on('modal.removed', () => {
+            deferred.resolve(modalScope.modal.ticketImage64)
+            modalScope.$destroy();
+        });
+
+        return deferred.promise;
     }
 
     private captureTicketMobile() {
+        var deferred = this.$q.defer();
+
         var imageOptions = { 
             quality : 100, 
             destinationType: Camera.DestinationType.DATA_URL,
@@ -71,8 +79,10 @@ export class TicketUploadService {
 
         this.$cordovaCamera.getPicture(imageOptions)
             .then((result) => {
-                    this.ticketImage64 = result;
-                });
+                            deferred.resolve(result);
+                         });
+
+        return deferred.promise;
     }
 
     public uploadClaim(ticket, journey, user) {
