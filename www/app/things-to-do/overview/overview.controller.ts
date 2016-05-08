@@ -173,9 +173,9 @@ export class OverviewController {
             } else if(mode === "bus") {
                 color = "#AA00BA";
             } else if(mode === "rail_underground") {
-                color = "#000000";
-            } else if(mode === "rail_national") {
                 color = "#FF0000";
+            } else if(mode === "rail_national") {
+                color = "#000000";
             }
 
             var flightPlanCoordinates = [];
