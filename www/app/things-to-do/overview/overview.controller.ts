@@ -57,7 +57,12 @@ export class OverviewController {
         this.settings = {
             datetime: datetime,
             traveltime: traveltime,
-            location: "London"
+            location: {
+                name: "London",
+                city: "London",
+                lat: 51.5073509,
+                lng: -0.12775829999998223,
+            }
         };
 
         this.setupWatch();
@@ -67,7 +72,7 @@ export class OverviewController {
     public findEvents() {
         this.$ionicLoading.show();
 
-        var coords = [51.51, -0.14];
+        var location = this.settings.location;
         var datetime = this.settings.datetime.toISOString();
         var toc = this.$rootScope.toc || "GWR";
 
@@ -75,7 +80,7 @@ export class OverviewController {
         var travelMinutes = this.settings.traveltime.getMinutes();
         var travelTime = travelHours * 60 * 60 + travelMinutes * 60;
 
-        this.thingsToDoService.findThingsToDo(coords, travelTime, datetime, toc)
+        this.thingsToDoService.findThingsToDo(location, travelTime, datetime, toc)
             .then((events) => {
 
                 this.events = events;
@@ -99,9 +104,12 @@ export class OverviewController {
 
     private setupMap() {
 
+        var lat = this.settings.location.lat;
+        var lng = this.settings.location.lng;
+
         var mapOptions = {
                   zoom: 9,
-                  center: new google.maps.LatLng(51.733315, -1.337027),
+                  center: new google.maps.LatLng(lat, lng),
                   mapTypeId: google.maps.MapTypeId.ROADMAP
               }
 
@@ -115,14 +123,17 @@ export class OverviewController {
                 map: this.map,
                 position: new google.maps.LatLng(info.coords[0], info.coords[1]),
                 title: info.name,
-                route: route
+                route: route,
             });
 
-            marker.content = '<div class="infoWindowContent">' + info.location + '<br /></div>';
+            var content = '<div class="infoWindowContent">' + info.location + '</div>';
+            var titleLink = '<div class="marker-title"><a class="theme-main-color-link" href="/#app/thingsToDo/event/' + info.id + '">' + marker.title + '</a></div>';
+            var theme = '<div class="event-theme" title="{{ event.event.theme }}" >' + info.theme + '</div>';
+            var time = '<div class="event-travel-time">' + Math.floor(route.time / 60) + ' mins </div>';
+            var price = '<div class="event-cost col-xs-2"> £' + info.price + '</div>';
 
             google.maps.event.addListener(marker, 'click', () => {
-                // removed <div class="map-image-container" style="background: url(' + info.image + '); background-size: cover;"></div>
-                infoWindow.setContent('<div><a class="marker-title theme-main-color-link" href="/#app/thingsToDo/event/' + info.id + '">' + marker.title + '</a></div>' + marker.content);
+                infoWindow.setContent('<div>' + price + titleLink + content + theme + time + '</div>' + '<div class="map-info-window-expander"></div>');
                 infoWindow.open(this.map, marker);
                 this.createPolyLine(marker.route);
             });
@@ -158,11 +169,11 @@ export class OverviewController {
             var mode = currPart.mode;
             var color;
             if(mode === "walk"){
-                color = "#FF00FF";
+                color = "#00A0FF";
             } else if(mode === "bus") {
-                color = "#0000FF";
+                color = "#AA00BA";
             } else if(mode === "rail_underground") {
-                color = "#FF7F00";
+                color = "#000000";
             } else if(mode === "rail_national") {
                 color = "#FF0000";
             }
@@ -229,6 +240,15 @@ export class OverviewController {
         }
 
         this.setupMap();
+    }
+
+    pickNewLocation() {
+        this.thingsToDoService.pickNewLocationModal()
+            .then((chosen) => {
+                if (chosen) {
+                    this.settings.location = chosen;
+                }
+            });
     }
 }
 

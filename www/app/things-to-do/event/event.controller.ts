@@ -6,6 +6,22 @@ export module ThingsToDo {
 class EventController {
 
     private event;
+    private ticketsUrl;
+    private fields = {
+        "RETURN": "rtn",
+        "ORIGIN": "onlc",
+        "DESTINATION": "dnlc",
+        "DEPART_AFTER": "outda",
+        "DEPART_DAY": "outd",
+        "DEPART_MONTH": "outm",
+        "DEPART_HOUR": "outh",
+        "DEPART_MINUTE": "outmi",
+        "RETURN_DAY": "retd",
+        "RETURN_MONTH": "retm",
+        "RETURN_HOUR": "reth",
+        "RETURN_MINUTE": "retmi",
+        "ADULTS": "nad"
+    };
 
     public static $inject = [
         "$scope",
@@ -13,7 +29,8 @@ class EventController {
         "ionicMaterialMotion",
         "ionicMaterialInk",
         "thingsToDo.thingsToDoService",
-        "$stateParams"];
+        "$stateParams",
+        "$rootScope"];
 
     constructor(
             private $scope,
@@ -21,7 +38,8 @@ class EventController {
             private ionicMaterialMotion,
             private ionicMaterialInk,
             private thingsToDoService,
-            private $stateParams) {
+            private $stateParams,
+            private $rootScope) {
 
         var eventId = $stateParams.eventId;
 
@@ -38,6 +56,8 @@ class EventController {
             });
 
         this.ionicMaterialInk.displayEffect();
+
+        this.createTrainTicketsUrl()
     }
 
     public getEvent(id) {
@@ -50,6 +70,53 @@ class EventController {
                 this.$ionicLoading.hide();
             });     
 
+    }
+
+    private createTrainTicketsUrl() {
+
+        var url;
+        var toc = this.$rootScope.toc.toUpperCase();
+
+        switch(toc) {
+            case "GWR":
+                url = "http://tickets.gwr.com/gw/en/landing/tis";
+                break;
+            case "VTEC":
+                url = "http://tickets.virgintrainseastcoast.com/ec/en/";
+                break;
+            case "C2C":
+                url = "http://tickets.c2c-online.co.uk/c2c/en/";
+                break;
+            case "CHILTERN":
+                url = "http://tickets.chilternrailways.co.uk/ch/en/";
+                break;
+            default:
+                console.error("Error, no TOC found!");
+                return;
+        }
+
+        var qps = [];
+
+        var addP = (field, val) => {
+            var param = this.fields[field] + "=" + val;
+            qps.push(param)
+        }
+
+        var currDate = new Date();
+
+        addP("ORIGIN", 6417);
+        addP("DESTINATION", 1072);
+        addP("DEPART_AFTER", "y");
+        addP("DEPART_MONTH", currDate.getMonth() + 1); // Adding month for padding
+        addP("DEPART_DAY", currDate.getDate());
+        addP("DEPART_HOUR", currDate.getHours() + 1);
+        addP("DEPART_MINUTE", currDate.getMinutes());
+        addP("ADULTS", 1);
+
+        this.ticketsUrl = url + "?" + qps.join("&");
+
+        "http://tickets.gwr.com/gw/en/landing/tis?onlc=6417&dnlc=1072&outda=y&outm=5&outd=8&outh=16&outmi=6&nad=1"
+        "http://tickets.gwr.com/gw/en/landing/tis?onlc=6417&dnlc=1072&outda=y&outm=05&outd=08&outh=17&outmi=30&nad=1"
     }
 
 }

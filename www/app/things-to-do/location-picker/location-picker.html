@@ -1,0 +1,21 @@
+<ion-modal-view 
+		ng-controller="thingsToDo.LocationPickerController as $ctrl"> 
+	<ion-header-bar> 
+		<h1 class='title'>Pick a location</h1> 
+	</ion-header-bar> 
+	<ion-content class="things-to-do-location-picker"> 
+		<div class="search-box">
+	  		<input id="things-to-do-location-picker" 
+	  				type="text" 
+	  				placeholder="search for a location"
+	  				ng-model="$ctrl.query"
+	  				ng-change="$ctrl.inputChange($ctrl.query)">
+		</div>
+
+		<ul class="search-results">
+			<li ng-repeat="option in $ctrl.results"
+					ng-click="$ctrl.chooseLocation(option)"
+					item="option">{{option.description}}</li>
+		</ul>
+	</ion-content> 
+</ion-modal-view>

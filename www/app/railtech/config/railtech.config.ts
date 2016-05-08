@@ -49,8 +49,8 @@ angular.module('railtech')
         window.queryParams = {};
 
         var queryParams = $location.search();
-        $rootScope.embed = (queryParams.embed == 'true');
-        $rootScope.toc = (queryParams.toc);
+        $rootScope.embed = queryParams.embed == 'true';
+        $rootScope.toc = queryParams.toc || "gwr";
 
     });
 
