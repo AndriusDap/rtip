@@ -115,8 +115,6 @@ class EventController {
 
         this.ticketsUrl = url + "?" + qps.join("&");
 
-        "http://tickets.gwr.com/gw/en/landing/tis?onlc=6417&dnlc=1072&outda=y&outm=5&outd=8&outh=16&outmi=6&nad=1"
-        "http://tickets.gwr.com/gw/en/landing/tis?onlc=6417&dnlc=1072&outda=y&outm=05&outd=08&outh=17&outmi=30&nad=1"
     }
 
 }

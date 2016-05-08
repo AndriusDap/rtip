@@ -1,17 +1,23 @@
 .things-to-do-location-picker {
-	margin-top: 50px;
 	padding: 30px;
 
 	.search-box {
 		input {
 			font-size: 2em;
 			border-bottom: 1px solid gray;
+		font-weight: 900;
+			clear:both;
 		}
+		clear:both;
+		margin-bottom:20px;
 	}
 
 	.search-results {
-		margin-top: 50px;
-		
+		clear:both;
+		margin: auto auto;
+		width: 80%;
+		line-height: 1.8em;
+
 		li {
 			font-size: 1.5em;
 			padding: 10px;

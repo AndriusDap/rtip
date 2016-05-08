@@ -194,7 +194,7 @@ export class OverviewController {
                 geodesic: true,
                 strokeColor: color,
                 strokeOpacity: 1.0,
-                strokeWeight: 2
+                strokeWeight: 6
             });
 
             polyline.setMap(this.map);
