@@ -130,7 +130,7 @@ export class OverviewController {
             var titleLink = '<div class="marker-title"><a class="theme-main-color-link" href="/#app/thingsToDo/event/' + info.id + '">' + marker.title + '</a></div>';
             var theme = '<div class="event-theme" title="{{ event.event.theme }}" >' + info.theme + '</div>';
             var time = '<div class="event-travel-time">' + Math.floor(route.time / 60) + ' mins </div>';
-            var price = '<div class="event-cost col-xs-2"> £' + info.price + '</div>';
+            var price = '<div class="event-cost col-xs-2"> £' + Math.floor(info.price) + '</div>';
 
             google.maps.event.addListener(marker, 'click', () => {
                 infoWindow.setContent('<div>' + price + titleLink + content + theme + time + '</div>' + '<div class="map-info-window-expander"></div>');
