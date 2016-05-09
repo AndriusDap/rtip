@@ -81,6 +81,40 @@ $main-theme-lightest: lighten($main-theme-lighter, 40);
 		color: $chiltern;
 	}
 }
+
+.main-theme-c2c {
+	.theme-main-color {
+		background-color: $c2c;
+		color: white;
+	}
+	.theme-main-color-active {
+		background-color: darken($c2c, 4) !important;
+	}
+	.theme-main-color-light {
+		background-color: lighten($c2c, 20);
+		color: white;
+	}
+	.theme-main-color-link {
+		color: $c2c;
+	}
+}
+
+.main-theme-govia {
+	.theme-main-color {
+		background-color: $goAhead;
+		color: white;
+	}
+	.theme-main-color-active {
+		background-color: darken($goAhead, 4) !important;
+	}
+	.theme-main-color-light {
+		background-color: lighten($goAhead, 20);
+		color: white;
+	}
+	.theme-main-color-link {
+		color: $goAhead;
+	}
+}
  
 
 // Fonts

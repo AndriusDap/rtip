@@ -27,6 +27,8 @@ module RailTech {
       }
 
       public findThingsToDo(location, travelTime, startTime, toc) {
+        console.log(location.city + ", " + travelTime + ", " + startTime + ", " + toc)
+
         var deferred = this.$q.defer();
 
         var request = {
