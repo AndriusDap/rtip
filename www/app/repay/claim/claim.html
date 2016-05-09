@@ -1,4 +1,4 @@
-<ion-view class="claim-container" view-title="Buy tickets" align-title="left">
+<ion-view class="claim-container" view-title="" align-title="left">
     <ion-content scroll="true" overflow-scroll="{{ embed }}">
        
         <div class="col-lg-4">
@@ -13,10 +13,11 @@
 	    	<div class="col-xs-10">
 	    		<button ng-click="$ctrl.captureTicket()">Capture Ticket</button>
 	    		<input type="file" 
-	    							ng-model="$ctrl.ticketImage64" 
-	    							accept="image/*"
-	    							name="file"
-	    							app-filereader>
+						ng-model="$ctrl.ticketImage64" 
+						accept="image/*"
+						name="file"
+                        ng-change="$ctrl.ocr($ctrl.ticketImage64)"
+						app-filereader>
 	    	</div>
 	
 
@@ -178,16 +179,16 @@
         							aria-invalid="false">
         					<div class="md-errors-spacer"></div>
         				</md-input-container>
-        				<md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
-        					<label for="phone_input">Contact number</label>
-        					<input ng-model="$ctrl.user.phone" 
-        							class="ng-pristine ng-untouched ng-valid md-input" 
-        							ng-required="true" 
-        							type="text"
-        							id="phone_input" 
-        							aria-invalid="false">
-        					<div class="md-errors-spacer"></div>
-        				</md-input-container>
+                        <md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
+                            <label for="address_input">Address</label>
+                            <input ng-model="$ctrl.user.address" 
+                                    class="ng-pristine ng-untouched ng-valid md-input" 
+                                    ng-required="true" 
+                                    type="text"
+                                    id="address_input" 
+                                    aria-invalid="false">
+                            <div class="md-errors-spacer"></div>
+                        </md-input-container>
         				<md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
         					<label for="postcode_input">Postcode</label>
         					<input ng-model="$ctrl.user.postCode" 
@@ -208,7 +209,7 @@
         	</div>
         	
         	<div>
-        	    <button ui-sref="app.repay.success()" class="button button-full button-assertive ink">Submit claim</button>
+        	    <button ng-click="$ctrl.uploadClaim()" class="button button-full button-assertive ink">Submit claim</button>
         	</div>
         	
         	<br>

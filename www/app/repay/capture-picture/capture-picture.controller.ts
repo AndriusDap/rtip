@@ -9,11 +9,16 @@ export class CapturePictureController {
     private context;
 
     public static $inject = [
-        '$scope'];
+        '$scope',
+        "$timeout"];
 
     constructor(
-            private $scope) {
-        this.setupCamera();
+            private $scope,
+            $timeout) {
+
+        $timeout(() => {
+            this.setupCamera();
+        }, 200);
     }
 
     private setupCamera() {
@@ -27,7 +32,7 @@ export class CapturePictureController {
                 };
 
             this.canvas = document.getElementById("canvas");
-            this.context = canvas.getContext("2d");
+            this.context = this.canvas.getContext("2d");
 
             // Put video listeners into place
             if(navigator.getUserMedia) { // Standard

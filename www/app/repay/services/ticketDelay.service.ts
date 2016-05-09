@@ -85,20 +85,47 @@ export class TicketUploadService {
         return deferred.promise;
     }
 
-    public uploadClaim(ticket, journey, user) {
-        
-    	var deferred = this.$q.defer();
+    public uploadClaim(image64, ticket, journey, user) {
 
-    	this.$timeout(() => {
+        //Prepare form data
+        var data = {
+            image_64: image64,
+            journey: {
+                "from_station": ticket.fromStation,
+                "to_station": ticket.toStation,
+                "ticket_class": ticket.class,
+                "ticket_type": ticket.type,
+                "from_date": ticket.fromDate,
+                "to_date": ticket.toDate,
+                "journey_date": journey.journeyDate,
+                "delay_length": journey.delayLength,
+                "cost": journey.cost 
+            },
+            contact_details: {
+                "title": user.title,
+                "first_name": user.firstName,
+                "last_name": user.lastName,
+                "post_code": user.postCode,
+                "address": user.address,
+                "email": user.email
+            },
+            payment: {
+                "payment_type": "BANK_TRANSFER",
+                "account_number": "0712382",
+                "sort_code": "0292312"
+            }
+        };
 
-    		deferred.resolve();
-    	}, 1000);
-
-    	return deferred.promise;
+        return this.$http.put('/api/delayClaim', data)
+            .then(function(response) {
+                var data = response.data;
+                console.log(data);
+                return data;
+            });
     }
 }
 
-angular.module('staffrepay')
+angular.module('repay')
     .service('repay.ticketDelayService', TicketUploadService)
 
 } // Repay

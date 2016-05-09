@@ -12,6 +12,7 @@ angular.module('railtech')
             $locationProvider,
             $ionicConfigProvider) {
 
+
         $ionicConfigProvider.views.transition("android");
         // Quickfix for android ng-click firing twice.
         // TODO: remove. check https://github.com/driftyco/ionic/issues/1022

@@ -8,6 +8,8 @@ export class ClaimController {
     public titleOptions = ["Mr.", "Mrs.", "Miss.", "Mr. & Mrs.", "Ms.", "Dr.", "Professor", "Other"];
     public ticketTypeOptions = ["Off-peak Day Single", "Off-peak Day Return", "Off-peak Return", "Off-peak Single", "Anytime Single", "Anytime Return", "Advance Single", "Anytime Day Single", "Anytime Day Return", "Annual Season Ticket", "Season Ticket"];
 
+    private ocrService;
+
     public ticketImage64: string;
 
     public ticket;
@@ -16,11 +18,13 @@ export class ClaimController {
 
     public static $inject = [
         '$ionicLoading',
-        'repay.ticketDelayService'];
+        'repay.ticketDelayService'
+        'repay.ocrService'];
 
     constructor(
             private $ionicLoading,
-            private ticketDelayService) {
+            private ticketDelayService
+            private ocrService) {
 
         this.ticket = {};
     }
@@ -29,12 +33,16 @@ export class ClaimController {
         this.ticketDelayService.captureTicket()
             .then((ticketImage64) => {
                 this.ticketImage64 = ticketImage64;
-                console.log(this.ticketImage64);
+                this.ocr(ticketImage64);
             });
     }
 
     uploadClaim() {
-        this.ticketDelayService.uploadClaim(this.ticket)
+        this.ticketDelayService.uploadClaim(
+                this.ticketImage64, 
+                this.ticket, 
+                this.journey, 
+                this.user)
             .then(
                 ()=>{
                     // Redirect to success
@@ -43,6 +51,19 @@ export class ClaimController {
                     //redirect to error
                 }
             );
+    }
+
+    ocr(imgBlob) {
+        this.ocrService.scanImage(imgBlob)
+            .then(function(response) {
+
+                this.$ionicLoading.hide();
+            })
+            .catch(function() {
+                
+                alert('Could not read ticket...');
+                this.$ionicLoading.hide();
+            });
     }
 
 }
