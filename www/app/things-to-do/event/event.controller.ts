@@ -104,8 +104,8 @@ class EventController {
 
         var currDate = new Date();
 
-        addP("ORIGIN", 6417);
-        addP("DESTINATION", 1072);
+        // addP("ORIGIN", 6417);
+        // addP("DESTINATION", 1072);
         addP("DEPART_AFTER", "y");
         addP("DEPART_MONTH", currDate.getMonth() + 1); // Adding month for padding
         addP("DEPART_DAY", currDate.getDate());

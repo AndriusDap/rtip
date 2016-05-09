@@ -11,7 +11,7 @@
 			<img class="ticket-image col-xs-2" src="{{ $ctrl.ticketImage64 }}" />
         	
 	    	<div class="col-xs-10">
-	    		<button ng-click="$ctrl.captureTicket()">Capture Ticket</button>
+	    		<button ng-hide="$root.embed" ng-click="$ctrl.captureTicket()">Capture Ticket</button>
 	    		<input type="file" 
 						ng-model="$ctrl.ticketImage64" 
 						accept="image/*"
@@ -209,7 +209,7 @@
         	</div>
         	
         	<div>
-        	    <button ng-click="$ctrl.uploadClaim()" class="button button-full button-assertive ink">Submit claim</button>
+        	    <button ng-click="$ctrl.uploadClaim()" ng-class="{  }" class="button button-full button-assertive ink">Submit claim</button>
         	</div>
         	
         	<br>
