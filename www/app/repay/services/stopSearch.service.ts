@@ -1,72 +1,125 @@
 
-angular.module('repay')
-	.factory('repay.stopsService', function() {
+module RailTech {
+export module Repay {
 
-		function cache(fn) {
-			var cached = {};
-			return function() {
-				var args = Array.prototype.slice.call(arguments);
-				var argString = args.join('--');
-				if (!(argString in cached)) cached[argString] = fn.apply(null, args);
-				return cached[argString];
+export class StopsServiceService {
+
+	private ticketTypes = ["off-peak day single", "off-peak day return", "off-peak return", "off-peak single", "anytime single", "anytime return", "advance single", "anytime day single", "anytime day return", "annual season ticket", "season ticket"]
+	private months = ["jrn", "fby", "mch", "apr", "may", "jun", "jly", "aug", "sep", "oct", "nov", "dmr"]
+
+	findStations(rows) {
+
+		var stations = [];
+
+		for(var i in rows) {
+			var name = rows[i];
+
+			var options = {
+				keys: ['name'],
+				id: 'name',
+				threshold: 0.2
 			};
-		}
 
-		function stringDistance(s1, s2) {
-			var i, j;
+			var f = new Fuse(STOPS, options);
+			var result = f.search(name);
 
-			// Auxiliary 2D array
-			var arr = new Array(s1.length + 1);
-			for (i = 0; i < s1.length + 1; i++)
-				arr[i] = new Array(s2.length + 1);
-
-			// Algorithm
-			for (i = 0; i <= s1.length; i++) for (j = 0; j <= s2.length; j++) arr[i][j] = 0;
-			for (i = 0; i <= s1.length; i++) arr[i][0] = i;
-			for (i = 0; i <= s2.length; i++) arr[0][i] = i;
-
-			for (i = 1; i <= s1.length; i++)
-				for (j = 1; j <= s2.length; j++)
-					arr[i][j] = Math.min(arr[i - 1][j - 1] + (s1.charAt(i - 1) == s2.charAt(j - 1) ? 0 : 1), arr[i - 1][j] + 1, arr[i][j - 1] + 1);
-
-			// Final answer
-			return arr[s1.length][s2.length].toString(10);
-		}
-
-		var findStop = cache(function(name) {
-			name = name.toLowerCase();
-
-			var almost = [];
-			var likely = [];
-			var possibly = [];
-			var threshold = 3;
-
-			for (var i = 0; i < STOPS.length; i++) {
-				var test = STOPS[i].name.toLowerCase();
-
-				if (name == test) {
-					return STOPS[i];
-				} else if (test.split(' ').indexOf(name) >= 0) {
-					almost.push(STOPS[i]);
-				} else if (test.indexOf(name) >= 0) {
-					likely.push(STOPS[i]);
-				} else {
-					var dist = stringDistance(name, test);
-					if (dist < threshold) possibly.push({ word: STOPS[i], distance: dist });
-				}
+			if (result.length > 0) {
+				stations.push(result[0]);
 			}
+		}
 
-			if (almost.length) return almost[0];
-			if (likely.length) return likely[0];
+		return stations;
+	}
 
-			if (!possibly.length) return null;
-			possibly.sort(function(a, b) {
-				return a.distance - b.distance;
-			});
-			return possibly[0].word;
+	getMonthNumber(ticketMonth) {
+		var f = new Fuse(this.months);
+		var result = f.search(ticketMonth);
+		console.log(ticketMonth);
+		console.log(result);
+
+		return result.length > 0 ? result[0] : null;
+	}
+
+	findDates(rows) {
+
+		var dateRegex = /([1-9loi][1-9loi]?\s*[a-z][a-z][a-z]?\s*[1-9][1-9loi]?)/g;
+		var dateRegexParts = /([1-9loi][1-9loi]?)\s*([a-z][a-z][a-z]?)\s*([1-9][1-9loi]?)/;
+
+		var dates = [];
+
+		rows.forEach((name) => {
+
+			var foundDates = name.match(dateRegex);
+
+			if(foundDates && foundDates.length > 0) {
+				var foundParts = foundDates[0].match(dateRegexParts);
+				console.log(foundParts[0] + " " + foundParts[1] + " " + foundParts[2] + " " + foundParts[3]);
+
+				var ticketMonth = foundParts[2];
+				var foundMonth = this.getMonthNumber(ticketMonth);
+
+				console.log("FOUND: " + foundMonth);
+				if (foundMonth === null) return;
+
+				var month = foundMonth + 1;
+				var day = parseInt(foundParts[1].replace("l", "1").replace("i", "1").replace("o", "0"));
+				var year = parseInt("20" + foundParts[3].replace("l", "1").replace("i", "1").replace("o", "0"));
+
+				console.log(year + " " + month + " " + day);
+				var date = new Date(year, month, day);
+
+				dates.push(date);
+			}
 		});
 
-		window.findStop = findStop;
-		return { find: findStop };
+		return dates;
+	}
 
-	});
+	findTicketClass(rows) {
+
+		var stations = [];
+
+		var classRegex = /.*([1li]\s*st).*/;
+		var ticketClass = "STANDARD";
+
+		rows.forEach((name) => {
+
+			if (name.match(classRegex)) {
+				ticketClass = "FIRST";
+			}
+		});
+
+		return ticketClass;
+	}
+
+	findTicketType(rows) {
+
+		var found = "";
+
+		for(var i in rows) {
+			var name = rows[i];
+
+			var options = {
+				includeScore: true,
+				threshold: 0.4
+			};
+
+			var f = new Fuse(this.ticketTypes, options);
+			var result = f.search(name);
+
+			if (result.length > 0) {
+				found = this.ticketTypes[result[0]];
+				break;
+			}
+		};
+
+		return found;
+	}
+}
+
+
+angular.module('repay')
+	.service('repay.stopsService', StopsServiceService);
+
+}
+}

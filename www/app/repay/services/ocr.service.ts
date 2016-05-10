@@ -45,41 +45,60 @@ angular.module('repay')
             });
         }
 
-        function findStations(text) {
-            text = text.replace(/SEAT/g, '').replace(/TRAIN/g, '').replace(/TICKET/g, '');
-
-            var rows = text.split('\n').map(function(x) {
-                return x.replace(/[^A-Z\s]/g, '').trim();
-            });
-            rows = rows.filter(function(x) {
-                return x.length > 3
-            });
-
-            var stations = [];
-            rows.forEach(function(row) {
-                var result = stopsService.find(row)
-                if (result) stations.push(result.name);
-            });
-            if (stations.length == 2) return stations;
-            throw new Error();
-        }
-
         function parseText(text) {
-            var stations = findStations(text);
-            return {
-                from: stations[0],
-                to: stations[1],
-                'class': 'STD',
-                peak: 0
+
+            text = text.toLowerCase();
+
+            text = text.replace(/seat/g, '')
+                .replace(/train/g, '')
+                .replace(/class/g, '')
+                .replace(/start/g, '')
+                .replace(/adult/g, '')
+                .replace(/child/g, '')
+                .replace(/date/g, '')
+                .replace(/number/g, '')
+                .replace(/price/g, '')
+                .replace(/from/g, '')
+                .replace(/to/g, '')
+                .replace(/route/g, '')
+                .replace(/validity/g, '')
+                // .replace(/[\.,-•]/g, ' ')
+                .replace(/ticket/g, '');
+
+            // Removing empty strings
+            var rows = text.split('\n').filter((obj) => {
+                return obj.trim().length > 0;
+            });
+
+            var stations = stopsService.findStations(rows);
+            var fromStation = stations.length > 0 ? stations[0] : "";
+            var toStation = stations.length > 1 ? stations[1] : "";
+
+            var dates = stopsService.findDates(rows);
+            var fromDate = dates.length > 0 ? dates[0] : "";
+            var toDate = dates.length > 1 ? dates[1]: "";
+
+            var ticketClass = stopsService.findTicketClass(rows);
+            var ticketType = stopsService.findTicketType(rows);
+
+            var ticket = {
+                "fromStation": fromStation,
+                "toStation": toStation,
+                "class": ticketClass,
+                "type": ticketType,
+                "fromDate": fromDate,
+                "toDate": toDate
             };
+
+            return ticket;
         }
 
         return {
             scanImage: function(image) {
-                return runOcr(image).then(function(text) {
-                    console.log(text);
-                    return parseText(text);
-                })
+                return runOcr(image)
+                    .then(function(text) {
+                        return parseText(text);
+                    });
             }
         };
 

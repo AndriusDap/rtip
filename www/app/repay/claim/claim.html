@@ -209,7 +209,7 @@
         	</div>
         	
         	<div>
-        	    <button ng-click="$ctrl.uploadClaim()" ng-class="{  }" class="button button-full button-assertive ink">Submit claim</button>
+        	    <button ng-click="$ctrl.uploadClaim()" ng-class="{ 'disabled': $ctrl.claimFormValid() }" class="button button-full button-assertive ink">Submit claim</button>
         	</div>
         	
         	<br>

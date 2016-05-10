@@ -16,6 +16,7 @@
     "angular-material-datetimepicker": "^1.4.0",
     "ngmap": "^1.17.3",
     "ngCordova": "^0.1.26-alpha",
-    "jquery": "^2.2.3"
+    "jquery": "^2.2.3",
+    "fuse.js": "^2.2.0"
   }
 }

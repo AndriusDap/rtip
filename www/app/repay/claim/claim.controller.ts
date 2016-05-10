@@ -45,7 +45,7 @@ export class ClaimController {
                 this.user)
             .then(
                 ()=>{
-                    // Redirect to success
+                    
                 }
                 , ()=> {
                     //redirect to error
@@ -53,10 +53,46 @@ export class ClaimController {
             );
     }
 
+    public claimFormValid() {
+        return this.ticket.fromStation
+            && this.ticket.toStation
+            && this.ticket.type
+            && this.ticket.fromDate
+            && this.ticket.toDate
+            && this.journey.journeyDate
+            && this.journey.delayLength
+            && this.journey.cost
+            && this.user.title
+            && this.user.firstName
+            && this.user.lastName
+            && this.user.postCode
+            && this.user.address
+            && this.user.email;
+    }
+
     ocr(imgBlob) {
         this.ocrService.scanImage(imgBlob)
-            .then(function(response) {
+            .then(function(ticket) {
 
+                if(!this.ticket.fromStation) {
+                    this.ticket.fromStation = ticket.fromStation;
+                }
+
+                if (!this.ticket.toStation) {
+                    this.ticket.toStation = ticket.toStation;
+                }
+                if (!this.ticket.class) {
+                    this.ticket.fromStation = ticket.class;
+                }
+                if (!this.ticket.ticketType) {
+                    this.ticket.ticketType = ticket.ticketType;
+                }
+                if (!this.ticket.ticketType) {
+                    this.ticket.ticketType = ticket.ticketType;
+                }
+                if (!this.ticket.ticketClass) {
+                    this.ticket.fromDate = ticket.fromDate;
+                }
                 this.$ionicLoading.hide();
             })
             .catch(function() {

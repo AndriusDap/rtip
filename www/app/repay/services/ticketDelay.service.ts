@@ -5,6 +5,9 @@ export module Repay {
 export class TicketUploadService {
 
     private modal;
+    private claims;
+
+    private delayClaimUrl = '/api/ticket/delayClaim';
 
     static $inject = [
         "$rootScope",
@@ -85,6 +88,19 @@ export class TicketUploadService {
         return deferred.promise;
     }
 
+    public getClaims() {
+
+        var deferred = this.$q.defer();
+
+        this.$http.get(this.delayClaimUrl)
+            .then((response) => {
+                deferred.resolve(response.data);
+                console.log(response.data);
+            });
+
+        return deferred.promise;
+    }
+
     public uploadClaim(image64, ticket, journey, user) {
 
         //Prepare form data
@@ -116,7 +132,7 @@ export class TicketUploadService {
             }
         };
 
-        return this.$http.put('/api/delayClaim', data)
+        return this.$http.put(this.delayClaimUrl, data)
             .then(function(response) {
                 var data = response.data;
                 console.log(data);
