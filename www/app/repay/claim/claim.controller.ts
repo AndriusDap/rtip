@@ -6,7 +6,7 @@ export module Repay {
 export class ClaimController {
 
     public titleOptions = ["Mr.", "Mrs.", "Miss.", "Mr. & Mrs.", "Ms.", "Dr.", "Professor", "Other"];
-    public ticketTypeOptions = ["Off-peak Day Single", "Off-peak Day Return", "Off-peak Return", "Off-peak Single", "Anytime Single", "Anytime Return", "Advance Single", "Anytime Day Single", "Anytime Day Return", "Annual Season Ticket", "Season Ticket"];
+    public ticketTypeOptions = ["off-peak day single", "off-peak day return", "off-peak return", "off-peak single", "anytime single", "anytime return", "advance single", "anytime day single", "anytime day return", "annual season ticket", "season ticket"];
 
     private ocrService;
 
@@ -71,18 +71,20 @@ export class ClaimController {
     }
 
     ocr(imgBlob) {
-        this.ocrService.scanImage(imgBlob)
-            .then(function(ticket) {
+        this.$ionicLoading.show();
 
-                if(!this.ticket.fromStation) {
+        this.ocrService.scanImage(imgBlob)
+            .then((ticket) => {
+
+                console.log(ticket);
+                if (!this.ticket.fromStation) {
                     this.ticket.fromStation = ticket.fromStation;
                 }
-
                 if (!this.ticket.toStation) {
                     this.ticket.toStation = ticket.toStation;
                 }
                 if (!this.ticket.class) {
-                    this.ticket.fromStation = ticket.class;
+                    this.ticket.class = ticket.class;
                 }
                 if (!this.ticket.ticketType) {
                     this.ticket.ticketType = ticket.ticketType;
@@ -93,6 +95,7 @@ export class ClaimController {
                 if (!this.ticket.ticketClass) {
                     this.ticket.fromDate = ticket.fromDate;
                 }
+
                 this.$ionicLoading.hide();
             })
             .catch(function() {

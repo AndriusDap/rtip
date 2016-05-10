@@ -1,5 +1,15 @@
 var STOPS = [
 	{
+		"name": "Manchester Stns",
+		"crs": "",
+		"nlc": ""
+	},
+	{
+		"name": "London Terminals",
+		"crs": "",
+		"nlc": ""
+	},
+	{
 		"name": "Alexandra Palace",
 		"crs": "AAP",
 		"nlc": "6025"
@@ -14308,15 +14318,5 @@ var STOPS = [
 		"name": "West Brompton (LRT)",
 		"crs": "ZWB",
 		"nlc": ""
-	},
-	{
-		"name": "Manchester Stns",
-		"crs": "",
-		"nlc": ""
-	},
-	{
-		"name": "London Terminals",
-		"crs": "",
-		"nlc": ""
-	},
+	}
 ];
