@@ -17,6 +17,8 @@
     "ngmap": "^1.17.3",
     "ngCordova": "^0.1.26-alpha",
     "jquery": "^2.2.3",
-    "fuse.js": "^2.2.0"
+    "fuse.js": "^2.2.0",
+    "highcharts": "^4.2.5",
+    "highcharts-ng": "^0.0.11"
   }
 }

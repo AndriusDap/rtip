@@ -22,7 +22,7 @@ export class ClaimService {
     public getClaims(claimStatus, pageNumber, limit) {
         var deferred = this.$q.defer();
 
-        this.$http.get("/api/ticket/delayClaim")
+        this.$http.get("http://localhost:3000/delayClaim")
             .then((response) => {
 
                 deferred.resolve(response.data);
@@ -31,16 +31,16 @@ export class ClaimService {
         return deferred.promise;
     }
 
-    public getClaim(id) {
+    public getClaim(params) {
         var deferred = this.$q.defer();
 
-        var params = {
-            params: { id: id }
-        };
-
-        this.$http.get("/api/ticket/delayClaim", params)
+        this.$http.get("http://localhost:3000/delayClaim", { params: params })
             .then((response) => {
 
+                if (response.data.length === 0) {
+                    return null;
+                }
+                
                 var ticketResponse = response.data[0].journey;
                 var img64bits = ticketResponse.image_64.split(",");
 
@@ -49,8 +49,6 @@ export class ClaimService {
                 if (img64bits.length > 1) {
                     img64 = img64bits[1];
                 }
-
-                console.log(response);
 
                 var ticket = {
                     fromStation: ticketResponse.from_station,
@@ -70,6 +68,30 @@ export class ClaimService {
         return deferred.promise;
     }
 
+    public updateTicket(claimId, ticket) {
+
+        var deferred = this.$q.defer();
+
+        var ticketRequest = {
+            claimId: claimId,
+            identification: ticket.identification,
+            ticket_class: ticket.class,
+            ticket_type: ticket.type,
+            from_date: ticket.fromDate,
+            to_date: ticket.toDate,
+            cost: ticket.cost
+        };
+
+        this.$http.post("http://localhost:3000/delayClaim", ticketRequest)
+            .then((response) => {
+
+                var data = response.data;
+
+                deferred.resolve(data);
+            });
+        
+        return deferred.promise;
+    }
 }
 
 angular.module('staffrepay')

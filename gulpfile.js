@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
     bower = require('bower'),
+    nodemon = require('gulp-nodemon'),
     concat = require('gulp-concat'),
     sass = require('gulp-sass'),
     minifyCss = require('gulp-minify-css'),

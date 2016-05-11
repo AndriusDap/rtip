@@ -74,9 +74,9 @@ export class TicketUploadService {
         var deferred = this.$q.defer();
 
         var imageOptions = {
-            quality: 20,
-            targetWidth: 500,
-            targetHeight: 500,
+            quality: 45,
+            targetWidth: 1000,
+            targetHeight: 1000,
             destinationType: Camera.DestinationType.DATA_URL,
             encodingType: Camera.EncodingType.JPEG,
             sourceType: Camera.PictureSourceType.CAMERA,

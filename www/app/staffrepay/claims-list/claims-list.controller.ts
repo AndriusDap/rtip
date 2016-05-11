@@ -24,91 +24,101 @@ class ClaimsListController {
     private getClaims() {
     	this.claimService.getClaims()
     		.then((results) => {
+                console.log(results);
     			this.claims = results;
     		});
     }
 
     private setupChart() {
-        this.historicalChart = {};
-        this.dailyChart = {};
+        var last7days = [];
+        var today = new Date();
 
-        this.historicalChart.data = [{
-            key: "Historical Delay Submissions",
-            values: [
-                { "label": "17/03", "value": 3 },
-                { "label": "18/03", "value": 5 },
-                { "label": "19/03", "value": 8 },
-                { "label": "20/03", "value": 5 },
-                { "label": "21/03", "value": 9 },
-                { "label": "22/03", "value": 8 },
-                { "label": "23/03", "value": 12 },
-            ]
-        }];
+        for (var i = 0; i < 7; i++) {
+            last7days.push(today.toLocaleDateString());
+            today.setDate(today.getDate() + 1);
+        }
 
-        this.historicalChart.options = {
-            title: { enable: true, text: "Historical Claims" },
-            chart: {
-                type: 'discreteBarChart',
-                height: 450,
-                margin: {
-                    top: 20,
-                    right: 20,
-                    bottom: 60,
-                    left: 55
-                },
-                x: function(d) { return d.label; },
-                y: function(d) { return d.value; },
-                showValues: true,
-                valueFormat: function(d) {
-                    return d3.format(',.0f')(d);
-                },
-                transitionDuration: 500,
-                xAxis: {
-                    axisLabel: 'Date (Last 7 days)'
-                },
-                yAxis: {
-                    axisLabel: 'Delay claims',
-                    axisLabelDistance: 30
+        this.historicalChart = {
+
+            options: {
+                chart: {
+                    type: 'column'
                 }
-            }
+            },
+            title: {
+                text: 'Historical Claims (Last 7 days)'
+            },
+            xAxis: {
+                categories: last7days
+            },
+            credits: {
+                enabled: false
+            },
+            series: [
+                {
+                    name: 'Accepted',
+                    data: [12, 2, 5, 3, 1, 5, 2],
+                    color: "#7EF064"
+                }, 
+                {
+                    name: 'Rejected',
+                    data: [14, 6, 23, 13, 52, 3, 23],
+                    color: "#9B0400"
+                }, 
+                {
+                    name: 'Outstanding',
+                    data: [23, 3, 35, 23, 12, 2, 23],
+                    color: "#68A3EA"
+                }
+            ]
         };
 
-        this.dailyChart.data = [
-            {
-                key: "Fullfilled",
-                y: 5
-            },
-            {
-                key: "Rejected",
-                y: 2
-            },
-            {
-                key: "Outstanding",
-                y: 10
-            }
-        ];
 
-        this.dailyChart.options = {
-            title: { enable: true, text: "Claims today" },
-            chart: {
-                type: 'pieChart',
-                height: 450,
-                "donut": true,
-                x: function(d) { return d.key; },
-                y: function(d) { return d.y; },
-                showLabels: true,
-                duration: 500,
-                labelThreshold: 0.01,
-                labelSunbeamLayout: true,
-                legend: {
-                    margin: {
-                        top: 5,
-                        right: 35,
-                        bottom: 5,
-                        left: 0
-                    }
+        this.activityChart = {
+            options: {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: true,
+                    type: 'pie'
                 }
-            }
+            },
+            title: {
+                text: 'Claims for today'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: [
+                    {
+                        name: 'Accepted',
+                        y: 13,
+                        sliced: true,
+                        selected: true,
+                        color: "#7EF064"
+                    }, {
+                        name: 'Rejected',
+                        y: 12,
+                        color: "#9B0400"
+                    }, {
+                        name: 'Outstanding',
+                        y: 130,
+                        color: "#68A3EA"
+                    }]
+            }]
         };
     }
 

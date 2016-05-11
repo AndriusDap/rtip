@@ -23,7 +23,19 @@
 	}
 	.staffrepay-text-input-group {
 		clear: both;
-		height: 50px;
+		height: 100px;
+		padding-left: 30px;
+		padding-top: 10px;
+		transition: background-color 2s ease;
+
+		&.warning-input {
+			&.ticket-identification-container {
+				background-color: red;
+				* { 
+					color: white;
+				}
+			}
+		}
 	}
 	
 	.railtech-footer {

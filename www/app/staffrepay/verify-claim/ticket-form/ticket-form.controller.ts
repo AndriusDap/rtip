@@ -12,7 +12,9 @@ class TicketFormController {
     public ticket;
     public verifications;
 
-    private ticketId;
+    public duplicateIdentification;
+
+    private claimId;
 
     public static $inject = [
         "ClaimService",
@@ -30,9 +32,15 @@ class TicketFormController {
 
         this.verifications = {};
         this.ticket = {};
-        this.ticketId = $stateParams.id;
+        this.claimId = $stateParams.claimId;
 
-        this.claimService.getClaim(this.ticketId)
+        this.duplicateIdentification = false;
+
+        var params = {
+            id: this.claimId
+        }
+
+        this.claimService.getClaim(params)
             .then((ticket) => {
 
                 this.ticket.fromStation = ticket.fromStation;
@@ -64,6 +72,33 @@ class TicketFormController {
                 this.verifications.ticketType === true &&
                 this.verifications.fromDate === true &&
                 this.verifications.toDate === true;
+
+    }
+
+    public verifyIdentification(identification) {
+
+        var params = {
+            identification: identification
+        };
+
+        this.claimService.getClaim(params)
+            .then((ticket) => {
+
+                if(!ticket) {
+                    this.duplicateIdentification = false;
+                }
+                else {
+                    this.duplicateIdentification = true;
+                }
+
+            })
+            .finally(() => {
+
+                this.$ionicLoading.hide();
+            });
+    }
+
+    public updateTicket() {
 
     }
 

@@ -13,12 +13,6 @@ angular.module('staffrepay')
                 template: "<ion-nav-view>"
             })
 
-            .state('app.staffrepay.overview', {
-                url: '/overview',
-                templateUrl: 'app/staffrepay/overview/overview.html',
-                controller: "staffrepay.OverviewController as $ctrl"
-            })
-
             .state('app.staffrepay.claimsList', {
                 url: '/claimsList',
                 templateUrl: 'app/staffrepay/claims-list/claims-list.html',
@@ -26,7 +20,7 @@ angular.module('staffrepay')
             })
 
             .state('app.staffrepay.ticket', {
-                url: '/ticket/:id',
+                url: '/ticket/:claimId',
                 templateUrl: 'app/staffrepay/verify-claim/ticket-form/ticket-form.html',
                 controller: 'staffrepay.TicketFormController as $ctrl'
             })

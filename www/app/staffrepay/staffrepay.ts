@@ -9,7 +9,7 @@ angular.module('staffrepay', [
         'ionMdInput',
         'ngMaterialDatePicker',
         'ngCordova',
-        'nvd3'
+        'highcharts-ng'
     ]);
 
 

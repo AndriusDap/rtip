@@ -1,13 +1,17 @@
+$outstanding-color: #548EE8;
+$rejected-color: #9B0400;
+$accepted-color: #209170;
+
 .outstanding-claims-list {
 
 	.claim-item {
-		border-radius: 25px;
-		background-color: #FDEFDE;
-		margin-top:5px;
-		padding: 25px 0;
+		background-color: #D0E0F8;
+		margin-bottom:35px;
+		padding-top: 25px;
 
 		&:hover {
-			background-color: #FD4A00;
+			background-color: #649CED;
+			cursor: pointer;
 		}
 
 		.claim-item-container {
@@ -29,6 +33,63 @@
 			.claim-status {
 
 			}
+
+			&:hover {
+
+			}
+		}
+
+	}
+	.metrics-container {
+		text-align: center;
+		line-height: 3em;
+
+		.metric-container {
+			margin-top: 40px;
+
+			.title {
+				font-size: 18px;
+			}
+
+			.subtitle {
+				font-size: 22px;
+			}
+			
+			.metric {
+				font-size: 30px;
+			}
+
+			&.claim-outstanding {
+				color: $outstanding-color;
+			}
+			&.claim-rejected { 
+				color: $rejected-color;
+			}
+			&.claim-accepted {
+				color: $accepted-color;
+			}
+			&.claim-paid {
+				color: black;
+			}
+		}
+	}
+
+	.outstanding-btn {
+		background-color: lighten($outstanding-color,30);
+		&:hover {
+			background-color: lighten($outstanding-color,40)
+		}
+	}
+	.rejected-btn {
+		background-color: lighten($rejected-color,50);
+		&:hover {
+			background-color: lighten($rejected-color,60)
+		}
+	}
+	.accepted-btn {
+		background-color: lighten($accepted-color,50);
+		&:hover {
+			background-color: lighten($accepted-color,60)
 		}
 	}
 }
