@@ -63,16 +63,11 @@ module RailTech {
           "toc": "GWR"
         };
 
-        console.log(request);
-
         this.$http.post(this.thingsToDoRoutesUrl, request)
           .then((response) => {
 
-            console.log(response);
-
-            this.events = response["data"];
-
-            deferred.resolve(this.events);
+            console.log(response.data)
+            deferred.resolve(response.data);
 
           });
 
@@ -82,6 +77,7 @@ module RailTech {
 
       public getThingToDo(id) {
 
+        console.log(id);
         var deferred = this.$q.defer();
 
         for (var i = 0; i < this.events.length; i++) {
@@ -91,6 +87,7 @@ module RailTech {
           }
         }
 
+        console.log("nop...e");
         deferred.reject();
         return deferred.promise;
       }
