@@ -54,7 +54,7 @@ export class ClaimController {
     }
 
     public claimFormValid() {
-        return this.ticket.fromStation
+        return !(this.ticket.fromStation
             && this.ticket.toStation
             && this.ticket.type
             && this.ticket.fromDate
@@ -67,11 +67,10 @@ export class ClaimController {
             && this.user.lastName
             && this.user.postCode
             && this.user.address
-            && this.user.email;
+            && this.user.email);
     }
 
     ocr(imgBlob) {
-        this.$ionicLoading.show();
 
         this.ocrService.scanImage(imgBlob)
             .then((ticket) => {
@@ -96,12 +95,10 @@ export class ClaimController {
                     this.ticket.fromDate = ticket.fromDate;
                 }
 
-                this.$ionicLoading.hide();
             })
             .catch(function() {
                 
                 alert('Could not read ticket...');
-                this.$ionicLoading.hide();
             });
     }
 

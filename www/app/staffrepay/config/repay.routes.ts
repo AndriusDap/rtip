@@ -26,7 +26,7 @@ angular.module('staffrepay')
             })
 
             .state('app.staffrepay.ticket', {
-                url: '/ticket',
+                url: '/ticket/:id',
                 templateUrl: 'app/staffrepay/verify-claim/ticket-form/ticket-form.html',
                 controller: 'staffrepay.TicketFormController as $ctrl'
             })

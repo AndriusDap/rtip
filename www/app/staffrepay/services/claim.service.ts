@@ -22,124 +22,50 @@ export class ClaimService {
     public getClaims(claimStatus, pageNumber, limit) {
         var deferred = this.$q.defer();
 
-        this.$timeout(() => {
-            var today = new Date();
+        this.$http.get("/api/ticket/delayClaim")
+            .then((response) => {
 
-            var claims = [
-                {
-                    id: 1231412,
-                    from: "London Euston",
-                    to: "Manchester Picadilly",
-                    date: today.toISOString(),
-                    status: "OUTSTANDING"
-                },
-                {
-                    id: 1241233,
-                    from: "London Paddington",
-                    to: "Oxford",
-                    date: today.toISOString(),
-                    status: "OUTSTANDING"
-                },
-                {
-                    id: 1234125,
-                    from: "London Euston",
-                    to: "Manchester Picadilly",
-                    date: today.toISOString(),
-                    status: "OUTSTANDING"
-                },
-                {
-                    id: 3456345,
-                    from: "London Euston",
-                    to: "Manchester Picadilly",
-                    date: today.toISOString(),
-                    status: "OUTSTANDING"
-                },
-                {
-                    id: 5678567,
-                    from: "London Euston",
-                    to: "Manchester Picadilly",
-                    date: today.toISOString(),
-                    status: "FULFILLED"
-                },
-                {
-                    id: 9876762,
-                    from: "London Euston",
-                    to: "Manchester Picadilly",
-                    date: today.toISOString(),
-                    status: "FULFILLED"
-                },
-                {
-                    id: 2345234,
-                    from: "London Euston",
-                    to: "Manchester Picadilly",
-                    date: today.toISOString(),
-                    status: "FULFILLED"
-                },
-                {
-                    id: 1623544,
-                    from: "London Euston",
-                    to: "Manchester Picadilly",
-                    date: today.toISOString(),
-                    status: "FULFILLED"
-                },
-                {
-                    id: 7672543,
-                    from: "London Euston",
-                    to: "Manchester Picadilly",
-                    date: today.toISOString(),
-                    status: "FULFILLED"
-                },
-                {
-                    id: 1373453,
-                    from: "London Euston",
-                    to: "Manchester Picadilly",
-                    date: today.toISOString(),
-                    status: "REJECTED"
-                },
-                {
-                    id: 7372567,
-                    from: "London Euston",
-                    to: "Manchester Picadilly",
-                    date: today.toISOString(),
-                    status: "REJECTED"
-                },
-                {
-                    id: 4436263,
-                    from: "London Euston",
-                    to: "Manchester Picadilly",
-                    date: today.toISOString(),
-                    status: "REJECTED"
-                },
-                {
-                    id: 7234264,
-                    from: "London Euston",
-                    to: "Manchester Picadilly",
-                    date: today.toISOString(),
-                    status: "REJECTED"
-                }
-            ];
-
-            deferred.resolve(claims);
-        }, 1);
+                deferred.resolve(response.data);
+            });            
 
         return deferred.promise;
     }
 
-    public loadClaim(id) {
+    public getClaim(id) {
         var deferred = this.$q.defer();
 
-        this.$timeout(() => {
-            this.ticket = {};
-            this.ticket.identification = 727182
-            this.ticket.cost = 82.40;
-            this.ticket.class = "Standard";
-            this.ticket.type = "Off-peak Return";
-            this.ticket.fromDate = new Date(2016,2,26);
-            this.ticket.toDate = new Date(2016,2,26);
-            this.ticket.ticketImage = "img/ticket.jpg";
+        var params = {
+            params: { id: id }
+        };
 
-            deferred.resolve();
-        }, 2000);
+        this.$http.get("/api/ticket/delayClaim", params)
+            .then((response) => {
+
+                var ticketResponse = response.data[0].journey;
+                var img64bits = ticketResponse.image_64.split(",");
+
+                var img64 = img64bits[0];
+
+                if (img64bits.length > 1) {
+                    img64 = img64bits[1];
+                }
+
+                console.log(response);
+
+                var ticket = {
+                    fromStation: ticketResponse.from_station,
+                    toStation: ticketResponse.to_station,
+                    class: ticketResponse.ticket_class,
+                    type: ticketResponse.ticket_type,
+                    fromDate: ticketResponse.from_date,
+                    toDate: ticketResponse.to_date,
+                    cost: ticketResponse.cost,
+                    journeyDate: ticketResponse.journey_date,
+                    image64: img64
+                };
+
+                deferred.resolve(ticket);
+            });
 
         return deferred.promise;
     }

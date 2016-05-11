@@ -9,29 +9,50 @@ class TicketFormController {
     public ticketTypeOptions = ["Off-peak Day Single", "Off-peak Day Return", "Off-peak Return", "Off-peak Single", "Anytime Single", "Anytime Return", "Advance Single", "Anytime Day Single", "Anytime Day Return", "Annual Season Ticket", "Season Ticket"];
 
     public ticketImage64: string;
-
     public ticket;
     public verifications;
 
+    private ticketId;
+
     public static $inject = [
         "ClaimService",
-        "$ionicLoading"];
+        "$ionicLoading",
+        "$stateParams"];
 
     constructor(
             private claimService: ClaimService,
-            private $ionicLoading) {
+            private $ionicLoading,
+            private $stateParams) {
         
         this.$ionicLoading.show({
             template: "Loading claim..."
         });
 
         this.verifications = {};
+        this.ticket = {};
+        this.ticketId = $stateParams.id;
 
-        this.claimService.loadClaim(1)
-            .then(() => {
-                this.ticket = this.claimService.ticket;
+        this.claimService.getClaim(this.ticketId)
+            .then((ticket) => {
+
+                this.ticket.fromStation = ticket.fromStation;
+                this.ticket.toStation = ticket.toStation;
+                this.ticket.class = ticket.class;
+                this.ticket.type = ticket.type;
+                this.ticket.fromDate = ticket.fromDate;
+                this.ticket.toDate = ticket.toDate;
+                this.ticket.cost = ticket.cost;
+                this.ticket.journeyDate = ticket.journeyDate;
+
+                this.ticketImage64 = ticket.image64;
+
+                console.log(this);
+
+                this.$ionicLoading.hide();
+
             })
             .finally(() => {
+
                 this.$ionicLoading.hide();
             });
     }
@@ -49,7 +70,7 @@ class TicketFormController {
 }
 
 angular.module('staffrepay')
-    .controller('staffrepay.TicketFormController', TicketFormController)
+    .controller('staffrepay.TicketFormController', TicketFormController);
 
 
 } // Repay

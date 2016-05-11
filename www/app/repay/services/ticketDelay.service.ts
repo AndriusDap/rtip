@@ -73,10 +73,13 @@ export class TicketUploadService {
     private captureTicketMobile() {
         var deferred = this.$q.defer();
 
-        var imageOptions = { 
-            quality : 100, 
+        var imageOptions = {
+            quality: 20,
+            targetWidth: 500,
+            targetHeight: 500,
             destinationType: Camera.DestinationType.DATA_URL,
             encodingType: Camera.EncodingType.JPEG,
+            sourceType: Camera.PictureSourceType.CAMERA,
             saveToPhotoAlbum: false
         };
 
