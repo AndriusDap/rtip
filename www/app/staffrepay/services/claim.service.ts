@@ -38,7 +38,7 @@ export class ClaimService {
             .then((response) => {
 
                 if (response.data.length === 0) {
-                    return null;
+                    return deferred.resolve(null);
                 }
                 
                 var ticketResponse = response.data[0].journey;
@@ -75,10 +75,10 @@ export class ClaimService {
         var ticketRequest = {
             claimId: claimId,
             identification: ticket.identification,
-            ticket_class: ticket.class,
-            ticket_type: ticket.type,
-            from_date: ticket.fromDate,
-            to_date: ticket.toDate,
+            ticketClass: ticket.class,
+            ticketType: ticket.type,
+            fromDate: ticket.fromDate,
+            toDate: ticket.toDate,
             cost: ticket.cost
         };
 

@@ -19,12 +19,14 @@ class TicketFormController {
     public static $inject = [
         "ClaimService",
         "$ionicLoading",
-        "$stateParams"];
+        "$stateParams",
+        "$state"];
 
     constructor(
             private claimService: ClaimService,
             private $ionicLoading,
-            private $stateParams) {
+            private $stateParams,
+            private $state) {
         
         this.$ionicLoading.show({
             template: "Loading claim..."
@@ -54,9 +56,9 @@ class TicketFormController {
 
                 this.ticketImage64 = ticket.image64;
 
-                console.log(this);
-
                 this.$ionicLoading.hide();
+
+                console.log(this.ticket);
 
             })
             .finally(() => {
@@ -83,7 +85,7 @@ class TicketFormController {
 
         this.claimService.getClaim(params)
             .then((ticket) => {
-
+                
                 if(!ticket) {
                     this.duplicateIdentification = false;
                 }
@@ -91,14 +93,23 @@ class TicketFormController {
                     this.duplicateIdentification = true;
                 }
 
-            })
-            .finally(() => {
-
-                this.$ionicLoading.hide();
             });
     }
 
-    public updateTicket() {
+    public submitTicket() {
+
+        this.claimService.updateTicket(this.claimId, this.ticket)
+            .then((response) => {
+
+                console.log(response);
+
+                if(this.duplicateIdentification) {
+                    this.$state.go("app.staffrepay.success");
+                }
+                else {
+                    this.$state.go("app.staffrepay.claim(1)");
+                }
+            });
 
     }
 

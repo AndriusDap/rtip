@@ -17,7 +17,7 @@ export class OverviewController {
 
     private sortingBy;
     private sortFunctions = {
-        time: (a, b) => { return a.route.time - b.route.time },
+        time: (a, b) => { return a.travel_time - b.travel_time },
         price: (a, b) => { return a.event.price - b.event.price },
         name: (a, b) => { 
             if (a.event.name < b.event.name) return -1;
@@ -83,6 +83,7 @@ export class OverviewController {
         this.thingsToDoService.findThingsToDo(location, travelTime, datetime, toc)
             .then((events) => {
 
+                console.log(events);
                 this.events = events;
                 this.visibleEvents = this.events.slice();
 
@@ -129,11 +130,11 @@ export class OverviewController {
             var content = '<div class="infoWindowContent">' + info.location + '</div>';
             var titleLink = '<div class="marker-title"><a class="theme-main-color-link" href="/#app/thingsToDo/event/' + info.id + '">' + marker.title + '</a></div>';
             var theme = '<div class="event-theme" title="{{ event.event.theme }}" >' + info.theme + '</div>';
-            // var time = '<div class="event-travel-time">' + Math.floor(route.time / 60) + ' mins </div>';
+            var time = '<div class="event-travel-time">' + Math.floor(info.travel_time / 60) + ' mins </div>';
             var price = '<div class="event-cost col-xs-2"> £' + Math.floor(info.price) + '</div>';
 
             google.maps.event.addListener(marker, 'click', () => {
-                infoWindow.setContent('<div>' + price + titleLink + content + theme + '</div>' + '<div class="map-info-window-expander"></div>');
+                infoWindow.setContent('<div>' + price + titleLink + content + theme + time + '</div>' + '<div class="map-info-window-expander"></div>');
                 infoWindow.open(this.map, marker);
                 this.createPolyLine(marker.route);
             });

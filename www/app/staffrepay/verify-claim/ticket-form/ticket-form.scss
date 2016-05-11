@@ -23,22 +23,37 @@
 	}
 	.staffrepay-text-input-group {
 		clear: both;
-		height: 100px;
+		min-height: 100px;
 		padding-left: 30px;
 		padding-top: 10px;
-		transition: background-color 2s ease;
+		transition: background-color 2s ease,
+					min-height 2s ease;
+
+		.warning-message {
+			height: 0;
+			overflow: hidden;
+			color: #980900;
+			font-size: 1.3em;
+			line-height: 1.5em;
+
+			transition: height 2s ease;
+		}
 
 		&.warning-input {
 			&.ticket-identification-container {
-				background-color: red;
-				* { 
-					color: white;
-				}
+				min-height: 130px;
+				background-color: #FFE9F3;
+			}
+
+			.warning-message {
+				height: 30px;
 			}
 		}
 	}
-	
-	.railtech-footer {
+
+	.ticket-form-footer {
+		height: 50px;
+		position: fixed;
 		bottom: 70px;
 	}
 }
