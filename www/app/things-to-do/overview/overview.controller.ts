@@ -83,7 +83,6 @@ export class OverviewController {
         this.thingsToDoService.findThingsToDo(location, travelTime, datetime, toc)
             .then((events) => {
 
-                console.log(events);
                 this.events = events;
                 this.visibleEvents = this.events.slice();
 
@@ -118,32 +117,32 @@ export class OverviewController {
 
         var infoWindow = new google.maps.InfoWindow();
 
-        var createMarker = (info, route) => {
+        var createMarker = (info, travelTime) => {
 
             var marker = new google.maps.Marker({
                 map: this.map,
                 position: new google.maps.LatLng(info.coords[0], info.coords[1]),
-                title: info.name,
-                route: route,
+                event: info
             });
 
             var content = '<div class="infoWindowContent">' + info.location + '</div>';
-            var titleLink = '<div class="marker-title"><a class="theme-main-color-link" href="/#app/thingsToDo/event/' + info.id + '">' + marker.title + '</a></div>';
+            var titleLink = '<div class="marker-title"><a class="theme-main-color-link" href="/#app/thingsToDo/event/' + info.id + '">' + info.name + '</a></div>';
             var theme = '<div class="event-theme" title="{{ event.event.theme }}" >' + info.theme + '</div>';
-            var time = '<div class="event-travel-time">' + Math.floor(info.travel_time / 60) + ' mins </div>';
+            var time = '<div class="event-travel-time">' + Math.floor(travelTime / 60) + ' mins </div>';
             var price = '<div class="event-cost col-xs-2"> £' + Math.floor(info.price) + '</div>';
 
             google.maps.event.addListener(marker, 'click', () => {
                 infoWindow.setContent('<div>' + price + titleLink + content + theme + time + '</div>' + '<div class="map-info-window-expander"></div>');
                 infoWindow.open(this.map, marker);
-                this.createPolyLine(marker.route);
+
+                this.populateRoute(marker);
             });
 
             return marker;
         }  
 
         for (var i = 0; i < this.visibleEvents.length; i++) {
-            this.visibleEvents[i].marker = createMarker(this.visibleEvents[i].event, this.visibleEvents[i].route);
+            this.visibleEvents[i].marker = createMarker(this.visibleEvents[i].event, this.visibleEvents[i].travel_time);
         }
     }
 
@@ -151,9 +150,27 @@ export class OverviewController {
         var center = new google.maps.LatLng(selectedMarker.lat, selectedMarker.long);
         this.map.setCenter(selectedMarker.position);
 
-        this.createPolyLine(selectedMarker.route);
+        this.populateRoute(selectedMarker);
 
         google.maps.event.trigger(selectedMarker, 'click');
+    }
+
+    private populateRoute(marker) {
+
+        var location = this.settings.location;
+        var datetime = this.settings.datetime.toISOString();
+        var toc = this.$rootScope.toc || "GWR";
+
+        var travelHours = this.settings.traveltime.getHours();
+        var travelMinutes = this.settings.traveltime.getMinutes();
+        var travelTime = travelHours * 60 * 60 + travelMinutes * 60;
+
+        var eventId = marker.event.id;
+
+        this.thingsToDoService.getRoute(location, travelTime, datetime, toc, eventId)
+            .then((route) => {
+                this.createPolyLine(route.route);
+            });
     }
 
     createPolyLine(route) {

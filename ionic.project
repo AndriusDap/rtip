@@ -5,6 +5,10 @@
     {
       "path": "/api/igeolise/events",
       "proxyUrl": "http://magellan.traveltimeapp.com:15427/events"
+    },
+    {
+      "path": "/api/igeolise/route",
+      "proxyUrl": "http://magellan.traveltimeapp.com:15427/route"
     }
   ],
   "gulpStartupTasks": [
