@@ -107,7 +107,7 @@ class TicketFormController {
                     this.$state.go("app.staffrepay.success");
                 }
                 else {
-                    this.$state.go("app.staffrepay.claim(1)");
+                    this.$state.go("app.staffrepay.claim");
                 }
             });
 
