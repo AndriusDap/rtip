@@ -20,56 +20,63 @@ export class JourneyService {
         
     	var deferred = this.$q.defer();
 
+        var d = new Date(fromTime);
+        d.setMinutes(d.getMinutes() - 15);
+
+        function tPlusOneMin() {
+            return d.setMinutes(d.getMinutes() + 7);
+        }
+
     	this.$timeout(() => {
     		var tripResults = [
     			{
     				serviceId: "R28231S",
-    				fromDatetime: "2016-03-15T14:00:00",
+    				fromDatetime: tPlusOneMin(),
     				delay: 0
     			},
     			{
     				serviceId: "S273622",
-    				fromDatetime: "2016-03-15T14:03:00",
+    				fromDatetime: tPlusOneMin(),
     				delay: 12
     			},
     			{
     				serviceId: "R237362",
-    				fromDatetime: "2016-03-15T14:10:00",
+    				fromDatetime: tPlusOneMin(),
     				delay: 177
     			},
     			{
     				serviceId: "S376283",
-    				fromDatetime: "2016-03-15T14:15:00",
+    				fromDatetime: tPlusOneMin(),
     				delay: 78
     			},
     			{
     				serviceId: "R21232",
-    				fromDatetime: "2016-03-15T14:18:00",
+    				fromDatetime: tPlusOneMin(),
     				delay: 33
     			},
                 {
-                    serviceId: "R21232",
-                    fromDatetime: "2016-03-15T14:18:00",
+                    serviceId: "P81275",
+                    fromDatetime: tPlusOneMin(),
                     delay: 20
                 },
                 {
-                    serviceId: "R21232",
-                    fromDatetime: "2016-03-15T14:18:00",
+                    serviceId: "V47232",
+                    fromDatetime: tPlusOneMin(),
                     delay: 2
                 },
                 {
-                    serviceId: "R21232",
-                    fromDatetime: "2016-03-15T14:18:00",
+                    serviceId: "N81232",
+                    fromDatetime: tPlusOneMin(),
                     delay: 0
                 },
                 {
-                    serviceId: "R21232",
-                    fromDatetime: "2016-03-15T14:18:00",
+                    serviceId: "N41232",
+                    fromDatetime: tPlusOneMin(),
                     delay: 0
                 },
                 {
-                    serviceId: "R21232",
-                    fromDatetime: "2016-03-15T14:18:00",
+                    serviceId: "S41232",
+                    fromDatetime: tPlusOneMin(),
                     delay: 0
                 },
     		];

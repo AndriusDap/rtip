@@ -11,6 +11,22 @@ module RailTech {
       private thingsToDoUrl = "/api/igeolise/events";
       private thingsToDoRoutesUrl = "/api/igeolise/route";
 
+      private fields = {
+        "RETURN": "rtn",
+        "ORIGIN": "onlc",
+        "DESTINATION": "dnlc",
+        "DEPART_AFTER": "outda",
+        "DEPART_DAY": "outd",
+        "DEPART_MONTH": "outm",
+        "DEPART_HOUR": "outh",
+        "DEPART_MINUTE": "outmi",
+        "RETURN_DAY": "retd",
+        "RETURN_MONTH": "retm",
+        "RETURN_HOUR": "reth",
+        "RETURN_MINUTE": "retmi",
+        "ADULTS": "nad"
+      };
+
       static $inject = [
       "$http",
       "$q",
@@ -37,7 +53,7 @@ module RailTech {
           "city": location.city,
           "travel_time": travelTime,
           "start_time": startTime,
-          "toc": "GWR"
+          "toc": "VTEC"
         };
 
         this.$http.post(this.thingsToDoUrl, request)
@@ -123,6 +139,52 @@ module RailTech {
 
         return deferred.promise;
       }
+
+
+      private createTrainTicketsUrl(toc) {
+
+        var url;
+
+        switch (toc) {
+          case "GWR":
+            url = "http://tickets.gwr.com/gw/en/landing/tis";
+            break;
+          case "VTEC":
+            url = "http://tickets.virgintrainseastcoast.com/ec/en/";
+            break;
+          case "C2C":
+            url = "http://tickets.c2c-online.co.uk/c2c/en/";
+            break;
+          case "CHILTERN":
+            url = "http://tickets.chilternrailways.co.uk/ch/en/";
+            break;
+          default:
+            console.error("Error, no TOC found!");
+            return;
+        }
+
+        var qps = [];
+
+        var addP = (field, val) => {
+          var param = this.fields[field] + "=" + val;
+          qps.push(param)
+        }
+
+        var currDate = new Date();
+
+        // addP("ORIGIN", 6417);
+        // addP("DESTINATION", 1072);
+        addP("DEPART_AFTER", "y");
+        addP("DEPART_MONTH", currDate.getMonth() + 1); // Adding month for padding
+        addP("DEPART_DAY", currDate.getDate());
+        addP("DEPART_HOUR", currDate.getHours() + 1);
+        addP("DEPART_MINUTE", currDate.getMinutes());
+        addP("ADULTS", 1);
+
+        return url + "?" + qps.join("&");
+
+      }
+
 
     }
 

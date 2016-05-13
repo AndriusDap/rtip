@@ -1,17 +1,23 @@
 <ion-view class="outstanding-claims-list" view-title="Outstanding Claims List" align-title="left">
     <ion-content>
-   		<h1>Claim successful</h1>
-   		<h3>The claim has been processed.</h3>
-   		<h4><b>Reference:</b> <a href="#">26AB392</a></h4>
+      
+    <div class="form-container col-md-8 col-md-offset-2">
+      <div class="form-container-inner">
+     		<h1>Claim successful</h1>
+     		<h3>The claim has been processed.</h3>
+     		<h4><b>Reference:</b> <a href="#">26AB392</a></h4>
 
-        <button ui-sref="app.staffrepay.claimsList" 
-                class="button button-balanced ink sticky-footer col-sm-6">
-            Overview
-        </button>
-        <button ui-sref="app.modules" 
-                class="button button-calm ink sticky-footer col-sm-6"
-                ng-hide="{{ $root.embed }}">
-            Home
-        </button>
+          <button ui-sref="app.staffrepay.claimsList" 
+                  class="button button-balanced ink sticky-footer col-sm-6">
+              Overview
+          </button>
+          <button ui-sref="app.staffrepay.claimsList" 
+                  class="button button-calm ink sticky-footer col-sm-6"
+                  ng-hide="{{ $root.embed }}">
+              Next Claim
+          </button>
+        </div>
+      </div>
+
     </ion-content>
 </ion-view>

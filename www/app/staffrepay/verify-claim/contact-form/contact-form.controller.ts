@@ -19,7 +19,7 @@ class ContactFormController {
     	this.user.email = "alejandro@hackpartners.com";
     	this.user.phone = "07926925347";
     	this.user.postCode = "N1 9PR";
-    	this.user.compensation = "Bank";
+    	this.user.compensation = "CHEQUE";
 
     }
 

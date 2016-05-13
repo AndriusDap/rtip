@@ -6,7 +6,7 @@ export module StaffRepay {
 class TicketFormController {
 
     public titleOptions = ["Mr.", "Mrs.", "Miss.", "Mr. & Mrs.", "Ms.", "Dr.", "Professor", "Other"];
-    public ticketTypeOptions = ["Off-peak Day Single", "Off-peak Day Return", "Off-peak Return", "Off-peak Single", "Anytime Single", "Anytime Return", "Advance Single", "Anytime Day Single", "Anytime Day Return", "Annual Season Ticket", "Season Ticket"];
+    public ticketTypeOptions = ["off-peak day single", "off-peak day return", "off-peak return", "off-peak single", "anytime single", "anytime return", "advance single", "anytime day single", "anytime day return", "annual season ticket", "season ticket"];
 
     public ticketImage64: string;
     public ticket;
@@ -20,13 +20,15 @@ class TicketFormController {
         "ClaimService",
         "$ionicLoading",
         "$stateParams",
-        "$state"];
+        "$state",
+        "$ionicPopup"];
 
     constructor(
             private claimService: ClaimService,
             private $ionicLoading,
             private $stateParams,
-            private $state) {
+            private $state,
+            private $ionicPopup) {
         
         this.$ionicLoading.show({
             template: "Loading claim..."
@@ -71,7 +73,7 @@ class TicketFormController {
         return this.verifications.identification === true &&
                 this.verifications.cost === true &&
                 this.verifications.ticketClass === true &&
-                this.verifications.ticketType === true &&
+                this.verifications.type === true &&
                 this.verifications.fromDate === true &&
                 this.verifications.toDate === true;
 
@@ -101,13 +103,21 @@ class TicketFormController {
         this.claimService.updateTicket(this.claimId, this.ticket)
             .then((response) => {
 
-                console.log(response);
+                var status = response.status;
 
-                if(this.duplicateIdentification) {
-                    this.$state.go("app.staffrepay.success");
+                if(status === "SUCCESS") {
+                    if(this.duplicateIdentification) {
+                        this.$state.go("app.staffrepay.success");
+                    }
+                    else {
+                        this.$state.go("app.staffrepay.claim", { "claimId": this.claimId });
+                    }
                 }
                 else {
-                    this.$state.go("app.staffrepay.claim");
+                    $ionicPopup.alert({
+                        title: 'Error',
+                        template: 'There has been an error. Please contact the technical team.'
+                    });
                 }
             });
 

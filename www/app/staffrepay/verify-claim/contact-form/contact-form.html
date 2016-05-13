@@ -1,85 +1,110 @@
 <ion-view class="outstanding-claims-list" view-title="Outstanding Claims List" align-title="left">
     <ion-content>
-       	<div class="col-sm-6">
-	        <div class="list">
-				<md-select ng-model="$ctrl.user.title" 
-						class="ng-pristine ng-valid ng-touched" 
-						tabindex="0" 
-						role="listbox" 
-						aria-owns="title_input" 
-						placeholder="Title"
-						aria-invalid="false" >
-					<md-option ng-value="opt" ng-repeat="opt in $ctrl.titleOptions">{{ opt }}</md-option>
-				</md-select>
-				<md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
-					<label for="first_name_input">First name</label>
-					<input ng-model="$ctrl.user.firstName" 
-							class="ng-pristine ng-untouched ng-valid md-input" 
-							ng-required="true" 
-							type="text"
-							id="first_name_input" 
-							aria-invalid="false">
-					<div class="md-errors-spacer"></div>
-				</md-input-container>
-				<md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
-					<label for="last_name_input">Last name</label>
-					<input ng-model="$ctrl.user.lastName" 
-							class="ng-pristine ng-untouched ng-valid md-input" 
-							ng-required="true" 
-							type="text"
-							id="last_name_input" 
-							aria-invalid="false">
-					<div class="md-errors-spacer"></div>
-				</md-input-container>
 
-				<md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
-					<label for="invalid">Email</label>
-					<input ng-model="$ctrl.user.email" 
-							class="ng-pristine ng-untouched ng-valid md-input" 
-							ng-required="true" 
-							type="text"
-							id="email_input" 
-							aria-invalid="false">
-					<div class="md-errors-spacer"></div>
-				</md-input-container>
-				<md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
-					<label for="phone_input">Contact number</label>
-					<input ng-model="$ctrl.user.phone" 
-							class="ng-pristine ng-untouched ng-valid md-input" 
-							ng-required="true" 
-							type="text"
-							id="phone_input" 
-							aria-invalid="false">
-					<div class="md-errors-spacer"></div>
-				</md-input-container>
-				<md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
-					<label for="postcode_input">Postcode</label>
-					<input ng-model="$ctrl.user.postCode" 
-							class="ng-pristine ng-untouched ng-valid md-input" 
-							ng-required="true" 
-							type="text"
-							id="postcode_input" 
-							aria-invalid="false">
-					<div class="md-errors-spacer"></div>
-				</md-input-container>
+		<div class="form-container col-md-6">
+			<div class="form-container-inner">
+				
+				<div class="form-title"> Contact Form </div>
+		        <div class="list">
+					<br style="clear: both">
+					<label for="title_input" style="float:left">Title</label>
+					<div style="clear: both"></div>
+					<md-select ng-model="$ctrl.user.title" 
+							class="ng-pristine ng-valid ng-touched col-md-4 " 
+							tabindex="0" 
+							id="title_input"
+							role="listbox" 
+							aria-owns="title_input" 
+							placeholder="Title"
+							aria-invalid="false" >
+						<md-option ng-value="opt" ng-repeat="opt in $ctrl.titleOptions">{{ opt }}</md-option>
+					</md-select>
+					<br style="clear: both">
+					<md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
+						<label for="first_name_input">First name</label>
+						<input ng-model="$ctrl.user.firstName" 
+								class="ng-pristine ng-untouched ng-valid md-input" 
+								ng-required="true" 
+								type="text"
+								id="first_name_input" 
+								aria-invalid="false">
+						<div class="md-errors-spacer"></div>
+					</md-input-container>
+					<md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
+						<label for="last_name_input">Last name</label>
+						<input ng-model="$ctrl.user.lastName" 
+								class="ng-pristine ng-untouched ng-valid md-input" 
+								ng-required="true" 
+								type="text"
+								id="last_name_input" 
+								aria-invalid="false">
+						<div class="md-errors-spacer"></div>
+					</md-input-container>
 
-				<md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
-					<md-radio-group ng-model="$ctrl.user.compensation">
-						<md-radio-button value="Voucher" class="md-primary">Rail Travel Voucher</md-radio-button>
-						<md-radio-button value="Cheque">Cheque</md-radio-button>
-						<md-radio-button value="Bank">Bank transfer</md-radio-button>
-				    </md-radio-group>
-				</md-input-container>
+					<md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
+						<label for="invalid">Email</label>
+						<input ng-model="$ctrl.user.email" 
+								class="ng-pristine ng-untouched ng-valid md-input" 
+								ng-required="true" 
+								type="text"
+								id="email_input" 
+								aria-invalid="false">
+						<div class="md-errors-spacer"></div>
+					</md-input-container>
+					<md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
+						<label for="phone_input">Contact number</label>
+						<input ng-model="$ctrl.user.phone" 
+								class="ng-pristine ng-untouched ng-valid md-input" 
+								ng-required="true" 
+								type="text"
+								id="phone_input" 
+								aria-invalid="false">
+						<div class="md-errors-spacer"></div>
+					</md-input-container>
+					<md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
+						<label for="postcode_input">Postcode</label>
+						<input ng-model="$ctrl.user.postCode" 
+								class="ng-pristine ng-untouched ng-valid md-input" 
+								ng-required="true" 
+								type="text"
+								id="postcode_input" 
+								aria-invalid="false">
+						<div class="md-errors-spacer"></div>
+					</md-input-container>
+
+					<md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
+						<md-radio-group ng-model="$ctrl.user.compensation">
+							<md-radio-button value="CHEQUE">Cheque</md-radio-button>
+							<md-radio-button value="VOUCHER" class="md-primary">Rail Travel Voucher</md-radio-button>
+					    </md-radio-group>
+					</md-input-container>
+		        </div>
+
+		        <div>
+		            <button ui-sref="app.staffrepay.success" class="button button-full button-assertive ink">Submit for payment</button>
+		        </div>
 	        </div>
+        </div>
 
-	        <div>
-	            <button ui-sref="app.staffrepay.success" class="button button-full button-assertive ink">Submit for payment</button>
-	        </div>
+			
+		<div class="form-container col-md-6">
+			<div class="form-container-inner">
+				
+				<div class="form-title"> Commuter Map</div>
 
-	        <br>
-	        <br>
-	        <br>
-	        <br>
-	    </div>
+					<ng-map 
+			        		class="event-map"
+		        			zoom="16" 
+		        			pan-control="false"
+		        			map-type-control="false"
+		        			zoom-control="false"
+		        			center="N1 9PR">
+						<marker animation="Animation.BOUNCE"
+								position="N1 9PR"></marker>
+		        	</ng-map>
+				</div>	
+			</div>
+		</div>
+
     </ion-content>
 </ion-view>

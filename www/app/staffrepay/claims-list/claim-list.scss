@@ -1,16 +1,22 @@
-$outstanding-color: #548EE8;
-$rejected-color: #9B0400;
-$accepted-color: #209170;
+
+@import "colors.scss";
 
 .outstanding-claims-list {
 
+	background-color: #F1F4F4;
+	margin-top: 0px !important;
+
+	.claims-list-margin-top {
+		padding-top: 20px !important;
+	}
+
 	.claim-item {
-		background-color: #D0E0F8;
+		background-color: $outstanding-color;
 		margin-bottom:35px;
 		padding-top: 25px;
 
 		&:hover {
-			background-color: #649CED;
+			background-color: lighten($outstanding-color, 20);
 			cursor: pointer;
 		}
 
@@ -39,39 +45,6 @@ $accepted-color: #209170;
 			}
 		}
 
-	}
-	.metrics-container {
-		text-align: center;
-		line-height: 3em;
-
-		.metric-container {
-			margin-top: 40px;
-
-			.title {
-				font-size: 18px;
-			}
-
-			.subtitle {
-				font-size: 22px;
-			}
-			
-			.metric {
-				font-size: 30px;
-			}
-
-			&.claim-outstanding {
-				color: $outstanding-color;
-			}
-			&.claim-rejected { 
-				color: $rejected-color;
-			}
-			&.claim-accepted {
-				color: $accepted-color;
-			}
-			&.claim-paid {
-				color: black;
-			}
-		}
 	}
 
 	.outstanding-btn {

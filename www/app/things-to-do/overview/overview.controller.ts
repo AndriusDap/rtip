@@ -1,5 +1,7 @@
 'use strict';
 
+declare var google:any;
+
 module RailTech {
 export module ThingsToDo {
 
@@ -132,7 +134,14 @@ export class OverviewController {
             var price = '<div class="event-cost col-xs-2"> £' + Math.floor(info.price) + '</div>';
 
             google.maps.event.addListener(marker, 'click', () => {
-                infoWindow.setContent('<div>' + price + titleLink + content + theme + time + '</div>' + '<div class="map-info-window-expander"></div>');
+                var buttonGroup = '<div class="col-xs-12 event-next-steps-button-group"><a href="/#app/thingsToDo/event/' + info.id + '" '
+                                    + '" class="col-xs-3 more-info next-steps-button hidden-link"> Info </a> <a href="'
+                                    + this.createTrainTicketsUrl()
+                                    + '" class="col-xs-6 book-train next-steps-button hidden-link"> Book Train </a> <a href="'
+                                    + info.website
+                                    + '" target="_blank" class="col-xs-3 book-event next-steps-button hidden-link"> Event </a> </div>';
+
+                infoWindow.setContent('<div>' + price + titleLink + content + theme + time + '</div>' + '<div class="map-info-window-expander"></div>' + buttonGroup);
                 infoWindow.open(this.map, marker);
 
                 this.populateRoute(marker);
@@ -144,6 +153,17 @@ export class OverviewController {
         for (var i = 0; i < this.visibleEvents.length; i++) {
             this.visibleEvents[i].marker = createMarker(this.visibleEvents[i].event, this.visibleEvents[i].travel_time);
         }
+    }
+
+    private createTrainTicketsUrl() {
+
+        var toc = this.$rootScope.toc || "GWR";
+        var toc = toc.toUpperCase();
+
+        var url = this.thingsToDoService.createTrainTicketsUrl(toc);
+        console.log(url);
+
+        return url;
     }
 
     openInfoWindow(selectedMarker) {

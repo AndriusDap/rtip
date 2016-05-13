@@ -26,7 +26,7 @@ angular.module('staffrepay')
             })
 
             .state('app.staffrepay.claim', {
-                url: '/claim',
+                url: '/claim/:claimId',
                 templateUrl: 'app/staffrepay/verify-claim/claim-form/claim-form.html',
                 controller: 'staffrepay.ClaimFormController as $ctrl'
             })

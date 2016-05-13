@@ -7,7 +7,7 @@ export class TicketUploadService {
     private modal;
     private claims;
 
-    private delayClaimUrl = '/api/ticket/delayClaim';
+    private delayClaimUrl = 'http://localhost:3000/delayClaim';
 
     static $inject = [
         "$rootScope",

@@ -125,7 +125,7 @@ $padding-event-sides: 30px;
 		.item {
 			color: black;
 			float:right;
-			height:180px;
+			height:160px;
 			background-size:cover;
 			background-position:center;
 			// margin-bottom: 10px;
@@ -138,15 +138,15 @@ $padding-event-sides: 30px;
 				transition: background-image 0.5s;
 			}
 
-			&:hover .event-next-steps-button-group .hidden-link {
-				display: block !important;
-			}
+			// &:hover .event-next-steps-button-group .hidden-link {
+			// 	display: block !important;
+			// }
 
-			.event-next-steps-button-group {
-				.hidden-link {
-					display: none;
-				}
-			}
+			// .event-next-steps-button-group {
+			// 	.hidden-link {
+			// 		display: none;
+			// 	}
+			// }
 			
 			.image-container {
 				height: 100px;
@@ -180,7 +180,7 @@ $padding-event-sides: 30px;
 
 			.event-travel-time {
 				position: absolute;
-				bottom: $padding-event-top;
+				bottom: 20px;;
 				right: $padding-event-sides;
 				font-weight: 900;
 				font-size: 1.2em;
@@ -234,8 +234,25 @@ $padding-event-sides: 30px;
 
 		.marker-title {
 			font-size: 1.4em;
-			overflow: hidden;
+			overflow: display;
 			height: 10px;
+		}
+
+		.event-next-steps-button-group {
+			text-align: center;
+			bottom: 0px;
+			height: 30px;
+			padding-top:5px;
+
+			a {
+				text-decoration: none;
+				color: #548AFF;
+
+				&:hover, &:active {
+					color: #33559E;
+					border: 1px solid #33559E;
+				}
+			}
 		}
 	}
 

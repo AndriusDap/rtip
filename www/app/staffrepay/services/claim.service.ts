@@ -40,6 +40,7 @@ export class ClaimService {
                 if (response.data.length === 0) {
                     return deferred.resolve(null);
                 }
+                console.log(response);
                 
                 var ticketResponse = response.data[0].journey;
                 var img64bits = ticketResponse.image_64.split(",");

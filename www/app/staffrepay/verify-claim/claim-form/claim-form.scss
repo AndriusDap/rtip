@@ -1,20 +1,18 @@
-.staffrepay-claim-form {
-	.claim-header-bar {
-		top:0px;
-		padding: 15px 30px;
-		height:60px;
-		text-align: center;
 
-		h2 {
-			width:100%;
-		}
+@import "colors.scss";
+
+.staffrepay-claim-form {
+	background-color: #F1F4F4;
+
+	.claim-form-content {
+		margin-top: 50px;
 	}
 
-	.form-content {
-		margin-top:90px;
+	.form-container {
+		margin-top: 0px;
 
-		.form-search-container {
-			height: 40vh;
+		.form-title {
+			margin-bottom: 20px;
 		}
 	}
 	
@@ -35,42 +33,6 @@
 		}
 	}
 
-	.claim-ticket {
-		border-radius: 50px;
-		background-color: #FDEFDE;
-		margin-top:5px;
-		padding: 100px 0;
+	
 
-		&:hover {
-			background-color: #FD4A00;
-		}
-
-		.claim-item-container {
-			background-color: #FFFFFF;
-			padding: 25px;
-			:after { content:""; clear:both; display:block; }
-
-			.claim-field-container {
-				margin-top: 50px;
-
-				.claim-label {
-					font-size: 1.2em;
-					color: #8D9297;
-				}
-				.claim-field {
-					padding: 10px;
-					font-size: 2em;
-				}
-			}
-
-			.claim-id {
-				font-weight: bold;
-				float:right;
-				background-color: #D0D0D0;
-				padding: 0 8px;
-			}
-
-
-		}
-	}
 }

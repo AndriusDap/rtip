@@ -129,6 +129,147 @@ p {
   }
 }
 
+
+.form-container {
+    margin-top: 50px;
+    text-align: center;
+
+  .form-container-inner {
+    background-color: white;
+    width: 90%;
+    margin: auto auto;
+    display: inline-block;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
+
+    .form-container-inner-ticket {
+      padding: 20px 20px 20px 20px;
+
+      .ticket-image {
+        width: 100%;
+      }
+    }   
+
+    .list {
+      width: 90%;
+      margin: auto auto;
+    }
+
+    .form-title {
+      color: white;
+      font-size:2em;
+      line-height: 2em;
+      text-align: center;
+      background-color: $outstanding-color;
+    }
+  }
+}
+
+.chart-container {
+    float: left;
+    background-color:transparent;
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+    height: 400px;
+
+    &.chart-container-short {
+      height: 200px !important;
+    }
+  
+    .chart-inner-container {
+      height: 95%;
+      overflow:hidden;
+      margin: auto auto;
+      background-color: white;
+      box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
+
+      &.left-border-outstanding {
+        border-left: 6px solid $outstanding-color;
+
+        &:hover {
+          border-left: 6px solid lighten($outstanding-color, 30);
+        }       
+      }
+      &.left-border-rejected {
+        border-left: 6px solid $rejected-color;
+
+        &:hover {
+          border-left: 6px solid lighten($rejected-color, 20);
+        }
+      }
+      &.left-border-accepted {
+        border-left: 6px solid $accepted-color;
+
+        &:hover {
+          border-left: 6px solid lighten($accepted-color, 20);
+        }
+      }
+      &.left-border-neutral {
+        border-left: 6px solid #000000;
+
+        &:hover {
+          border-left: 6px solid #808080;
+        }
+      }
+
+      .container-speed {
+        height: 300px !important;
+      }
+
+      .activity-chart {
+        height: 100%;
+      }
+
+
+      .metric-container {
+        margin-top: 10px;
+        line-height: 5em;
+        text-align: center;
+
+        .title {
+          font-size: 38px;
+        }
+
+        .subtitle {
+          font-size: 2em;
+          font-weight: 900;
+        }
+        
+        .metric {
+          font-size: 60px;
+          font-weight:900;
+        }
+
+        .small-metric {
+          font-size: 30px;
+          font-weight:900;
+        }
+
+        &.claim-outstanding {
+          color: $outstanding-color;
+        }
+        &.claim-rejected { 
+          color: $rejected-color;
+        }
+        &.claim-accepted {
+          color: $accepted-color;
+        }
+        &.claim-paid {
+          color: black;
+        }
+      }
+    }
+  }
+
+  .chart-container-half {
+    width: 50%;
+  }
+  .chart-container-full {
+    width: 100%;
+  }
+  .chart-container-quarter {
+    width: 25%;
+  }
+
 .has-header {
   top:0px;
 }

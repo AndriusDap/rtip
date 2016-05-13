@@ -1,11 +1,11 @@
 <ion-view class="staffrepay-claim-form" view-title="Outstanding Claims List" align-title="left">
-	<ion-header-bar align-title="left" class="claim-header-bar">
-		<h2>Total Repay: £ {{ $ctrl.calculateRepay() || "0.0" }}</h2>
-	</ion-header-bar>
-    <ion-content class="form-content">
-       	<div class="col-xs-12">
-			<div class="col-lg-4 col-md-6">
-				<div class="form-search-containe">
+    <ion-content class="claim-form-content">
+		<div class="col-lg-4 col-md-6">
+			<div class="form-container">
+				<div class="form-container-inner">
+					
+					<div class="form-title">Journey Validation</div>
+
 					<md-input-container class="md-block flex-gt-sm col-xs-12" flex-gt-sm="">
 						<label for="station_departing_input">Departing station</label>
 						<input ng-model="$ctrl.journey.fromStation" 
@@ -40,142 +40,128 @@
 								class="md-input">
 					</md-input-container>
 					
-							        <button ng-click="$ctrl.search()"
-							                class="button  button-energized ink col-xs-12">
-							            Search
-							        </button>
-				</div>
-
-	        	<div class="staffrepay-text-input-group">
-					<md-input-container class="col-md-12 pull-left md-block flex-gt-sm journey-found-list">
-						<md-radio-group ng-model="$ctrl.journeySelected" class="">
-							<h4 ng-show="!$ctrl.journeysFound.length">
-								No journeys found! Please click on search
-							</h4>
-							<md-radio-button ng-repeat="journey in $ctrl.journeysFound"
-											ng-value="journey" 
-											class="md-primary journey-found-container" 
-											aria-label="Journey">
-								<div class="col-xs-12">
-									<div class="col-xs-6">
-										<div class="col-xs-12">Departure</div>
-										<div class="col-xs-12">{{ journey.fromDatetime | limitTo: 5: 11 }}</div>
+			        <button ng-click="$ctrl.search()"
+			                class="button  button-energized ink col-xs-12">
+			            Search
+			        </button>
+				
+		        	<div class="staffrepay-text-input-group">
+						<md-input-container class="col-md-12 pull-left md-block flex-gt-sm journey-found-list">
+							<md-radio-group ng-model="$ctrl.journeySelected" class="">
+								<h4 ng-show="!$ctrl.journeysFound.length">
+									No journeys found! Please click on search
+								</h4>
+								<md-radio-button ng-repeat="journey in $ctrl.journeysFound"
+												ng-value="journey" 
+												class="md-primary journey-found-container" 
+												ng-init="$index==0?($ctrl.journeySelected=journey):''"
+												aria-label="Journey">
+									<div class="col-xs-12">
+										<div class="col-xs-6">
+											<div class="col-xs-12">Departure</div>
+											<div class="col-xs-12">{{ journey.fromDatetime | date: "HH:mm" }}</div>
+										</div>
+										<div class="col-xs-6">
+											<div class="col-xs-12">Delay</div>
+											<div class="col-xs-12" ng-class="{ 'journey-delayed': journey.delay > 0 }">{{ journey.delay }} mins</div>
+										</div>
 									</div>
-									<div class="col-xs-6">
-										<div class="col-xs-12">Delay</div>
-										<div class="col-xs-12" ng-class="{ 'journey-delayed': journey.delay > 0 }">{{ journey.delay }} mins</div>
-									</div>
-								</div>
-								<br>
-								<br>
-								<hr>
-							</md-radio-button>
-					    </md-radio-group>
-					</md-input-container>
+									<br>
+									<br>
+									<hr>
+								</md-radio-button>
+						    </md-radio-group>
+						</md-input-container>
+					</div>
+				
+				
+					<button ui-sref="app.staffrepay.contact(1)" 
+						        		ng-disabled="!$ctrl.verifyInputs()"
+						                class="button button-full button-balanced ink sticky-footer">
+			            Confirm
+			        </button>
 				</div>
-
-
-				<button ui-sref="app.staffrepay.contact(1)" 
-		        		ng-disabled="!$ctrl.verifyInputs()"
-		                class="button button-full button-balanced ink sticky-footer">
-		            Confirm
-		        </button>
 			</div>
-
-			<div class="col-lg-8 col-md-6 hide-sm">
-				<div class="claim-ticket">
-					<div class="claim-item-container">
-						<div class="col-xs-4 claim-field-container">
-							<div class="claim-label">
-								Class
-							</div>
-							<div class="claim-field">
-								{{ $ctrl.ticket.class }}
-							</div>
-						</div>
-						<div class="col-xs-4 claim-field-container">
-							<div class="claim-label">
-								Type
-							</div>
-							<div class="claim-field">
-								{{ $ctrl.ticket.type }}
-							</div>
-						</div>
-						<div class="col-xs-4 claim-field-container">
-							<div class="claim-label">
-								Identification
-							</div>
-							<div class="claim-field">
-								{{ $ctrl.ticket.identification }}
-							</div>
-						</div>
-						<div class="claim-id">
-							Claim #{{ $ctrl.claim.id }}
-						</div>
-
-						<br>
-						<div class="col-xs-6 claim-field-container">
-							<div class="claim-label">
-								Valid From
-							</div>
-							<div class="claim-field">
-								{{ $ctrl.ticket.fromDate | date: "dd/MM/yyyy" }}
-							</div>
-						</div>
-						<div class="col-xs-6 claim-field-container">
-							<div class="claim-label">
-								Valid until
-							</div>
-							<div class="claim-field">
-								{{ $ctrl.ticket.toDate | date: "dd/MM/yyyy" }}
-							</div>
-						</div>
-
-						<br>
-						<div class="col-xs-6 claim-field-container">
-							<div class="claim-label">
-								From
-							</div>
-							<div class="claim-field">
-								{{ $ctrl.claim.from }}
-							</div>
-						</div>
-						<div class="col-xs-6 claim-field-container">
-							<div class="claim-label">
-								To
-							</div>
-							<div class="claim-field">
-								{{ $ctrl.claim.from }}
-							</div>
-						</div>
-
-						<br>
-						<div class="col-xs-6 claim-field-container">
-							<div class="claim-label">
-								Journey Date
-							</div>
-							<div class="claim-field">
-								{{ $ctrl.claim.date | date: "dd/MM/yyyy" }}
-							</div>
-						</div>
-						<div class="col-xs-6 claim-field-container">
-							<div class="claim-label">
-								Cost
-							</div>
-							<div class="claim-field">
-								£ {{ $ctrl.calculateRepay() || "0.0" }}
-							</div>
-						</div>
+		</div>
 
 
-						<br>
-						<div class="claim-status">
-							Status: {{ $ctrl.claim.status }}
+		<div class="col-lg-8 hide-sm claims-list-margin-top">
+			<div class="chart-container chart-container-quarter chart-container-short metrics-container">
+				<div class="chart-inner-container left-border-outstanding">
+					<div class="metric-container claim-outstanding">
+						<div class="subtitle">
+							Departure
+						</div>
+						<div class="metric">
+							{{ $ctrl.journeySelected.fromDatetime | date: "HH:mm" }}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="chart-container chart-container-quarter chart-container-short metrics-container">
+				<div class="chart-inner-container left-border-rejected">
+					<div class="metric-container claim-rejected">
+						<div class="subtitle">
+							Delay
+						</div>
+						<div class="metric">
+							{{ $ctrl.journeySelected.delay }}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="chart-container chart-container-quarter chart-container-short metrics-container">
+				<div class="chart-inner-container left-border-accepted">
+					<div class="metric-container claim-accepted">
+						<div class="subtitle">
+							Delay Code
+						</div>
+						<div class="metric">
+							{{ $ctrl.journeySelected.delayCode || "N/A" }}
+						</div>
+					</div>
+				</div>
+			</div>
+		
+			<div class="chart-container chart-container-quarter chart-container-short metrics-container">
+				<div class="chart-inner-container left-border-neutral">
+					<div class="metric-container claim-paid">
+						<div class="subtitle">
+							Total Refund
+						</div>
+						<div class="metric">
+							£ {{ $ctrl.calculateRepay() }}
 						</div>
 					</div>
 				</div>
 			</div>
 
-	    </div>
+			<div class="chart-container chart-container-quarter chart-container-short metrics-container">
+				<div class="chart-inner-container left-border-neutral">
+					<div class="metric-container claim-neutral">
+						<div class="subtitle">
+							Service
+						</div>
+						<div class="small-metric">
+							{{ $ctrl.journeySelected.serviceId }}
+						</div>
+					</div>
+				</div>
+			</div>
+		
+			<div class="chart-container chart-container-quarter chart-container-short metrics-container">
+				<div class="chart-inner-container left-border-neutral">
+					<div class="metric-container claim-paid">
+						<div class="subtitle">
+							Ticket Cost
+						</div>
+						<div class="metric">
+							£ {{ $ctrl.ticket.cost }}
+						</div>
+					</div>
+				</div>
+			</div>
+        </div>	
+
     </ion-content>
 </ion-view>

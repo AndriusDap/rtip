@@ -1,136 +1,142 @@
 <ion-view class="outstanding-claims-list" view-title="Outstanding Claims List" align-title="left">
     <ion-content>
 		
-		
-        <ion-scroll scroll="false" class="col-md-6 ticket-container">
-   		 	<img class="ticket-image" src="data:image/png;base64,{{ $ctrl.ticketImage64 }}" />
-        </ion-scroll>
-
-		<ion-scroll class="form-container" class="col-md-6">
-			<br>
-			<h2> Tick the boxes if accurate. Otherwise modify the inputs until they are correct.</h2>
-			<br>
-	        <div class="list">
-	        	<div class="staffrepay-text-input-group ticket-identification-container" 
-	        			ng-class="{ 'warning-input': $ctrl.verifications.identification && $ctrl.duplicateIdentification }">
-	        		<div class="warning-message"
-        					>
-						There's another claim with the same number. This will be rejected.
-        			</div>
-	        		<md-checkbox ng-model="$ctrl.verifications.identification"
-	        						ng-disabled="!$ctrl.ticket.identification" 
-        							class="col-xs-5 md-primary staffrepay-checkbox"
-        							ng-change="$ctrl.verifyIdentification($ctrl.ticket.identification)">
-						Ticket number / identification correct?
-					</md-checkbox>
-					<md-input-container class="md-block col-xs-6 col-xs-offset-1 flex-gt-sm" flex-gt-sm="">
-						<label for="journey_cost_input">Ticket number / identification</label>
-						<input ng-model="$ctrl.ticket.identification" 
-								ng-disabled="$ctrl.verifications.identification"
-								class="ng-pristine ng-untouched ng-valid md-input" 
-								ng-required="true" 
-								type="number"
-								id="journey_cost_input" 
-								aria-invalid="false">
-						<div class="md-errors-spacer"></div>
-					</md-input-container>
-				</div>
-		
-		
-			        	<div class="staffrepay-text-input-group">
-			        		<md-checkbox ng-model="$ctrl.verifications.cost" 
-			        						ng-disabled="!$ctrl.ticket.cost"
-		        					class="col-xs-5 md-primary staffrepay-checkbox">
-							Ticket cost correct?
-					</md-checkbox>
-					<md-input-container class="md-block col-xs-6 col-xs-offset-1 flex-gt-sm" flex-gt-sm="">
-						<label for="journey_cost_input">Cost of ticket (£)</label>
-						<input ng-model="$ctrl.ticket.cost" 
-								ng-disabled="$ctrl.verifications.cost"
-								class="ng-pristine ng-untouched ng-valid md-input" 
-								ng-required="true" 
-								type="number"
-								id="journey_cost_input" 
-								aria-invalid="false">
-						<div class="md-errors-spacer"></div>
-					</md-input-container>
-				</div>
-		
-		
-	        	<div class="staffrepay-text-input-group">
-	        		<md-checkbox ng-model="$ctrl.verifications.ticketClass" 
-        						ng-disabled="!$ctrl.ticket.class"
-	        					class="col-xs-5 md-primary staffrepay-checkbox">
-							Ticket class correct?
-					</md-checkbox>
-					<md-input-container class="col-xs-6 col-xs-offset-1 md-block flex-gt-sm" flex-gt-sm="">
-						<md-radio-group ng-model="$ctrl.ticket.class"
-										ng-disabled="$ctrl.verifications.ticketClass">
-							<md-radio-button value="STANDARD" class="md-primary">Standard</md-radio-button>
-							<md-radio-button value="FIRST_CLASS">First class</md-radio-button>
-					    </md-radio-group>
-					</md-input-container>
-				</div>
-		
-		
-	        	<div class="staffrepay-text-input-group">
-	        		<md-checkbox ng-model="$ctrl.verifications.ticketType" 
-	        						ng-disabled="!$ctrl.ticket.type"
-		        					class="col-xs-5 md-primary staffrepay-checkbox">
-							Ticket type correct?
-					</md-checkbox>
-					<md-select ng-model="$ctrl.ticket.type" 
-							class="col-xs-6 col-xs-offset-1 ng-pristine ng-valid ng-touched" 
-							tabindex="0" 
-							ng-disabled="$ctrl.verifications.ticketType"
-							role="listbox" 
-							id="journey_ticket_type_input"
-							aria-invalid="false" >
-						<md-option ng-value="opt" ng-repeat="opt in $ctrl.ticketTypeOptions">{{ opt }}</md-option>
-					</md-select>
-				</div>
-		
-		
-	        	<div class="staffrepay-text-input-group">
-	        		<md-checkbox ng-model="$ctrl.verifications.fromDate" 
-	        						ng-disabled="!$ctrl.ticket.fromDate"
-		        					class="col-xs-5 md-primary staffrepay-checkbox">
-							Ticket initial valid date correct?
-					</md-checkbox>
-					<md-input-container class="md-block flex-gt-sm col-xs-6 col-xs-offset-1" flex-gt-sm="">
-						<label for="journey_valid_from_date_input">Valid from date</label>
-						<input mdc-datetime-picker="" 
-								date="true" 
-								time="false"
-								type="text" 
-								id="journey_valid_from_date_input"  
-								ng-disabled="$ctrl.verifications.fromDate"
-								ng-model="$ctrl.ticket.fromDate" 
-								class="md-input">
-					</md-input-container>
-				</div>
-		
-		
-	        	<div class="staffrepay-text-input-group">
-	        		<md-checkbox ng-model="$ctrl.verifications.toDate" 
-	        						ng-disabled="!$ctrl.ticket.toDate"
-		        					class="col-xs-5 md-primary staffrepay-checkbox">
-							Ticket expiry date correct?
-					</md-checkbox>
-					<md-input-container class="md-block flex-gt-sm col-xs-6 col-xs-offset-1" flex-gt-sm="">
-						<label for="journey_valid_to_date_input">Valid to date</label>
-						<input mdc-datetime-picker="" 
-								date="true" 
-								time="false"
-								type="text" 
-								id="journey_valid_to_date_input"  
-								ng-model="$ctrl.ticket.toDate" 
-								ng-disabled="$ctrl.verifications.toDate"
-								class="md-input">
-					</md-input-container>
+		<div class="form-container col-md-6">
+			<div class="form-container-inner">
+				<div class="form-title"> Ticket Image</div>
+				<div class="form-container-inner-ticket">
+        			<ion-scroll scroll="false" class="ticket-container">
+	   		 			<img class="ticket-image" src="data:image/png;base64,{{ $ctrl.ticketImage64 }}" />
+        			</ion-scroll>
 				</div>
 			</div>
-		</ion-scroll>
+		</div>
+
+		<div class="form-container col-md-6">
+			<div class="form-container-inner">
+				<div class="form-title"> Ticket Validation Form</div>
+					        <div class="list">
+					        	<div class="staffrepay-text-input-group ticket-identification-container" 
+					        			ng-class="{ 'warning-input': $ctrl.verifications.identification && $ctrl.duplicateIdentification }">
+					        		<div class="warning-message"
+				        					>
+							There's another claim with the same number. This will be rejected.
+				        			</div>
+					        		<md-checkbox ng-model="$ctrl.verifications.identification"
+					        						ng-disabled="!$ctrl.ticket.identification" 
+				        							class="col-xs-5 md-primary staffrepay-checkbox"
+				        							ng-change="$ctrl.verifyIdentification($ctrl.ticket.identification)">
+							Ticket number / identification correct?
+						</md-checkbox>
+						<md-input-container class="md-block col-xs-6 col-xs-offset-1 flex-gt-sm" flex-gt-sm="">
+							<label for="journey_cost_input">Ticket number / identification</label>
+							<input ng-model="$ctrl.ticket.identification" 
+									ng-disabled="$ctrl.verifications.identification"
+									class="ng-pristine ng-untouched ng-valid md-input" 
+									ng-required="true" 
+									type="number"
+									id="journey_cost_input" 
+									aria-invalid="false">
+							<div class="md-errors-spacer"></div>
+						</md-input-container>
+					</div>
+						
+						
+				        	<div class="staffrepay-text-input-group">
+				        		<md-checkbox ng-model="$ctrl.verifications.cost" 
+				        						ng-disabled="!$ctrl.ticket.cost"
+						        					class="col-xs-5 md-primary staffrepay-checkbox">
+								Ticket cost correct?
+						</md-checkbox>
+						<md-input-container class="md-block col-xs-6 col-xs-offset-1 flex-gt-sm" flex-gt-sm="">
+							<label for="journey_cost_input">Cost of ticket (£)</label>
+							<input ng-model="$ctrl.ticket.cost" 
+									ng-disabled="$ctrl.verifications.cost"
+									class="ng-pristine ng-untouched ng-valid md-input" 
+									ng-required="true" 
+									type="number"
+									id="journey_cost_input" 
+									aria-invalid="false">
+							<div class="md-errors-spacer"></div>
+						</md-input-container>
+					</div>
+						
+						
+					        	<div class="staffrepay-text-input-group">
+					        		<md-checkbox ng-model="$ctrl.verifications.ticketClass" 
+				        						ng-disabled="!$ctrl.ticket.class"
+					        					class="col-xs-5 md-primary staffrepay-checkbox">
+								Ticket class correct?
+						</md-checkbox>
+						<md-input-container class="col-xs-6 col-xs-offset-1 md-block flex-gt-sm" flex-gt-sm="">
+							<md-radio-group ng-model="$ctrl.ticket.class"
+											ng-disabled="$ctrl.verifications.ticketClass">
+								<md-radio-button value="STANDARD" class="md-primary">Standard</md-radio-button>
+								<md-radio-button value="FIRST_CLASS">First class</md-radio-button>
+						    </md-radio-group>
+						</md-input-container>
+					</div>
+						
+						
+					        	<div class="staffrepay-text-input-group">
+					        		<md-checkbox ng-model="$ctrl.verifications.type" 
+					        						ng-disabled="!$ctrl.ticket.type"
+						        					class="col-xs-5 md-primary staffrepay-checkbox">
+								Ticket type correct?
+						</md-checkbox>
+						<md-select ng-model="$ctrl.ticket.type" 
+								class="col-xs-6 col-xs-offset-1 ng-pristine ng-valid ng-touched" 
+								tabindex="0" 
+								ng-disabled="$ctrl.verifications.type"
+								role="listbox" 
+								id="journey_ticket_type_input"
+								aria-invalid="false" >
+							<md-option ng-repeat="opt in $ctrl.ticketTypeOptions" ng-value="opt">{{ opt }}</md-option>
+						</md-select>
+					</div>
+						
+						
+					        	<div class="staffrepay-text-input-group">
+					        		<md-checkbox ng-model="$ctrl.verifications.fromDate" 
+					        						ng-disabled="!$ctrl.ticket.fromDate"
+						        					class="col-xs-5 md-primary staffrepay-checkbox">
+								Ticket initial valid date correct?
+						</md-checkbox>
+						<md-input-container class="md-block flex-gt-sm col-xs-6 col-xs-offset-1" flex-gt-sm="">
+							<label for="journey_valid_from_date_input">Valid from date</label>
+							<input mdc-datetime-picker="" 
+									date="true" 
+									time="false"
+									type="text" 
+									id="journey_valid_from_date_input"  
+									ng-model="$ctrl.ticket.fromDate" 
+									class="md-input">
+						</md-input-container>
+					</div>
+						
+						
+					        	<div class="staffrepay-text-input-group">
+					        		<md-checkbox ng-model="$ctrl.verifications.toDate" 
+					        						ng-disabled="!$ctrl.ticket.toDate"
+						        					class="col-xs-5 md-primary staffrepay-checkbox">
+								Ticket expiry date correct?
+						</md-checkbox>
+						<md-input-container class="md-block flex-gt-sm col-xs-6 col-xs-offset-1" flex-gt-sm="">
+							<label for="journey_valid_to_date_input">Valid to date</label>
+							<input mdc-datetime-picker="" 
+									date="true" 
+									time="false"
+									type="text" 
+									id="journey_valid_to_date_input"  
+									ng-model="$ctrl.ticket.toDate" 
+									class="md-input">
+						</md-input-container>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
     </ion-content>
 
     <ion-footer-bar class="ticket-form-footer button-footer">

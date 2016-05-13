@@ -69,13 +69,12 @@ class ClaimFormController {
         if(!this.journeySelected) return;
 
         var delay = this.journeySelected.delay;
-        var cost = this.claimService.ticket.cost;
-        var ticketType = this.claimService.ticket.type.toLowerCase();
+        var cost = this.ticket.cost;
+        var ticketType = this.ticket.type.toLowerCase();
         var refund = 0;
 
-        console.log(ticketType);
         if(delay > 120) {
-            refund = this.claimService.ticket.cost;
+            refund = this.ticket.cost;
         }
         else if(delay > 60) {
             if(ticketType.indexOf("return") > -1) {
