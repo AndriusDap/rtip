@@ -140,15 +140,22 @@
     </ion-content>
 
     <ion-footer-bar class="ticket-form-footer button-footer">
-        
-        <div class="col-xs-6">
+
+        <div class="col-xs-4">
         	<button ui-sref="app.staffrepay.success" 
         	        class="button col-xs-6 button-assertive ink sticky-footer">
         	    Reject
         	</button>
         </div>
 
-        <div class="col-xs-6">
+        <div class="col-xs-4">
+        	<button ui-sref="app.staffrepay.success" 
+        	        class="button col-xs-6 button-energized ink sticky-footer">
+        	    Flag
+        	</button>
+        </div>
+
+        <div class="col-xs-4">
         	<button ng-click="$ctrl.submitTicket()" 
         			ng-disabled="!$ctrl.verifyInputs()"
         	        class="button  button-balanced ink sticky-footer">

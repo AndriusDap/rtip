@@ -22,6 +22,8 @@ export class JourneyService {
 
         var d = new Date(fromTime);
         d.setMinutes(d.getMinutes() - 15);
+        console.log(fromTime);
+        console.log(d);
 
         function tPlusOneMin() {
             return d.setMinutes(d.getMinutes() + 7);

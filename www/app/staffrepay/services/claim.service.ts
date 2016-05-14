@@ -20,9 +20,16 @@ export class ClaimService {
     }
 
     public getClaims(claimStatus, pageNumber, limit) {
+
         var deferred = this.$q.defer();
 
-        this.$http.get("http://localhost:3000/delayClaim")
+        var params = {
+            params: {
+                withoutImage: true
+            }
+        }
+
+        this.$http.get("http://localhost:3000/delayClaim", params)
             .then((response) => {
 
                 deferred.resolve(response.data);
@@ -40,30 +47,68 @@ export class ClaimService {
                 if (response.data.length === 0) {
                     return deferred.resolve(null);
                 }
-                console.log(response);
                 
-                var ticketResponse = response.data[0].journey;
-                var img64bits = ticketResponse.image_64.split(",");
+                var delayClaimResponse = response.data[0];
+                console.log(delayClaimResponse);
 
-                var img64 = img64bits[0];
+                var journeyResponse = delayClaimResponse.journey;
+                var claimResponse = delayClaimResponse.claim_validation;
+                var contactResponse = delayClaimResponse.contact_details;
+                var paymentResponse = delayClaimResponse.payment_details;
 
-                if (img64bits.length > 1) {
-                    img64 = img64bits[1];
+                var img64raw = journeyResponse.image_64.split(",");
+                var img64 = img64raw[0];
+
+                if (img64raw.length > 1) {
+                    img64 = img64raw[1];
                 }
 
                 var ticket = {
-                    fromStation: ticketResponse.from_station,
-                    toStation: ticketResponse.to_station,
-                    class: ticketResponse.ticket_class,
-                    type: ticketResponse.ticket_type,
-                    fromDate: ticketResponse.from_date,
-                    toDate: ticketResponse.to_date,
-                    cost: ticketResponse.cost,
-                    journeyDate: ticketResponse.journey_date,
+                    fromStation: journeyResponse.from_station,
+                    toStation: journeyResponse.to_station,
+                    class: journeyResponse.ticket_class,
+                    type: journeyResponse.ticket_type,
+                    fromDate: journeyResponse.from_date,
+                    toDate: journeyResponse.to_date,
+                    cost: journeyResponse.cost,
+                    journeyDate: new Date(journeyResponse.journey_date);
+                };
+
+                var claim = {
+                    delay: claimResponse.delay_length,
+                    id: claimResponse.id,
+                    identifier: claimResponse.journey_identifier,
+                    serviceId: claimResponse.service_id,
+                    status: claimResponse.status,
+                    totalRefund: claimResponse.totalRefund
+                };
+
+                var contact = {
+                    address: contactResponse.address,
+                    email: contactResponse.email,
+                    firstName: contactResponse.first_name,
+                    lastName: contactResponse.last_name,
+                    id: contactResponse.id,
+                    postCode: contactResponse.post_code,
+                    title: contactResponse.title
+                };
+
+                var payment = {
+                    accountNumber: paymentResponse.account_number,
+                    id: paymentResponse.id,
+                    paymentType: paymentResponse.payment_type,
+                    sortCode: paymentResponse.sort_code
+                };
+
+                var delayClaim = {
+                    ticket: ticket,
+                    claim: claim,
+                    contact: contact,
+                    payment: payment,
                     image64: img64
                 };
 
-                deferred.resolve(ticket);
+                deferred.resolve(delayClaim);
             });
 
         return deferred.promise;

@@ -1,0 +1,19 @@
+
+@import "colors.scss";
+
+.outstanding-claims-list {
+
+	.claim-item {
+
+		&.claim-flagged {
+			background-color: $flagged-color;
+
+			&:hover {
+				background-color: lighten($flagged-color, 20);
+				cursor: pointer;
+			}
+		}
+
+	}
+
+}

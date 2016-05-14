@@ -8,7 +8,7 @@
 
 					<md-input-container class="md-block flex-gt-sm col-xs-12" flex-gt-sm="">
 						<label for="station_departing_input">Departing station</label>
-						<input ng-model="$ctrl.journey.fromStation" 
+						<input ng-model="$ctrl.ticket.fromStation" 
 								ng-required="true" 
 								ng-disabled="$ctrl.verifications.fromStation"
 								type="text"
@@ -18,7 +18,7 @@
 					
 					<md-input-container class="md-block flex-gt-sm col-xs-12" flex-gt-sm="">
 						<label for="station_arriving_input">Arriving station</label>
-						<input ng-model="$ctrl.journey.toStation" 
+						<input ng-model="$ctrl.ticket.toStation" 
 								ng-required="true" 
 								ng-disabled="$ctrl.verifications.toStation"
 								type="text"
@@ -34,7 +34,7 @@
 								type="text" 
 								id="journey_date_input"  
 								min-date="date" 
-								ng-model="$ctrl.journey.journeyDate"
+								ng-model="$ctrl.ticket.journeyDate"
 								ng-disabled="$ctrl.verifications.journeyDate"
 								ng-disabled="true"
 								class="md-input">
@@ -75,9 +75,13 @@
 					</div>
 				
 				
-					<button ui-sref="app.staffrepay.contact(1)" 
+					<button ui-sref="app.staffrepay.success" 
+						                class="button col-xs-6 button-assertive ink sticky-footer">
+			            Reject
+			        </button>
+			        <button ui-sref="app.staffrepay.contact(1)" 
 						        		ng-disabled="!$ctrl.verifyInputs()"
-						                class="button button-full button-balanced ink sticky-footer">
+						                class="button col-xs-6 button-balanced ink sticky-footer">
 			            Confirm
 			        </button>
 				</div>

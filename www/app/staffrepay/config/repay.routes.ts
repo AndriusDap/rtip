@@ -37,6 +37,18 @@ angular.module('staffrepay')
                 controller: 'staffrepay.ContactFormController as $ctrl'
             })
 
+            .state('app.staffrepay.employeeAnalytics', {
+                url: '/employeeAnalytics',
+                templateUrl: 'app/staffrepay/employee-analytics/employee-analytics.html',
+                controller: 'staffrepay.EmployeeAnalyticsController as $ctrl'
+            })
+
+            .state('app.staffrepay.claimAnalytics', {
+                url: '/claimAnalytics',
+                templateUrl: 'app/staffrepay/claim-analytics/claim-analytics.html',
+                controller: 'staffrepay.ClaimAnalyticsController as $ctrl'
+            })
+
             .state('app.staffrepay.success', {
                 url: '/success',
                 templateUrl: 'app/staffrepay/verify-claim/successful-claim/successful-claim.html'

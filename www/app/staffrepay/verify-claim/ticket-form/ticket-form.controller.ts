@@ -45,23 +45,12 @@ class TicketFormController {
         }
 
         this.claimService.getClaim(params)
-            .then((ticket) => {
+            .then((delayClaim) => {
 
-                this.ticket.fromStation = ticket.fromStation;
-                this.ticket.toStation = ticket.toStation;
-                this.ticket.class = ticket.class;
-                this.ticket.type = ticket.type;
-                this.ticket.fromDate = ticket.fromDate;
-                this.ticket.toDate = ticket.toDate;
-                this.ticket.cost = ticket.cost;
-                this.ticket.journeyDate = ticket.journeyDate;
-
-                this.ticketImage64 = ticket.image64;
+                this.ticket = delayClaim.ticket;
+                this.ticketImage64 = delayClaim.image64;
 
                 this.$ionicLoading.hide();
-
-                console.log(this.ticket);
-
             })
             .finally(() => {
 
@@ -100,6 +89,7 @@ class TicketFormController {
 
     public submitTicket() {
 
+        console.log(this.ticket);
         this.claimService.updateTicket(this.claimId, this.ticket)
             .then((response) => {
 

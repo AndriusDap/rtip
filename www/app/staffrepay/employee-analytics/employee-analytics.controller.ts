@@ -3,7 +3,7 @@
 module RailTech {
 export module StaffRepay {
 
-class ClaimsListController {
+class EmployeeAnalyticsController {
 
     public historicalChart;
     public dailyChart;
@@ -119,10 +119,6 @@ class ClaimsListController {
                         name: 'Rejected',
                         y: 12,
                         color: "#E75753"
-                    }, {
-                        name: 'Flagged',
-                        y: 4,
-                        color: "#FF8600"
                     }, {
                         name: 'Outstanding',
                         y: 130,
@@ -248,7 +244,7 @@ class ClaimsListController {
 }
 
 angular.module('staffrepay')
-    .controller('staffrepay.ClaimsListController', ClaimsListController)
+    .controller('staffrepay.EmployeeAnalyticsController', EmployeeAnalyticsController)
 
 
 } // Repay

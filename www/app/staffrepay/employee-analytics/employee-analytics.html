@@ -1,28 +1,7 @@
 <ion-view class="outstanding-claims-list" view-title="Outstanding Claims List" align-title="left">
     <ion-content>
-		<div class="col-lg-4 col-sm-12 claims-list-margin-top" style="height:100%">
-			<div>
-				<span ui-sref="app.staffrepay.employeeAnalytics" class="button btn col-xs-6">Overview</span>
-				<span ui-sref="app.staffrepay.claimAnalytics" class="button btn col-xs-6">Analytics</span>
-			</div>
-	    	<ion-scroll style="height:95%">
-				<ion-list>
-					<div class="claim-item" ng-repeat="claim in $ctrl.claims" ui-sref="app.staffrepay.ticket({ claimId: claim.id })">
-						<div class="claim-item-container">
-							<div class="claim-id">Claim #{{ claim.id }}</div>
-							<div class="claim-journey">{{ claim.journey.from_station }} -> {{ claim.journey.to_station }}</div>
-							<br>
-							<div class="claim-date">{{ claim.journey.journey_date | date: "dd/MM/yyyy" }}</div>
-							<div class="claim-status">{{claim.claim_validation.status }}</div>
-						</div>
-					</div>
-				</ion-list>
-	    	</ion-scroll>
-	    </div>
-
 	
-        <div class="col-lg-8 hide-sm claims-list-margin-top">
-            
+        <div class="col-lg-12 hide-sm claims-list-margin-top">
 			<div class="chart-container chart-container-quarter chart-container-short metrics-container">
 				<div class="chart-inner-container left-border-outstanding">
 					<div class="metric-container claim-outstanding">
@@ -31,18 +10,6 @@
 						</div>
 						<div class="metric">
 							130
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="chart-container chart-container-quarter chart-container-short metrics-container">
-				<div class="chart-inner-container left-border-accepted">
-					<div class="metric-container claim-accepted">
-						<div class="subtitle">
-							Accepted
-						</div>
-						<div class="metric">
-							13
 						</div>
 					</div>
 				</div>
@@ -59,15 +26,27 @@
 					</div>
 				</div>
 			</div>
-		
 			<div class="chart-container chart-container-quarter chart-container-short metrics-container">
-				<div class="chart-inner-container left-border-flagged">
-					<div class="metric-container claim-flagged">
+				<div class="chart-inner-container left-border-accepted">
+					<div class="metric-container claim-accepted">
 						<div class="subtitle">
-							Flagged
+							Accepted
 						</div>
 						<div class="metric">
-							4
+							13
+						</div>
+					</div>
+				</div>
+			</div>
+		
+			<div class="chart-container chart-container-quarter chart-container-short metrics-container">
+				<div class="chart-inner-container left-border-neutral">
+					<div class="metric-container claim-paid">
+						<div class="subtitle">
+							Total Paid
+						</div>
+						<div class="metric">
+							1,492
 						</div>
 					</div>
 				</div>

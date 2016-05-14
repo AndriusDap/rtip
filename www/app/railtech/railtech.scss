@@ -174,6 +174,9 @@ p {
     &.chart-container-short {
       height: 200px !important;
     }
+    &.chart-container-shorter {
+      height: 100px !important;
+    }
   
     .chart-inner-container {
       height: 95%;
@@ -201,6 +204,13 @@ p {
 
         &:hover {
           border-left: 6px solid lighten($accepted-color, 20);
+        }
+      }
+      &.left-border-flagged {
+        border-left: 6px solid $flagged-color;
+
+        &:hover {
+          border-left: 6px solid lighten($flagged-color, 20);
         }
       }
       &.left-border-neutral {
@@ -243,12 +253,19 @@ p {
           font-size: 30px;
           font-weight:900;
         }
+        .smaller-metric {
+          font-size: 25px;
+          font-weight:900;
+        }
 
         &.claim-outstanding {
           color: $outstanding-color;
         }
         &.claim-rejected { 
           color: $rejected-color;
+        }
+        &.claim-flagged {
+          color: $flagged-color;
         }
         &.claim-accepted {
           color: $accepted-color;
@@ -262,6 +279,9 @@ p {
 
   .chart-container-half {
     width: 50%;
+  }
+  .chart-container-third {
+    width: 33.33%;
   }
   .chart-container-full {
     width: 100%;

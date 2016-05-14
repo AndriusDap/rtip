@@ -1,0 +1,134 @@
+<ion-view class="outstanding-claims-list" view-title="Outstanding Claims List" align-title="left">
+    <ion-content>
+		<div class="col-lg-4 col-sm-12 claims-list-margin-top" style="height:100%">
+	    	<ion-scroll style="height:95%">
+				<ion-list>
+					<div class="claim-item claim-flagged" ng-repeat="claim in $ctrl.claims" ng-click="$ctrl.selectClaim(claim.id)">
+						<div class="claim-item-container">
+							<div class="claim-id">Claim #{{ claim.id }}</div>
+							<div class="claim-journey">{{ claim.journey.from_station }} -> {{ claim.journey.to_station }}</div>
+							<br>
+							<div class="claim-date">{{ claim.journey.journey_date | date: "dd/MM/yyyy" }}</div>
+							<div class="claim-status">{{claim.claim_validation.status }}</div>
+						</div>
+					</div>
+				</ion-list>
+	    	</ion-scroll>
+	    </div>
+
+	
+        <div class="col-lg-8 hide-sm claims-list-margin-top">
+    		
+	    	<div class="col-xs-12">
+		        <div class="col-xs-4">
+		        	<button ng-click="$ctrl.rejectClaim()" 
+		        	        class="button button-full button-assertive ink col-xs-12 sticky-footer">
+		        	    Reject
+		        	</button>
+		        </div>
+
+		        <div class="col-xs-4">
+		        	<button ng-click="$ctrl.takeAction()" 
+		        	        class="button button-full col-xs-12 button-energized ink sticky-footer">
+		        	    Take Action
+		        	</button>
+		        </div>
+
+		        <div class="col-xs-4">
+		        	<button ng-click="$ctrl.acceptClaim()" 
+		        	        class="button button-full	 button-balanced col-xs-12 ink sticky-footer">
+		        	    Accept
+		        	</button>
+		        </div>
+	    	</div>        
+	
+
+			<div class="chart-container chart-container-quarter chart-container-shorter metrics-container">
+				<div class="chart-inner-container left-border-neutral">
+					<div class="metric-container claim-neutral">
+						<div class="small-metric">
+							{{ $ctrl.selectedClaim.ticket.fromStation }}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="chart-container chart-container-quarter chart-container-shorter metrics-container">
+				<div class="chart-inner-container left-border-neutral">
+					<div class="metric-container claim-neutral">
+						<div class="small-metric">
+							{{ $ctrl.selectedClaim.ticket.toStation }}
+						</div>
+					</div>
+				</div>
+			</div>
+		
+			<div class="chart-container chart-container-quarter chart-container-shorter metrics-container">
+				<div class="chart-inner-container left-border-outstanding">
+					<div class="metric-container claim-outstanding">
+						<div class="small-metric">
+							£ {{ $ctrl.selectedClaim.ticket.cost }}
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="chart-container chart-container-quarter chart-container-shorter metrics-container">
+				<div class="chart-inner-container left-border-rejected">
+					<div class="metric-container claim-rejected">
+						<div class="small-metric">
+							Fraud: 72 %
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="chart-container chart-container-full chart-container-shorter metrics-container">
+				<div class="chart-inner-container left-border-flagged">
+					<div class="metric-container claim-flagged">
+						<div class="smaller-metric">
+							Chances of fraud due to suspicious email, picture, identification, service and ip address.
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="chart-container chart-container-third">
+				<div class="chart-inner-container">
+					<highchart class="activity-chart" config="$ctrl.activityChart"></highchart>
+				</div>
+			</div>
+
+			<div class="chart-container chart-container-third">
+				<div class="chart-inner-container">
+					<highchart class="activity-chart" config="$ctrl.activityChart"></highchart>
+				</div>
+			</div>
+
+			<div class="chart-container chart-container-third">
+				<div class="chart-inner-container">
+					<highchart class="activity-chart" config="$ctrl.activityChart"></highchart>
+				</div>
+			</div>
+
+			<div class="chart-container chart-container-third">
+				<div class="chart-inner-container">
+					<highchart class="activity-chart" config="$ctrl.activityChart"></highchart>
+				</div>
+			</div>
+
+			<div class="chart-container chart-container-third">
+				<div class="chart-inner-container">
+					<highchart class="activity-chart" config="$ctrl.activityChart"></highchart>
+				</div>
+			</div>
+
+			<div class="chart-container chart-container-third">
+				<div class="chart-inner-container">
+					<highchart class="activity-chart" config="$ctrl.activityChart"></highchart>
+				</div>
+			</div>
+
+        </div>		
+
+    </ion-content>
+</ion-view>

@@ -14,36 +14,36 @@ class ClaimFormController {
     public static $inject = [
         "JourneyService",
         "ClaimService",
-        "$ionicLoading"];
+        "$ionicLoading",
+        "$stateParams"];
 
     constructor(
-        private journeyService: JourneyService,
-        private claimService: ClaimService,
-        private $ionicLoading) {
+            private journeyService: JourneyService,
+            private claimService: ClaimService,
+            private $ionicLoading,
+            private $stateParams) {
 
-    	this.journey = {};
-    	this.journey.journeyDate = new Date(2016,2,26,14,3);
-    	this.journey.delayLength = 28;
-        this.journey.fromStation = "London Euston";
-        this.journey.toStation = "Manchester Picadilli";
+        this.claimId = $stateParams.claimId;
 
-        this.claim = {};
-        this.claim.id = 1231412;
-        this.claim.from = "London Euston";
-        this.claim.to = "Manchester Picadilli";
-        this.claim.date = (new Date()).toISOString();
-        this.claim.status = "OUTSTANDING";
+        var params = {
+            id: this.claimId
+        };
 
-        this.ticket = {};
-        this.ticket.identification = 727182
-        this.ticket.cost = 82.40;
-        this.ticket.class = "Standard";
-        this.ticket.type = "Off-peak Return";
-        this.ticket.fromDate = new Date(2016,2,26);
-        this.ticket.toDate = new Date(2016,2,26);
-        this.ticket.ticketImage = "img/ticket.jpg";
+        this.$ionicLoading.show({
+            template: "Loading claim..."
+        });
 
-        this.search();
+        this.claimService.getClaim(params)
+            .then((delayClaim) => {
+
+                this.ticket = delayClaim.ticket;
+                this.journey = delayClaim.journey;
+
+                return this.$ionicLoading.hide();
+            })
+            .then(() => {
+                this.search();
+            });
     }
 
     search() {
@@ -53,19 +53,21 @@ class ClaimFormController {
 
         this.journeysFound = [];
 
-        this.journeyService.search(
-                this.journey.fromStation,
-                this.journey.toStation,
-                this.journey.journeyDate)
+        return this.journeyService.search(
+                this.ticket.fromStation,
+                this.ticket.toStation,
+                this.ticket.journeyDate)
+
             .then((results) => {
+
                 this.journeysFound = results;
-            })
-            .finally(() => {
-                this.$ionicLoading.hide();
+
+                return this.$ionicLoading.hide();
             });
     }
 
     calculateRepay() {
+        
         if(!this.journeySelected) return;
 
         var delay = this.journeySelected.delay;
