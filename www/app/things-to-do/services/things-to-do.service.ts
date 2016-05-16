@@ -48,12 +48,14 @@ module RailTech {
 
         var deferred = this.$q.defer();
 
+        var TOC = toc.toUpperCase();
+
         var request = {
           "coords": [location.lat, location.lng],
           "city": location.city,
           "travel_time": travelTime,
           "start_time": startTime,
-          "toc": "VTEC"
+          "toc": TOC
         };
 
         this.$http.post(this.thingsToDoUrl, request)
