@@ -150,13 +150,13 @@ module RailTech {
             url = "http://tickets.gwr.com/gw/en/landing/tis";
             break;
           case "VTEC":
-            url = "http://tickets.virgintrainseastcoast.com/ec/en/";
+            url = "http://tickets.virgintrainseastcoast.com/ec/en/landing/tis";
             break;
           case "C2C":
-            url = "http://tickets.c2c-online.co.uk/c2c/en/";
+            url = "http://tickets.c2c-online.co.uk/c2c/en/landing/tis";
             break;
           case "CHILTERN":
-            url = "http://tickets.chilternrailways.co.uk/ch/en/";
+            url = "http://tickets.chilternrailways.co.uk/ch/en/landing/tis";
             break;
           default:
             console.error("Error, no TOC found!");

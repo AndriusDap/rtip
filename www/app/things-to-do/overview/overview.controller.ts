@@ -135,9 +135,9 @@ export class OverviewController {
 
             google.maps.event.addListener(marker, 'click', () => {
                 var buttonGroup = '<div class="col-xs-12 event-next-steps-button-group"><a href="/#app/thingsToDo/event/' + info.id + '" '
-                                    + '" class="col-xs-3 more-info next-steps-button hidden-link"> Info </a> <a href="'
+                                    + '" class="col-xs-3 more-info next-steps-button hidden-link"> Info </a> <a target="_blank" href="'
                                     + this.createTrainTicketsUrl()
-                                    + '" class="col-xs-6 book-train next-steps-button hidden-link"> Book Train </a> <a href="'
+                                    + '" class="col-xs-6 book-train next-steps-button hidden-link"> Book Train </a> <a target="_blank" href="'
                                     + info.website
                                     + '" target="_blank" class="col-xs-3 book-event next-steps-button hidden-link"> Event </a> </div>';
 
