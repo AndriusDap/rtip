@@ -16,20 +16,27 @@ export class ClaimController {
     public journey;
     public user;
 
+    public formStatusVisible;
+
     public static $inject = [
         '$ionicLoading',
         'repay.ticketDelayService'
-        'repay.ocrService'];
+        'repay.ocrService',
+        '$timeout'];
 
     constructor(
             private $ionicLoading,
-            private ticketDelayService
-            private ocrService) {
+            private ticketDelayService,
+            private ocrService,
+            private $timeout) {
 
         this.ticket = {};
+
+        this.formStatusVisible = false ;
     }
 
-    captureTicket() {
+    public captureTicket() {
+
         this.ticketDelayService.captureTicket()
             .then((ticketImage64) => {
                 this.ticketImage64 = ticketImage64;
@@ -37,7 +44,25 @@ export class ClaimController {
             });
     }
 
-    uploadClaim() {
+    public clearForm() {
+
+        this.ticket.fromStation = null;
+        this.ticket.toStation = null;
+        this.ticket.type = null;
+        this.ticket.fromDate = null;
+        this.ticket.toDate = null;
+        this.journey.journeyDate = null;
+        this.journey.delayLength = null;
+        this.journey.cost = null;
+        this.user.title = null;
+        this.user.firstName = null;
+        this.user.lastName = null;
+        this.user.postCode = null;
+        this.user.address = null;
+        this.user.email = null;
+    }
+
+    public uploadClaim() {
         this.ticketDelayService.uploadClaim(
                 this.ticketImage64, 
                 this.ticket, 
@@ -45,7 +70,16 @@ export class ClaimController {
                 this.user)
             .then(
                 ()=>{
-                    
+
+                    this.clearForm();
+
+                    this.formStatusVisible = true;
+
+                    this.$timeout(() => {
+                        
+                        this.formStatusVisible = false;
+
+                    }, 3000);
                 }
                 , ()=> {
                     //redirect to error

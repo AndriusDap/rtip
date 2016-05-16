@@ -1,4 +1,9 @@
 <ion-view class="claim-container" view-title="" align-title="left">
+    <ion-header>
+        <div class="form-status" ng-class="{ 'form-status-visible': $ctrl.formStatusVisible }">
+            Claim has been successfully submitted!
+        </div>
+    </ion-header>
     <ion-content scroll="true" overflow-scroll="{{ embed }}">
        
         <div class="col-lg-4">

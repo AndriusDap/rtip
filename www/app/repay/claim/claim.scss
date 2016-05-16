@@ -1,6 +1,22 @@
 .claim-container {
 	padding: 0 30px 0 30px;
 	
+	.form-status {
+		overflow: hidden;
+		height: 0px;
+		padding: 15px;
+		font-size: 20px;
+		text-align: center;
+		color: transparent;
+
+		transition: height 2s ease;
+
+		&.form-status-visible {
+			height: 50px;
+			background-color: #00C31A;
+			color: white;
+		}
+	}
 
 	.ticket-image {
 		max-width: 100px;
