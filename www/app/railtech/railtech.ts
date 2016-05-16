@@ -10,6 +10,8 @@ angular.module('railtech', [
         'ionic',  
         'ionic-material', 
         'ionMdInput',
+        'angulartics', 
+        'angulartics.google.analytics',
 
         // Internal
         'thingsToDo',

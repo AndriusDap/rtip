@@ -19,6 +19,7 @@
     "jquery": "^2.2.3",
     "fuse.js": "^2.2.0",
     "highcharts": "^4.2.5",
-    "highcharts-ng": "^0.0.11"
+    "highcharts-ng": "^0.0.11",
+    "angulartics-google-analytics": "^0.1.4"
   }
 }
