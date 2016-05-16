@@ -7,6 +7,8 @@ export class ClaimService {
     public ticket;
     public journey;
 
+    public tempCurrElem = 0;
+
     static $inject = [
         "$http",
         "$q",
@@ -110,6 +112,98 @@ export class ClaimService {
 
                 deferred.resolve(delayClaim);
             });
+
+        return deferred.promise;
+    }
+
+    public getAnalytics(claimId) {
+
+        var deferred = this.$q.defer();
+
+        var allFlaggedAnalytics = [
+            {
+                fraudPercent: 45,
+                showImage: false,
+                fraudMessage: "Suspicious email and service.",
+                analytics: [
+                    {
+                        field: "Email",
+                        value: "river@hackpartners.com",
+                        outstanding: 1,
+                        accepted: 2,
+                        rejected: 12,
+                        flagged: 2
+                    },
+                    {
+                        field: "Service",
+                        value: "R123142",
+                        outstanding: 15,
+                        accepted: 45,
+                        rejected: 12,
+                        flagged: 4
+                    }
+                ]
+            },
+            {
+                fraudPercent: 25,
+                showImage: true,
+                fraudMessage: "Suspicious email and image.",
+                analytics: [
+                    {
+                        field: "Email",
+                        value: "river@hackpartners.com",
+                        outstanding: 1,
+                        accepted: 2,
+                        rejected: 12,
+                        flagged: 2
+                    }
+                ]
+            },
+            {
+                fraudPercent: 82,
+                showImage: true,
+                fraudMessage: "Suspicious email, ticket number, service, ip address and image.",
+                analytics: [
+                    {
+                        field: "Email",
+                        value: "suspicious@randomwebsite.com",
+                        outstanding: 1,
+                        accepted: 2,
+                        rejected: 12,
+                        flagged: 2
+                    },
+                    {
+                        field: "Ticket Number",
+                        value: "887818",
+                        outstanding: 130,
+                        accepted: 13,
+                        rejected: 12,
+                        flagged: 4
+                    },
+                    {
+                        field: "Service",
+                        value: "R123142",
+                        outstanding: 15,
+                        accepted: 45,
+                        rejected: 12,
+                        flagged: 4
+                    },
+                    {
+                        field: "IP",
+                        value: "82.132.230.153",
+                        outstanding: 20,
+                        accepted: 67,
+                        rejected: 32,
+                        flagged: 14
+                    }
+                ]
+            }
+        ];
+
+        var curr = allFlaggedAnalytics[this.tempCurrElem];
+        this.tempCurrElem = (this.tempCurrElem + 1) % allFlaggedAnalytics.length;
+
+        deferred.resolve(curr);
 
         return deferred.promise;
     }

@@ -1,4 +1,4 @@
-<ion-view class="outstanding-claims-list" view-title="Outstanding Claims List" align-title="left">
+<ion-view class="outstanding-claims-list" view-title="Claim Analytics" align-title="left">
     <ion-content>
 		<div class="col-lg-4 col-sm-12 claims-list-margin-top" style="height:100%">
 	    	<ion-scroll style="height:95%">
@@ -30,7 +30,7 @@
 		        <div class="col-xs-4">
 		        	<button ng-click="$ctrl.takeAction()" 
 		        	        class="button button-full col-xs-12 button-energized ink sticky-footer">
-		        	    Take Action
+		        	    Report
 		        	</button>
 		        </div>
 
@@ -76,7 +76,7 @@
 				<div class="chart-inner-container left-border-rejected">
 					<div class="metric-container claim-rejected">
 						<div class="small-metric">
-							Fraud: 72 %
+							Fraud: {{ $ctrl.fraudPercent }} %
 						</div>
 					</div>
 				</div>
@@ -86,48 +86,27 @@
 				<div class="chart-inner-container left-border-flagged">
 					<div class="metric-container claim-flagged">
 						<div class="smaller-metric">
-							Chances of fraud due to suspicious email, picture, identification, service and ip address.
+							{{ $ctrl.fraudMessage }}
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="chart-container chart-container-third">
+			<div class="chart-container chart-container-third" 
+					ng-repeat="chartConfig in $ctrl.activityCharts">
 				<div class="chart-inner-container">
-					<highchart class="activity-chart" config="$ctrl.activityChart"></highchart>
+					<highchart class="activity-chart" 
+								config="chartConfig">
+					</highchart>
 				</div>
 			</div>
 
-			<div class="chart-container chart-container-third">
-				<div class="chart-inner-container">
-					<highchart class="activity-chart" config="$ctrl.activityChart"></highchart>
+			<div class="chart-container chart-container-two-thirds" 
+					ng-if="$ctrl.showImage">
+				<div class="chart-inner-container" 
+						style="background-repeat: no-repeat; background-size: contain; background-image: url(data:image/png;base64,{{ $ctrl.selectedClaim.image64 }})">
 				</div>
 			</div>
-
-			<div class="chart-container chart-container-third">
-				<div class="chart-inner-container">
-					<highchart class="activity-chart" config="$ctrl.activityChart"></highchart>
-				</div>
-			</div>
-
-			<div class="chart-container chart-container-third">
-				<div class="chart-inner-container">
-					<highchart class="activity-chart" config="$ctrl.activityChart"></highchart>
-				</div>
-			</div>
-
-			<div class="chart-container chart-container-third">
-				<div class="chart-inner-container">
-					<highchart class="activity-chart" config="$ctrl.activityChart"></highchart>
-				</div>
-			</div>
-
-			<div class="chart-container chart-container-third">
-				<div class="chart-inner-container">
-					<highchart class="activity-chart" config="$ctrl.activityChart"></highchart>
-				</div>
-			</div>
-
         </div>		
 
     </ion-content>

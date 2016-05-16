@@ -16,4 +16,17 @@
 
 	}
 
+	.highcharts-title {
+		text-align: center;
+
+		.field {
+			font-size: 18px;
+		}
+
+		.value {
+			font-size: 15px;
+			font-weight: 900;
+		}	
+	}	
+
 }
