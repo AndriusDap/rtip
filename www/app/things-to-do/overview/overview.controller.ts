@@ -50,7 +50,7 @@ export class OverviewController {
         var datetime = new Date();
         var traveltime = new Date();
         
-        traveltime.setHours(2,30);
+        traveltime.setHours(4,30);
 
         this.mapWidth = 0;
         this.eventsContainerWidth = 450;
