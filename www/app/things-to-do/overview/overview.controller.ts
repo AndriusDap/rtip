@@ -38,14 +38,16 @@ export class OverviewController {
         "$ionicLoading",
         "$window",
         "$rootScope",
-        "thingsToDo.thingsToDoService"];
+        "thingsToDo.thingsToDoService",
+        "$timeout"];
 
     constructor(
             private $scope,
             private $ionicLoading,
             private $window,
             private $rootScope,
-            private thingsToDoService) {
+            private thingsToDoService,
+            private $timeout) {
 
         var datetime = new Date();
         var traveltime = new Date();
@@ -93,7 +95,10 @@ export class OverviewController {
             .then(() => {
 
                 this.$scope.$broadcast('scroll.refreshComplete');
-                this.$ionicLoading.hide();
+                return this.$ionicLoading.hide();
+            })
+            .then(() => {
+                this.$timeout(() => { this.setupMapResize(); }, 500);
             });     
 
     }
@@ -248,7 +253,14 @@ export class OverviewController {
         angular.element(this.$window).bind('resize', () => {
 
             var width = this.$window.innerWidth;
-            this.mapWidth = width - this.eventsContainerWidth;
+
+            if(width < 650) {
+                this.mapWidth = width;
+            }
+            else {
+                this.mapWidth = width - this.eventsContainerWidth;
+            }
+
             this.$scope.$digest();
        });
     }

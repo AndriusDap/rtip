@@ -68,7 +68,7 @@
             
             <!-- ui-sref="app.thingsToDo.event({ eventId: event.id })"  -->
             
-            <ion-content class="events-found col-xs-12" overflow-scroll="true">
+            <ion-content class="events-found col-xs-12 hide-xs" overflow-scroll="true">
                 <ion-refresher pulling-text="Pull to refresh" on-refresh="$ctrl.findEvents()"></ion-refresher>
                 <ul class="list">
                     <li class="item" 
@@ -116,11 +116,10 @@
 
             </ion-content>
         </div>
-    </div>
 
-    <div class="map-container" ng-style="{ width: $ctrl.mapWidth + 'px' }">
-        <div id="map"></div>
-    </div> 
+        <div class="map-container" ng-style="{ width: $ctrl.mapWidth + 'px' }">
+            <div id="map"></div>
+        </div> 
 
     </ion-content>
 </ion-view>
