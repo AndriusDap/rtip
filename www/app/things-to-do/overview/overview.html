@@ -19,32 +19,44 @@
             </div>
             <div class="settings-header">
                 <div class="col-xs-3 header-container time-container">
-                    {{ $ctrl.settings.traveltime | date:"H" }}h {{ $ctrl.settings.traveltime | date:"m" }}m
-                    <input mdc-datetime-picker="" 
-                        date="false" 
-                        time="true" 
-                        type="text" 
-                        short-time="false"
-                        ng-model="$ctrl.settings.traveltime" 
-                        class="railtech-things-to-do-time-picker md-input background-input">
+                    <div tooltips 
+                            tooltip-template="Maximum travel time"
+                            tooltip-side="bottom">
+                        {{ $ctrl.settings.traveltime | date:"H" }}h {{ $ctrl.settings.traveltime | date:"m" }}m
+                        <input mdc-datetime-picker="" 
+                            date="false" 
+                            time="true" 
+                            type="text" 
+                            short-time="false"
+                            ng-model="$ctrl.settings.traveltime" 
+                            class="railtech-things-to-do-time-picker md-input background-input">
+                    </div>
                 </div>
                 
 
                 <div class="col-xs-9 header-container location-container"
                         ng-click="$ctrl.pickNewLocation()">
-                    <span class="text-container"> from </span>
-                    {{ $ctrl.settings.location.city }}
+                    <div tooltips 
+                            tooltip-template="Where are you departing from?"
+                            tooltip-side="bottom">
+                        <span class="text-container"> from </span>
+                        {{ $ctrl.settings.location.city }}
+                    </div>
                 </div>
 
                 <div class="col-xs-12 header-container depart-container theme-main-color-light">
-                    <span class="text-container">Departing at </span> 
-                    {{ $ctrl.settings.datetime | date: "HH:MM on EEEE d, MMMM" }}
-                    <input mdc-datetime-picker="" 
-                            date="true" 
-                            time="true" 
-                            type="text" 
-                            ng-model="$ctrl.settings.datetime" 
-                            class="md-input background-input">
+                    <div tooltips 
+                            tooltip-template="Date and time of departure"
+                            tooltip-side="bottom">
+                        <span class="text-container">Departing at </span> 
+                        {{ $ctrl.settings.datetime | date: "HH:MM on EEEE d, MMMM" }}
+                        <input mdc-datetime-picker="" 
+                                date="true" 
+                                time="true" 
+                                type="text" 
+                                ng-model="$ctrl.settings.datetime" 
+                                class="md-input background-input">
+                    </div>
                 </div>
             </div>
 

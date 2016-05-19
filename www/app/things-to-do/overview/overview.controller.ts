@@ -52,7 +52,12 @@ export class OverviewController {
         var datetime = new Date();
         var traveltime = new Date();
         
-        traveltime.setHours(4,30);
+        if(this.$rootScope.toc === "vtec") {
+            traveltime.setHours(11,55);
+        }
+        else {
+            traveltime.setHours(5,30);
+        }
 
         this.mapWidth = 0;
         this.eventsContainerWidth = 450;
@@ -115,7 +120,7 @@ export class OverviewController {
         var lng = this.settings.location.lng;
 
         var mapOptions = {
-                  zoom: 9,
+                  zoom: 7,
                   center: new google.maps.LatLng(lat, lng),
                   mapTypeId: google.maps.MapTypeId.ROADMAP
               }

@@ -12,6 +12,7 @@ angular.module('railtech', [
         'ionMdInput',
         'angulartics', 
         'angulartics.google.analytics',
+        '720kb.tooltips',
 
         // Internal
         'thingsToDo',
