@@ -64,17 +64,29 @@
                 <div ng-class="{ 'theme-main-color-active': $ctrl.sortingBy === 'time' }" 
                         class="col-xs-4 theme-main-color" 
                         ng-click="$ctrl.sortBy('time')">
-                    <i class="icon ion-clock"></i>
+                    <div tooltips 
+                            tooltip-template="Sort by time"
+                            tooltip-side="bottom">
+                        <i class="icon ion-clock"></i>
+                    </div>
                 </div>
                 <div ng-class="{ 'theme-main-color-active': $ctrl.sortingBy === 'price' }" 
                         class="col-xs-4 theme-main-color" 
                         ng-click="$ctrl.sortBy('price')">
-                    £
+                    <div tooltips 
+                            tooltip-template="Sort by cost"
+                            tooltip-side="bottom">
+                        £
+                    </div>
                 </div>
                 <div ng-class="{ 'theme-main-color-active': $ctrl.sortingBy === 'name' }" 
                         class="col-xs-4 theme-main-color" 
                         ng-click="$ctrl.sortBy('name')">
-                    A - Z
+                    <div tooltips 
+                            tooltip-template="Sort by name"
+                            tooltip-side="bottom">
+                        A - Z
+                    </div>
                 </div>
             </div>
             
