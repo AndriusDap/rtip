@@ -110,13 +110,17 @@
                                 <span>{{ event.event.city }}</span>
                             </div>
                         </div>
-                        <div class="event-cost">
-                            £ {{ event.event.price | number:0 }}
+                        <div class="event-cost"
+                                 tooltips 
+                                tooltip-template="Event cost: £ {{ event.event.price }}. <br>Travel cost: £ {{ event.fares.price }}"
+                                tooltip-side="left"
+                                tooltip-side="bottom">
+                            £ {{ event.event.price + event.fares.price | number:0 }}
                         </div>
                         <div class="event-travel-time">
-                            {{ event.travel_time / 60 | number:0 }} minutes
+                            {{ $ctrl.formatTravelTime(event.travel_time) }}
                         </div>
-                        <br><br>
+                        <br>
                         <br>
                         <br>
                         <div class="event-theme" title="{{ event.event.theme }}">

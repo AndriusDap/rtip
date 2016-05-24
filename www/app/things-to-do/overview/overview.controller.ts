@@ -114,6 +114,15 @@ export class OverviewController {
         }, true);
     }
 
+    public formatTravelTime(time) {
+        var allMinutes = time / 60;
+        
+        var hours = Math.floor(allMinutes / 60);
+        var minutes = Math.floor(allMinutes % 60);
+
+        return hours + "h " + minutes + "m";
+    }
+
     private setupMap() {
 
         var lat = this.settings.location.lat;
