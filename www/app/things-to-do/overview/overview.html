@@ -19,6 +19,7 @@
             </div>
             <div class="settings-header">
                 <div class="col-xs-3 header-container time-container">
+                    <span class="extra-detail-label">Maximum travel time</span>
                     <div tooltips 
                             tooltip-template="Maximum travel time"
                             tooltip-side="bottom">
@@ -39,6 +40,7 @@
                     <div tooltips 
                             tooltip-template="Where are you departing from?"
                             tooltip-side="bottom">
+                        <span class="extra-detail-label">Where are you departing from?</span>
                         <span class="text-container"> from </span>
                         {{ $ctrl.settings.location.city }}
                     </div>
@@ -48,6 +50,7 @@
                     <div tooltips 
                             tooltip-template="Date and time of departure"
                             tooltip-side="bottom">
+                        <span class="extra-detail-label">When will you be departing?</span>
                         <span class="text-container">Departing at </span> 
                         {{ $ctrl.settings.datetime | date: "HH:MM on EEEE d, MMMM" }}
                         <input mdc-datetime-picker="" 
@@ -61,8 +64,9 @@
             </div>
 
             <div class="event-types-divider theme-main-color">
+                <div class="col-xs-3 theme-main-color">Sort by:</div>
                 <div ng-class="{ 'theme-main-color-active': $ctrl.sortingBy === 'time' }" 
-                        class="col-xs-4 theme-main-color" 
+                        class="col-xs-3 theme-main-color" 
                         ng-click="$ctrl.sortBy('time')">
                     <div tooltips 
                             tooltip-template="Sort by time"
@@ -71,7 +75,7 @@
                     </div>
                 </div>
                 <div ng-class="{ 'theme-main-color-active': $ctrl.sortingBy === 'price' }" 
-                        class="col-xs-4 theme-main-color" 
+                        class="col-xs-3 theme-main-color" 
                         ng-click="$ctrl.sortBy('price')">
                     <div tooltips 
                             tooltip-template="Sort by cost"
@@ -80,7 +84,7 @@
                     </div>
                 </div>
                 <div ng-class="{ 'theme-main-color-active': $ctrl.sortingBy === 'name' }" 
-                        class="col-xs-4 theme-main-color" 
+                        class="col-xs-3 theme-main-color" 
                         ng-click="$ctrl.sortBy('name')">
                     <div tooltips 
                             tooltip-template="Sort by name"
@@ -112,7 +116,7 @@
                         </div>
                         <div class="event-cost"
                                  tooltips 
-                                tooltip-template="Event cost: £ {{ event.event.price }}. <br>Travel cost: £ {{ event.fares.price }}"
+                                tooltip-template="Event cost: £ {{ event.event.price | number:0 }}. <br>Travel cost: £ {{ event.fares.price | number:0 }}"
                                 tooltip-side="left"
                                 tooltip-side="bottom">
                             £ {{ event.event.price + event.fares.price | number:0 }}

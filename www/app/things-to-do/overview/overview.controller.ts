@@ -138,7 +138,7 @@ export class OverviewController {
 
         var infoWindow = new google.maps.InfoWindow();
 
-        var createMarker = (info, travelTime) => {
+        var createMarker = (info, travelTime, fares) => {
 
             var marker = new google.maps.Marker({
                 map: this.map,
@@ -149,8 +149,8 @@ export class OverviewController {
             var content = '<div class="infoWindowContent">' + info.location + '</div>';
             var titleLink = '<div class="marker-title"><a class="theme-main-color-link" href="/#app/thingsToDo/event/' + info.id + '">' + info.name + '</a></div>';
             var theme = '<div class="event-theme" title="{{ event.event.theme }}" >' + info.theme + '</div>';
-            var time = '<div class="event-travel-time">' + Math.floor(travelTime / 60) + ' mins </div>';
-            var price = '<div class="event-cost col-xs-2"> £' + Math.floor(info.price) + '</div>';
+            var time = '<div class="event-travel-time">' + this.formatTravelTime(travelTime) + ' mins </div>';
+            var price = '<div class="event-cost col-xs-2"> £' + Math.floor(info.price + fares.price) + '</div>';
 
             google.maps.event.addListener(marker, 'click', () => {
                 var buttonGroup = '<div class="col-xs-12 event-next-steps-button-group"><a href="/#app/thingsToDo/event/' + info.id + '" '
@@ -170,7 +170,7 @@ export class OverviewController {
         }  
 
         for (var i = 0; i < this.visibleEvents.length; i++) {
-            this.visibleEvents[i].marker = createMarker(this.visibleEvents[i].event, this.visibleEvents[i].travel_time);
+            this.visibleEvents[i].marker = createMarker(this.visibleEvents[i].event, this.visibleEvents[i].travel_time, this.visibleEvents[i].fares);
         }
     }
 

@@ -1,4 +1,4 @@
-<ion-side-menus enable-menu-with-back-views="true" ng-class="'main-theme-' + $root.toc">
+<ion-side-menus enable-menu-with-back-views="true" class="main-theme-{{ $root.toc }}" ng-class="{ 'railtech-extra-detail': $root.extraDetail }">
     <ion-side-menu-content>
         <ion-nav-bar class="railtech-navbar theme-main-color" ng-class="{expanded: isExpanded}" align-title="left">
             <ion-nav-back-button class="no-text">
@@ -10,6 +10,7 @@
                 </button>
             </ion-nav-buttons>
         </ion-nav-bar>
+        {{ $root.extraDetail }}
         <ion-nav-view class="main-railtech-content-view"></ion-nav-view>
     </ion-side-menu-content>
     <ion-side-menu side="right" ng-if="!$root.embed">
