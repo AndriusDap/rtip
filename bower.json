@@ -22,5 +22,11 @@
     "highcharts-ng": "^0.0.11",
     "angulartics-google-analytics": "^0.1.4",
     "angular-tooltips": "^1.1.1"
+  },
+  "resolutions": {
+    "nvd3": "^1.7.1",
+    "d3": "~3.3.13",
+    "angular-animate": "^1.4.8",
+    "angular": "^1.5.5"
   }
 }

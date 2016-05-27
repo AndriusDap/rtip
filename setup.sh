@@ -12,7 +12,7 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | b
 nvm install v4.2.0
 nvm alias default v4.2.0
 
-sudo apt-get install python3-pip
+sudo apt-get install python3-pip -y
 
 # Reconfiguring locals
 export LC_ALL="en_US.UTF-8"
