@@ -51,12 +51,29 @@ export class OverviewController {
 
         var datetime = new Date();
         var traveltime = new Date();
+        var location;
+        
+        var gwrLocation = {
+            name: "London",
+            city: "London",
+            lat: 51.5377799,
+            lng: -0.0937865,
+        }
+        
+        var vtecLocation = {
+            name: "London",
+            city: "London",
+            lat: 51.5073509,
+            lng: -0.12775829999998223,
+        }
         
         if(this.$rootScope.toc === "vtec") {
             traveltime.setHours(11,55);
+            location = vtecLocation;
         }
         else {
-            traveltime.setHours(5,30);
+            traveltime.setHours(2,30);
+            location = gwrLocation;
         }
 
         this.mapWidth = 0;
@@ -66,12 +83,7 @@ export class OverviewController {
         this.settings = {
             datetime: datetime,
             traveltime: traveltime,
-            location: {
-                name: "London",
-                city: "London",
-                lat: 51.5073509,
-                lng: -0.12775829999998223,
-            }
+            location: location
         };
 
         this.setupWatch();
